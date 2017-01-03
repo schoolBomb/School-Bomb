@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{8B9F898D-F7F5-1661-4AA7-18910A397391}") = "School Bomb", "Assembly-CSharp.csproj", "{F44A5444-801A-3AB5-5856-7D2AA434F9DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F44A5444-801A-3AB5-5856-7D2AA434F9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44A5444-801A-3AB5-5856-7D2AA434F9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44A5444-801A-3AB5-5856-7D2AA434F9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44A5444-801A-3AB5-5856-7D2AA434F9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
