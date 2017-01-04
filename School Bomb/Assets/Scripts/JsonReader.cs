@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 
 public class JsonReader : MonoBehaviour {
-	Word[] w;
+	public Word[] w;
 
 	// Use this for initialization
 	void Start () {
@@ -22,4 +22,5 @@ public class JsonReader : MonoBehaviour {
 			Debug.Log ("Can't make object");
 		Debug.Log (w[0].isQuestion);
 	}
+		
 }
