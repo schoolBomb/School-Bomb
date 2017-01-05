@@ -1,33 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
+using UnityEngine;
+
 
 
 //word script를 필요시 불러오는작업을 한다. 
 public class ScriptManager : MonoBehaviour {
 	private JsonReader j;
 	Word[] w;
-	//Dictionary wordDic=new Dictionar
-//	Node<short> tree;
+
+	//variable for UI
+	public GameObject TextBackGround;
+	public Text nameText;//name UI
+	public Text senteceText;//sentence UI
 
 	// Use this for initialization
 	void Start () {
 		j = GetComponent<JsonReader> ();
 		w = j.w;
-		//findWord (2, 1, 1);
 	}
 
-	public void findWord(short nowStage,short day, short time){//장소 날짜 시간에 맞는 word list를 뽑는다 s
+	void Update(){
+
+	}
+
+	public void findWord(short nowStage,short day, short time){//장소 날짜 시간에 맞는 word list를 뽑는다 
+		//C# Linq 사용, DB 랑 비슷함
 		var result = 
 			from word in w
 			where (word.location == nowStage) && (word.day == day) && (word.time == time)
 			select word;
 
+		//for test
 		foreach (var word in result) {
 			Debug.Log (word.location+" "+word.day+" "+word.time+word.sentence);
 		}
 
+	}
+
+	public void printInUI(short nowStage,short day, short time){
+		
+//		1. 데이터를 추린다. ->findWord
+		findWord (nowStage, day, time);
+//		2. TextUI가 켜진다.
+
+//		3. Text가 보여진다.
+//		4. enter 또는 마우스 클릭을 한다.(Update문에 올리고)
+//			1. 만약 대사가 남아있는 경우 다음 대사로 바꾼다.(달칵거리는 소리 출력?)
+//			2. TextUI가 꺼진다.
 	}
 
 	//	public void makeTree(T nodeType){
