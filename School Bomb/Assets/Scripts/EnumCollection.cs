@@ -10,7 +10,7 @@ public enum TimeOfDay : short{
 }
 
 public enum stageNum : short{
-	SelectStage=0, Shop, Lab, ClubRoom, Lobbdy, Center, Dormitory, Corridor
+	SelectStage=0, Shop, Lab, ClubRoom, Lobbdy, ServerRoom, Dormitory, Corridor, SecretRoom
 }
 
 public enum ItemPosition : short{

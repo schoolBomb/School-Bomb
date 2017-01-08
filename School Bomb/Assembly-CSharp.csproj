@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\JsonReader.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\Scripts\ScriptManager.cs" />
+     <Compile Include="Assets\Scripts\SelectStage.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
      <None Include="Assets\Resource\etc\wordSheet.txt" />

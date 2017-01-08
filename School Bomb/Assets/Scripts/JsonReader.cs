@@ -20,7 +20,8 @@ public class JsonReader : MonoBehaviour {
 		w = JsonHelper.FromJson<Word> (tempData);
 		if (w == null)// if it cannot change string to object
 			Debug.Log ("Can't make object");
-		Debug.Log (w[0].isQuestion);
+		//GameObject.Find ("Script Manager").GetComponent<ScriptManager> ().getWordAll = w;
+		//Debug.Log (w[0].isQuestion);
 	}
 		
 }
