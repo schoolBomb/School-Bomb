@@ -7,7 +7,7 @@ using UnityEngine;
 //word script를 필요시 불러오는작업을 한다. 
 public class ScriptManager : MonoBehaviour {
 	private JsonReader j;
-	private Word[] wordAll;
+	public Word[] wordAll;
 	private Word[] wordList;
 
 	//variable for UI
@@ -94,7 +94,7 @@ public class ScriptManager : MonoBehaviour {
 				senteceText.text = wordList [i + answer + 3].sentence;//answer에 따라서 그거 +3인 애를 골라서 sentence에 넣어준다.
 				QuestionUI.SetActive (false);
 				senteceText.gameObject.SetActive (true);
-				i = i + answer + 4;
+				i = i + 7;
 			}
 				//	3. 만약 대사가 남아있는 경우 다음 대사로 바꾼다.(달칵거리는 소리 출력?)
 			else {
