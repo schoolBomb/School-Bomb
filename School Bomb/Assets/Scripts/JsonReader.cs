@@ -5,6 +5,7 @@ using System;
 
 public class JsonReader : MonoBehaviour {
 	public Word[] w;
+	public Item[] it;
 
 	// Use this for initialization
 	void Start () {
