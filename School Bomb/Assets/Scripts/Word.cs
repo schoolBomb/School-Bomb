@@ -14,8 +14,9 @@ public struct Word{//대사 출력용 구조체
 }
 
 [Serializable]
-public struct Item{//아이템 정보 
-	public int name;
+public struct Item{//아이템 정보
+	public int num;
+	public string name;
 	public string description;
 	public ArrayList bomb;
 	public int location;
