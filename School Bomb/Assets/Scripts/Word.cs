@@ -4,10 +4,6 @@ using System.Collections;
 [Serializable]//직렬화
 public struct Word{//대사 출력용 구조체
 
-	public Word(){
-
-	}
-
 	public Word(int location, int num, string name, string isQuestion, int day, int time, string sentence){
 		this.location = location;
 		this.num = num;
