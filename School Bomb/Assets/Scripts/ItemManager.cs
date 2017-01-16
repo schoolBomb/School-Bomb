@@ -81,7 +81,7 @@ public class ItemManager : MonoBehaviour {
 			//아니오-> 구입을 취소했습니다.	
 			if(s.Length>=5) senteceText.text = s [2 + answer];//not door
 			/////////////17.01.14
-			another(answer);
+			another(answer); 
 			//itemList[itemNum].data.location=(int)ItemPosition.toUser;// 소속된 곳이 바뀜.
 			// 아이템 모습이 없어짐.
 			QuestionUI.SetActive (false);
@@ -100,7 +100,7 @@ public class ItemManager : MonoBehaviour {
 
 	private void initializeQuestion(){
 		for (int i = 0; i < questionText.Length; i++) {
-			questionText [i].text = "";
+		       	questionText [i].text = "";
 		}
 	}
 

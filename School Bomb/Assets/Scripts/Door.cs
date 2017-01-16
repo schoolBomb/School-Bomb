@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour {//문에 달리는 코드
 	private string[] txt;
 	private ItemManager usePurchase;
 	private SelectStage s;

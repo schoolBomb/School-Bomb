@@ -7,11 +7,15 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public GameObject[] gameUI;
 	public GameObject[] stages;
 	public Text[] upLeft;
-		
-	public void select(int selectNum){
 
+	//variable for change select stage background
+//	public GameObject[] selectBack;
+	public Sprite[] selectBack;	
+
+	//when select Stage
+	public void select(int selectNum){
 		//받은 parameter에 맞는 stages와 backGround를 활성화한다.
-		if (selectNum == 0) {
+		if (selectNum == 0) {//이때 dorm과 selectStage는 제외
 			stages [Status.nowStage].SetActive (false);
 			Status.changeTime();//시간변경
 			Status.nowStage = (short)selectNum;
@@ -21,11 +25,11 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			updateUpLeftUI ();
 		}
 		else {
-			if (selectNum == 6) {//if dormitory
+			if ( selectNum == 6 || selectNum==8 ) {//if dormitory
 			} 
 			else {
 				stages [9].SetActive (true);
-				updateUpLeftUI ();
+				//updateUpLeftUI ();
 			}
 			Status.nowStage = (short)selectNum;
 			gameUI[0].SetActive (false);//selectButton
@@ -33,28 +37,30 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			stages [0].SetActive (false);
 			stages [selectNum].SetActive (true);
 		}
-		//이때 dorm과 selectStage는 제외
 		//필요에따른 로딩차아아앙
-
 	}
 
 	public void updateUpLeftUI(){
-		Status.changeTime ();
 		updateTime ();
 		updateDay ();
 
 	}
 
 	public void updateTime(){
+		SpriteRenderer s = stages [0].GetComponent<SpriteRenderer> ();
+
 		switch (Status.time) {
 		case (int)TimeOfDay.Day:
 			upLeft [1].text = "낮";
+			s.sprite = selectBack [0];
 			break;
 		case (int)TimeOfDay.Evening:
 			upLeft [1].text = "저녁";
+			s.sprite = selectBack [1];
 			break;
 		case (int)TimeOfDay.Night:
 			upLeft [1].text = "밤";
+			s.sprite = selectBack [2];
 			break;
 		default:
 			break;
