@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public delegate void func1(int a);
+
 public class ItemManager : MonoBehaviour {
 
 	public ItemBasic[] itemList;
@@ -34,17 +36,18 @@ public class ItemManager : MonoBehaviour {
 		yield return null;
 	}
 
-	public IEnumerator purchase(string[] s, int itemNum){
+	public IEnumerator purchase(string[] s, int itemNum, func1 another){
 		//마우스 클릭을 할시
 		//설명 블라블라
-		nameText.text = itemList [itemNum].data.name;
-		senteceText.text = itemList [itemNum].data.description;
+		if(itemNum>=0) nameText.text = itemList [itemNum].data.name;
+		senteceText.text = s[0];
 		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);//Text UI가 뜬다.
-
+		initializeQuestion();
 		int i = 0;
 		while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) && !Input.GetMouseButtonDown(0) ){
 			yield return null;
 		}
+		i = 1;
 		if (i == 1) {//Question
 			int answer=1;
 
@@ -76,8 +79,10 @@ public class ItemManager : MonoBehaviour {
 			}
 			//예-> “뫄뫄”를 구입했습니다.
 			//아니오-> 구입을 취소했습니다.	
-			senteceText.text = s [2 + answer];//answer에 따라서 그거 +3인 애를 골라서 sentence에 넣어준다.
-			itemList[itemNum].data.location=(int)ItemPosition.toUser;// 소속된 곳이 바뀜.
+			if(s.Length>=5) senteceText.text = s [2 + answer];//not door
+			/////////////17.01.14
+			another(answer);
+			//itemList[itemNum].data.location=(int)ItemPosition.toUser;// 소속된 곳이 바뀜.
 			// 아이템 모습이 없어짐.
 			QuestionUI.SetActive (false);
 			senteceText.gameObject.SetActive (true);
@@ -92,4 +97,12 @@ public class ItemManager : MonoBehaviour {
 		questionText [now].color = new Color (0.5f,0.5f,0.5f);//make it to gray
 		questionText [after].color = Color.white;//make it to white, ==answer
 	}
+
+	private void initializeQuestion(){
+		for (int i = 0; i < questionText.Length; i++) {
+			questionText [i].text = "";
+		}
+	}
+
+
 }

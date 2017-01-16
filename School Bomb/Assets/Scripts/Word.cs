@@ -30,6 +30,7 @@ public struct Item{//아이템 정보
 	public int num;
 	public string name;
 	public string description;
-	public ArrayList bomb;
 	public int location;
+	public int price;
+	public string bomb;
 }
