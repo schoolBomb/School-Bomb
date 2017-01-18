@@ -20,6 +20,7 @@ public class ScriptManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		j = GetComponent<JsonReader> ();
+		j.getWordSheet();
 		wordAll = j.w;
 	}
 

@@ -14,5 +14,5 @@ public enum stageNum : short{
 }
 
 public enum ItemPosition : short{
-	toStore=0,toUser=1,alreadyUsed=2
+	toStore=10,toUser=11,alreadyUsed=12
 }
