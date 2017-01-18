@@ -9,7 +9,6 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public Text[] upLeft;
 
 	//variable for change select stage background
-//	public GameObject[] selectBack;
 	public Sprite[] selectBack;	
 
 	//when select Stage

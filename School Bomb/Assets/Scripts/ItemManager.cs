@@ -7,7 +7,8 @@ public delegate void func1(int a);
 
 public class ItemManager : MonoBehaviour {
 
-	public ItemBasic[] itemList;
+
+	private ItemBasic[] itemList;
 
 	//variable for UI
 	public GameObject TextBackGround;
@@ -15,6 +16,21 @@ public class ItemManager : MonoBehaviour {
 	public Text senteceText;//sentence UI
 	public GameObject QuestionUI;
 	public Text[] questionText;
+
+	void Start()
+	{
+		//아이템 시트 가져오기 
+		JsonReader j = GameObject.Find("Script Manager").GetComponent<JsonReader>();
+		if (j == null) Debug.Log("jason reader is null!");
+		j.getItemSheet();
+
+		itemList = this.GetComponentsInChildren<ItemBasic>();
+		for (int i = 0; i < itemList.Length; i++)
+		{
+			itemList[i].data = j.it[i];
+		}
+
+	}
 
 	public IEnumerator getIt(string[] s, int itemNum){
 		yield return null;
@@ -104,5 +120,24 @@ public class ItemManager : MonoBehaviour {
 		}
 	}
 
+	//상점에서 구입할수 있는 아이템을 출력한다.
+	public void show(int location)//parameter로 출력하고 싶은 상황을 받는다.
+	{
+		//아이템 location을 확인
+		for (int i = 0; i < itemList.Length; i++)
+		{
+			if (location == itemList[i].data.location)
+			{
+				itemList[i].gameObject.SetActive(true);
+			}
+		}
+	}
 
+	public void conceal()
+	{
+		for (int i = 0; i < itemList.Length; i++)
+		{
+			itemList[i].gameObject.SetActive(false);
+		}
+	}
 }
