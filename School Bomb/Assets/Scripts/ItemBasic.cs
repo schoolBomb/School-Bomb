@@ -7,7 +7,7 @@ public class ItemBasic : MonoBehaviour{
 	public Item data;
 	public GameObject imageOfItem;
 	protected string[] txt;
-	public bool isPurchase=false;
+//	public bool isPurchase=false;
 
 	void Start(){
 		initializeText ();
@@ -28,15 +28,25 @@ public class ItemBasic : MonoBehaviour{
 	void OnMouseDown(){
 		ItemManager manager = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
 
-		if (isPurchase) {
-			StartCoroutine(manager.purchase (txt, data.num,purchaseDetail));
-		} else {
+		if (data.location == (int)ItemPosition.toStore)
+		{//상점 아이템 
+			StartCoroutine(manager.purchase(txt, data.num, purchaseDetail));
+		}
+		else if (data.location == (int)ItemPosition.toUser)
+		{
+
+		}
+		else {//줍는 아이템 
 			StartCoroutine(manager.getIt (txt, data.num));
 		}
 	}
 
 	public void purchaseDetail(int a){
-		data.location = (int)ItemPosition.toUser;
+		
+		if(a==1) {
+			data.location = (int)ItemPosition.toUser;
+			this.gameObject.SetActive(false);
+		}
 	}
 }
 

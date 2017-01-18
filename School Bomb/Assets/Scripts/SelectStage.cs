@@ -7,28 +7,51 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public GameObject[] gameUI;
 	public GameObject[] stages;
 	public Text[] upLeft;
+	private ItemManager im;
 
 	//variable for change select stage background
-	public Sprite[] selectBack;	
+	public Sprite[] selectBack;
+
+	void Start()
+	{
+		im=GameObject.Find("Item Manager").GetComponent<ItemManager>();
+	}
 
 	//when select Stage
-	public void select(int selectNum){
-		//받은 parameter에 맞는 stages와 backGround를 활성화한다.
-		if (selectNum == 0) {//이때 dorm과 selectStage는 제외
-			stages [Status.nowStage].SetActive (false);
-			Status.changeTime();//시간변경
+	public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
+
+		if ( selectNum == (int)stageNum.SelectStage ) {//이때 dorm과 selectStage는 제외
+			if(!(Status.nowStage==(short)stageNum.Dormitory)) Status.changeTime();//시간변경
+
+			stages[Status.nowStage].SetActive(false);
 			Status.nowStage = (short)selectNum;
-			stages [0].SetActive (true);
+			stages [(int)stageNum.SelectStage].SetActive (true);
 			gameUI[0].SetActive (true);
 			gameUI[1].SetActive (true);
+			gameUI[2].SetActive(false);
 			updateUpLeftUI ();
 		}
+		else if (selectNum == (int)stageNum.Dormitory)
+		{
+			im.show((int)ItemPosition.toUser);
+			gameUI[1].SetActive(false);
+			gameUI[2].SetActive(true);
+			Status.nowStage = (short)selectNum;
+			gameUI[0].SetActive(false);//selectButton
+			stages[0].SetActive(false);
+			stages[selectNum].SetActive(true);
+		}
 		else {
-			if ( selectNum == 6 || selectNum==8 ) {//if dormitory
+			if (selectNum==(int)stageNum.Shop)
+			{
+				im.show((int)ItemPosition.toStore);
+			}
+
+			else if( selectNum== (int)stageNum.ServerRoom ) {
+				
 			} 
 			else {
 				stages [9].SetActive (true);
-				//updateUpLeftUI ();
 			}
 			Status.nowStage = (short)selectNum;
 			gameUI[0].SetActive (false);//selectButton

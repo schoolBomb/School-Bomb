@@ -30,6 +30,8 @@ public class ItemManager : MonoBehaviour {
 			itemList[i].data = j.it[i];
 		}
 
+		conceal();
+
 	}
 
 	public IEnumerator getIt(string[] s, int itemNum){
@@ -98,7 +100,6 @@ public class ItemManager : MonoBehaviour {
 			if(s.Length>=5) senteceText.text = s [2 + answer];//not door
 			/////////////17.01.14
 			another(answer); 
-			//itemList[itemNum].data.location=(int)ItemPosition.toUser;// 소속된 곳이 바뀜.
 			// 아이템 모습이 없어짐.
 			QuestionUI.SetActive (false);
 			senteceText.gameObject.SetActive (true);
