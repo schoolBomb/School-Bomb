@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour {
 
 
 	private ItemBasic[] itemList;
+	private Bomb[] bombList;
 
 	//variable for UI
 	public GameObject TextBackGround;
@@ -30,8 +31,9 @@ public class ItemManager : MonoBehaviour {
 			itemList[i].data = j.it[i];
 		}
 
+		//bomblist 작성 
+		bombList = GameObject.Find("Bomb").GetComponentsInChildren<Bomb>();
 		conceal();
-
 	}
 
 	public IEnumerator getIt(string[] s, int itemNum){
@@ -110,6 +112,34 @@ public class ItemManager : MonoBehaviour {
 		yield return null;
 	}
 
+	public void ending(int a)
+	{
+		StartCoroutine(bombList[a].explosion(a));
+	}
+
+	public void explode()//폭발 진행 
+	{
+		string[] str = new string[14];
+		str[0] = "";
+		str[1] = "폭탄을 설치하시겠습니까?";//질문을 한다: 폭탄을 설치하시겠습니까?
+		int i = 2;
+		for (int j = 2 ; j < bombList.Length ; j++){//폭탄 종류가 쫙 뜬다. 다이너마이트…
+			if (bombList[j-2].isComplete==true)
+			{
+				str[i] = string.Copy(bombList[j-2].name);
+				Debug.Log(bombList[j - 2].name+" "+i);
+				i++;
+			}
+		}
+		str[i++] = "네";
+		str[i] = "아니오";
+		StartCoroutine(purchase(str, -1,ending));
+		//폭탄 선택
+		//설치하시겠습니까? 예, 아니오
+	}
+
+
+
 	private void TextColorChange(int now,int after){
 		questionText [now].color = new Color (0.5f,0.5f,0.5f);//make it to gray
 		questionText [after].color = Color.white;//make it to white, ==answer
@@ -139,6 +169,11 @@ public class ItemManager : MonoBehaviour {
 		for (int i = 0; i < itemList.Length; i++)
 		{
 			itemList[i].gameObject.SetActive(false);
+		}
+
+		for (int i = 0; i < bombList.Length; i++)
+		{
+			bombList[i].gameObject.GetComponent<SpriteRenderer>().enabled = false;
 		}
 	}
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ItemBasic : MonoBehaviour{
 	public Item data;
-	public GameObject imageOfItem;
 	protected string[] txt;
-//	public bool isPurchase=false;
+
+	public GameObject bc;
 
 	void Start(){
 		initializeText ();

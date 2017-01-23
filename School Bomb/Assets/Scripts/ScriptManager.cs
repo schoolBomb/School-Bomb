@@ -78,7 +78,6 @@ public class ScriptManager : MonoBehaviour {
 							TextColorChange (answer, answer - 1);
 							answer--;
 						}
-						//Debug.Log("up"+answer);
 						yield return new WaitForSeconds (0.05f);
 					}
 					if (Input.GetKeyDown (KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.S)) {
@@ -86,7 +85,6 @@ public class ScriptManager : MonoBehaviour {
 							TextColorChange (answer, answer+1);
 							answer++;
 						}
-						//Debug.Log("Down"+answer);
 						yield return new WaitForSeconds (0.05f);
 					}
 					yield return null;//wait until input is coming

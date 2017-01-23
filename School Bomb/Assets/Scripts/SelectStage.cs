@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour {//change stage and manage UI
+
+	public GameObject player;
 	public GameObject[] gameUI;
 	public GameObject[] stages;
 	public Text[] upLeft;
 	private ItemManager im;
+	public GameObject load;
 
 	//variable for change select stage background
 	public Sprite[] selectBack;
@@ -20,46 +23,52 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	//when select Stage
 	public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
 
-		if ( selectNum == (int)stageNum.SelectStage ) {//이때 dorm과 selectStage는 제외
-			if(!(Status.nowStage==(short)stageNum.Dormitory)) Status.changeTime();//시간변경
+		StartCoroutine(loading());//로딩창 
 
-			stages[Status.nowStage].SetActive(false);
-			Status.nowStage = (short)selectNum;
-			stages [(int)stageNum.SelectStage].SetActive (true);
-			gameUI[0].SetActive (true);
-			gameUI[1].SetActive (true);
-			gameUI[2].SetActive(false);
-			updateUpLeftUI ();
-		}
-		else if (selectNum == (int)stageNum.Dormitory)
-		{
-			im.show((int)ItemPosition.toUser);
-			gameUI[1].SetActive(false);
-			gameUI[2].SetActive(true);
-			Status.nowStage = (short)selectNum;
-			gameUI[0].SetActive(false);//selectButton
-			stages[0].SetActive(false);
-			stages[selectNum].SetActive(true);
-		}
-		else {
-			if (selectNum==(int)stageNum.Shop)
-			{
-				im.show((int)ItemPosition.toStore);
-			}
+		switch(selectNum){
+			case (int)stageNum.SelectStage:
+				if (!(Status.nowStage == (short)stageNum.Dormitory)) Status.changeTime();//시간변경
 
-			else if( selectNum== (int)stageNum.ServerRoom ) {
-				
-			} 
-			else {
-				stages [9].SetActive (true);
-			}
-			Status.nowStage = (short)selectNum;
-			gameUI[0].SetActive (false);//selectButton
-			gameUI[1].SetActive (false);//dorm
-			stages [0].SetActive (false);
-			stages [selectNum].SetActive (true);
+				stages[Status.nowStage].SetActive(false);
+				stages[(int)stageNum.SelectStage].SetActive(true);
+				stages[9].SetActive(false);
+				gameUI[0].SetActive(true);
+				gameUI[1].SetActive(true);
+				gameUI[2].SetActive(false);
+				updateUpLeftUI();
+				break;
+			
+			case (int)stageNum.Dormitory:
+				im.show((int)ItemPosition.toUser);
+				gameUI[1].SetActive(false);
+				gameUI[2].SetActive(true);
+				gameUI[0].SetActive(false);//selectButton
+				stages[0].SetActive(false);
+				stages[selectNum].SetActive(true);
+				break;
+
+			default:
+				gameUI[0].SetActive(false);//selectButton
+				gameUI[1].SetActive(false);//dorm
+				for (int i = 0; i < stages.Length; i++)	stages[i].SetActive(false);//initialize
+				stages[selectNum].SetActive(true);
+
+				//Exception
+				if (!(selectNum == (int)stageNum.SecretRoom)) stages[9].SetActive(true);//exception for secretRoom
+				if (selectNum == (int)stageNum.Shop) im.show((int)ItemPosition.toStore);
+
+				break;
 		}
-		//필요에따른 로딩차아아앙
+		Status.nowStage = (short)selectNum;
+
+	}
+
+	public IEnumerator loading()//잠깐 가짜 로딩 화면 
+	{
+		load.SetActive(true);
+		yield return new WaitForSeconds(1);
+		load.SetActive(false);
+		yield return null;
 	}
 
 	public void updateUpLeftUI(){
