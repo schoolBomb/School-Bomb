@@ -52,6 +52,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				gameUI[1].SetActive(false);//dorm
 				for (int i = 0; i < stages.Length; i++)	stages[i].SetActive(false);//initialize
 				stages[selectNum].SetActive(true);
+				stages[selectNum].GetComponent<CheckStage>().checkNPC();
 
 				//Exception
 				if (!(selectNum == (int)stageNum.SecretRoom)) stages[9].SetActive(true);//exception for secretRoom

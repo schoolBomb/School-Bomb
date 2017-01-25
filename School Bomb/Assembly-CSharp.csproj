@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\BombCombine.cs" />
      <Compile Include="Assets\Scripts\BombLocation.cs" />
      <Compile Include="Assets\Scripts\CameraContoller.cs" />
+     <Compile Include="Assets\Scripts\CheckStage.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\EnumCollection.cs" />
      <Compile Include="Assets\Scripts\ItemBasic.cs" />
