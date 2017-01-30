@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemBasic : MonoBehaviour{
 	public Item data;
-	protected string[] txt;
+	public string[] txt{ get; set;}
 
 	public GameObject bc;
 

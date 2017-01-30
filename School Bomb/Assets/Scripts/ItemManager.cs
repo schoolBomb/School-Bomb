@@ -36,11 +36,22 @@ public class ItemManager : MonoBehaviour {
 		conceal();
 	}
 
+	public void startGetIt(out string[] s, int itemNum ){
+		s = new string[6];
+		itemList [itemNum].initializeText ();
+		s = itemList [itemNum].txt;
+
+		StartCoroutine (getIt(s,itemNum));
+	}
+
 	public IEnumerator getIt(string[] s, int itemNum){
-		yield return null;
+
+		Debug.Log (s [4]);
 		// TextUI가 뜬다.
 		//“뫄뫄”를 습득했습니다
+		itemList [itemNum].data.location = (int)ItemPosition.toUser;
 		senteceText.text = s[4];// 설명 블라블라
+		yield return new WaitForSeconds(0.2f);
 		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);//Text UI가 뜬다.
 
 		while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) && !Input.GetMouseButtonDown(0) ){

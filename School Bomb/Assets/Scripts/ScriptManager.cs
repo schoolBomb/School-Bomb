@@ -34,15 +34,12 @@ public class ScriptManager : MonoBehaviour {
 			(from word in wordAll
 			 where (word.location == nowStage) && (word.num==num)
 			 select word).ToArray ();
-		//foreach (Word word in wordList)
-		//{
-		//	Debug.Log(word.name);
-		//}
+
 	}
 
 
 	//UI에 대사를 출력하는 함수 
-	public IEnumerator printInUI( short nowStage,short day, short time, int num ){
+	public IEnumerator printInUI( short nowStage,short day, short time, int num,func1 another ){
 		//1. 데이터를 추린다. ->findWord
 		findWord(nowStage,num);
 
@@ -100,6 +97,7 @@ public class ScriptManager : MonoBehaviour {
 				}
 				nameText.text = wordList[i + answer + iter].name;
 				senteceText.text = wordList [i + answer + iter].sentence;//answer에 따라서 그거 +3인 애를 골라서 sentence에 넣어준다.
+				another(answer);
 				QuestionUI.SetActive (false);
 				senteceText.gameObject.SetActive (true);
 				i += 2*iter+1;

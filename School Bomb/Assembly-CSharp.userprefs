@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScriptManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/ScriptManager.cs" Line="82" Column="16" />
-      <File FileName="Assets/Scripts/NPC.cs" Line="27" Column="71" />
+      <File FileName="Assets/Scripts/ScriptManager.cs" Line="29" Column="3" />
+      <File FileName="Assets/Scripts/NPC.cs" Line="27" Column="47" />
       <File FileName="Assets/Scripts/SelectStage.cs" Line="55" Column="61" />
       <File FileName="Assets/Resource/etc/wordSheet.txt" Line="859" Column="14" />
       <File FileName="Assets/Scripts/ItemManager.cs" Line="1" Column="1" />
