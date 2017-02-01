@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour {//문에 달리는 코드
+	public int whereToGo=0;
 	private string[] txt;
 	private ItemManager usePurchase;
 	private SelectStage s;
@@ -25,7 +26,7 @@ public class Door : MonoBehaviour {//문에 달리는 코드
 	public void open(int a){
 		if(a==1){//예
 			//selectStage 등장
-			s.select(0);
+			s.select(whereToGo);
 		}//아니오
 	}
 }

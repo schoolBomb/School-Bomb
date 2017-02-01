@@ -1,9 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScriptManager.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets/Scripts/Bomb.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ItemBasic.cs" Line="35" Column="53" />
       <File FileName="Assets/Scripts/ScriptManager.cs" Line="45" Column="1" />
+=======
+      <File FileName="Assets/Scripts/ScriptManager.cs" Line="59" Column="34" />
+      <File FileName="Assets/Scripts/NPC.cs" Line="27" Column="3" />
+      <File FileName="Assets/Scripts/SelectStage.cs" Line="55" Column="39" />
+      <File FileName="Assets/Resource/etc/wordSheet.txt" Line="859" Column="14" />
+      <File FileName="Assets/Scripts/ItemManager.cs" Line="104" Column="1" />
+      <File FileName="Assets/Scripts/CheckStage.cs" Line="1" Column="1" />
+>>>>>>> Temp
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

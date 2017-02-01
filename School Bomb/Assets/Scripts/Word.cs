@@ -32,5 +32,5 @@ public struct Item{//아이템 정보
 	public string description;
 	public int location;
 	public int price;
-	public string bomb;
+	public int bomb;
 }

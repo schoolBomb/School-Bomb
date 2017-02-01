@@ -5,7 +5,7 @@
     "description": "사실 학교 내에서 폭죽 사용은 금지되어있지만, 시험기간마다 심심치 않게 폭죽 소리가 들려온다.",
     "location": 10,
     "price": 3000,
-    "bomb": "다이너마이트"
+    "bomb": 0
   },
   {
     "num": 1,
@@ -13,7 +13,7 @@
     "description": "버린건지 잃어버린건지 모를 전선 하나. …이거 망가진 건가?",
     "location": 3,
     "price": 3000,
-    "bomb": "다이너마이트"
+    "bomb": 0
   },
   {
     "num": 2,
@@ -21,7 +21,7 @@
     "description": "대체 이게 왜 여기 떨어져 있는거지?!",
     "location": 7,
     "price": 0,
-    "bomb": "가스폭탄"
+    "bomb": 1
   },
   {
     "num": 3,
@@ -29,7 +29,7 @@
     "description": "대체 이게 왜 여기 떨어져 있는거지?!",
     "location": 7,
     "price": 0,
-    "bomb": "소이폭탄"
+    "bomb": 2
   },
   {
     "num": 4,
@@ -37,7 +37,7 @@
     "description": "HNO3. 햇빛이 없는 곳에 보관하세요. 그리고 취급에 주의하세요.",
     "location": 10,
     "price": 7500,
-    "bomb": "액체폭탄"
+    "bomb": 3
   },
   {
     "num": 5,
@@ -45,7 +45,7 @@
     "description": "H2SO4. 피부에 안 닿는 곳에 보관하세요. 그리고 취급에 주의하세요.",
     "location": 10,
     "price": 7600,
-    "bomb": "액체폭탄"
+    "bomb": 3
   },
   {
     "num": 6,
@@ -53,7 +53,7 @@
     "description": "유용한 재료라는데, 이걸로 뭘 만들 수 있으려나…",
     "location": 7,
     "price": 0,
-    "bomb": "액체폭탄"
+    "bomb": 3
   },
   {
     "num": 7,
@@ -61,7 +61,7 @@
     "description": "가끔 침대 밑은 판도라의 상자같다. 일단 주웠으니 챙겨놓자.",
     "location": 3,
     "price": 0,
-    "bomb": "EMP폭탄"
+    "bomb": 4
   },
   {
     "num": 8,
@@ -69,7 +69,7 @@
     "description": "랩실 컴퓨터인만큼 품질이 좋아보이는 전자회로다. 교수님 죄송해요! 이건 제가 챙겨가겠습니다!",
     "location": 2,
     "price": 0,
-    "bomb": "EMP폭탄"
+    "bomb": 4
   },
   {
     "num": 9,
@@ -77,7 +77,7 @@
     "description": "0점. 학생의 복잡한 심정이 종이 위로 아른거리는 듯 하다.",
     "location": 3,
     "price": 0,
-    "bomb": "수소폭탄"
+    "bomb": 6
   },
   {
     "num": 10,
@@ -85,7 +85,7 @@
     "description": "H2. 우주에서 가장 풍부한 원소. 불꽃반응하면 큰일남.",
     "location": 10,
     "price": 10000,
-    "bomb": "수소폭탄"
+    "bomb": 6
   },
   {
     "num": 11,
@@ -93,7 +93,7 @@
     "description": "Li. 리튬전지로 유명한 원소. 불꽃반응하면 빨간색.",
     "location": 10,
     "price": 10000,
-    "bomb": "수소폭탄"
+    "bomb": 6
   },
   {
     "num": 12,
@@ -101,7 +101,7 @@
     "description": "Na. 생명체에게 필요한 원소. 불꽃반응하면 노란색.",
     "location": 10,
     "price": 10500,
-    "bomb": "X"
+    "bomb": 100
   },
   {
     "num": 13,
@@ -109,23 +109,23 @@
     "description": "H2CO3. 뚜껑 덮어 보관하세요. 그리고 탄산수 그만 만들어라.",
     "location": 10,
     "price": 10500,
-    "bomb": "X"
+    "bomb": 100
   },
   {
     "num": 14,
     "name": "은하수노트7",
     "description": "우주의 기운을 모을 수 있을 것만 같이 생긴 구세대 스마트폰이다.",
-    "location": 10,
+    "location": 1,
     "price": 0,
-    "bomb": "EMP폭탄"
+    "bomb": 4
   },
   {
     "num": 15,
     "name": "우라늄",
     "description": "암거래로 얻은 매우 위험한 물품. 스케일이 점점 커지고 있다.",
-    "location": 1,
+    "location": 4,
     "price": 100000,
-    "bomb": "3F 폭탄"
+    "bomb": 7
   },
   {
     "num": 16,
@@ -133,7 +133,7 @@
     "description": "교수님의 속마음이 담겨있는 조각이다.",
     "location": 2,
     "price": 0,
-    "bomb": "3F 폭탄"
+    "bomb": 7
   },
   {
     "num": 17,
@@ -141,7 +141,7 @@
     "description": "뭉치면 폭신폭신할 것만 같다.",
     "location": 3,
     "price": 0,
-    "bomb": "고양이폭탄"
+    "bomb": 8
   },
   {
     "num": 18,
@@ -149,7 +149,7 @@
     "description": "믿으십니까?",
     "location": 3,
     "price": 0,
-    "bomb": "고양이폭탄"
+    "bomb": 8
   },
   {
     "num": 19,
@@ -157,7 +157,7 @@
     "description": "따끈따끈하고 맛있는 인기만점 데자와.",
     "location": 7,
     "price": 0,
-    "bomb": "데자와폭탄"
+    "bomb": 9
   },
   {
     "num": 20,
@@ -165,7 +165,7 @@
     "description": "",
     "location": 12,
     "price": 0,
-    "bomb": "데자와폭탄"
+    "bomb": 9
   },
   {
     "num": 21,
@@ -173,7 +173,7 @@
     "description": "뱃속에 폭탄이 들어갈 모습은 마치 사약을 기다리는 소크라테스같다.",
     "location": 11,
     "price": 0,
-    "bomb": "포장지"
+    "bomb": 20
   },
   {
     "num": 22,
@@ -181,7 +181,7 @@
     "description": "어디에나 있는 스티로폼 박스. BR 케익이 담겨있던 거 같기도.",
     "location": 11,
     "price": 0,
-    "bomb": "포장지"
+    "bomb": 20
   },
   {
     "num": 23,
@@ -189,7 +189,7 @@
     "description": "이유는 모르겠지만 눈금 실린더가 그어져 있다. 그냥 쓰자.",
     "location": 10,
     "price": 5000,
-    "bomb": "포장지"
+    "bomb": 20
   },
   {
     "num": 24,
@@ -197,6 +197,6 @@
     "description": "왠지 모르게 고급져 보인다. 이…이건 꼭 사야해!",
     "location": 10,
     "price": 20000,
-    "bomb": "포장지"
+    "bomb": 20
   }
 ]
