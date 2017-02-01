@@ -9,6 +9,8 @@ public class NPC : MonoBehaviour {
 	private ItemManager im;
 
 	public int scriptNum = 0;
+	private int c=0;
+	public int count=1;
 
 	public int[] time;
 	public int[] day;
@@ -25,6 +27,15 @@ public class NPC : MonoBehaviour {
 	}
 
 	public void talk(){
+		if (this.gameObject.name.Equals ("sto_npc")) {
+			if(c != count){
+			c++;
+			return;
+			}
+			else{
+				detail (1);
+			}
+		}
 		//StartCoroutine (s.printInUI (2,1,1,0));//test debugging
 		//움직임이 멈추는 코드 
 //		//대사 출력, 이벤트 발생 
@@ -51,17 +62,18 @@ public class NPC : MonoBehaviour {
 	}
 
 	public void detail(int answer){
+		if (this.c != count) {//횟수를 센다 
+			this.c++;
+			return; 
+		}
+
 		Comp c = new Comp (answer, this.scriptNum, Status.nowStage);
 		string[] s;
-//		for (int i = 0; i < s.Length; i++) {
-//			s [i] = i.ToString();
-//		}
-
-		//answer scriptNum location
 		switch(Status.nowStage){
 		case 1:
-			if (c.compare (10, 0, 1)) {//10 0 1 갤럭시 노트 획득
+			if (c.compare (1, 0, 1)) {//10 0 1 갤럭시 노트 획득
 				im.startGetIt(out s,14);
+
 			} 
 			else {
 			}
@@ -104,11 +116,9 @@ public class NPC : MonoBehaviour {
 			break;
 		case 3:
 			if (c.compare (1, 1, 3)) {//1 1 3 성서 획득
-				if(im==null) Debug.Log("XXX");
 				im.startGetIt (out s, 18);
 			}
 			else if (c.compare (2, 1, 3)) {//2 1 3 알리바이 획득
-				Debug.Log("why");
 				Status.alibi+=1;
 			}
 			else if (c.compare (1, 2, 3)) {//1 2 3 알리바이 획득

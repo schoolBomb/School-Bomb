@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class SelectStage : MonoBehaviour {//change stage and manage UI
 
 	public GameObject player;
+	public GameObject camera;
+
 	public GameObject[] gameUI;
 	public GameObject[] stages;
 	public Text[] upLeft;
 	private ItemManager im;
 	public GameObject load;
+
 
 	//variable for change select stage background
 	public Sprite[] selectBack;
@@ -25,16 +28,21 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 
 		StartCoroutine(loading());//로딩창 
 
-		switch(selectNum){
-			case (int)stageNum.SelectStage:
-				if (!(Status.nowStage == (short)stageNum.Dormitory)) Status.changeTime();//시간변경
+		im.conceal ();
 
+		switch(selectNum){
+		case (int)stageNum.SelectStage:
+			if (!(Status.nowStage == (short)stageNum.Dormitory))
+				Status.changeTime ();//시간변경
+
+				camera.transform.localPosition = new Vector3 (0, 0, -10);
 				stages[Status.nowStage].SetActive(false);
 				stages[(int)stageNum.SelectStage].SetActive(true);
 				stages[9].SetActive(false);
 				gameUI[0].SetActive(true);
 				gameUI[1].SetActive(true);
 				gameUI[2].SetActive(false);
+			Status.nowStage = (short)selectNum;
 				updateUpLeftUI();
 				break;
 			
@@ -45,22 +53,35 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				gameUI[0].SetActive(false);//selectButton
 				stages[0].SetActive(false);
 				stages[selectNum].SetActive(true);
+				Status.nowStage = (short)selectNum;
+				im.show ((int)ItemPosition.toUser);
 				break;
-
-			default:
-				gameUI[0].SetActive(false);//selectButton
-				gameUI[1].SetActive(false);//dorm
-				for (int i = 0; i < stages.Length; i++)	stages[i].SetActive(false);//initialize
-				stages[selectNum].SetActive(true);
-				stages[selectNum].GetComponent<CheckStage>().checkNPC();
-
+		default:
+			gameUI [0].SetActive (false);//selectButton
+			gameUI [1].SetActive (false);//dorm
+			for (int i = 0; i < stages.Length; i++)
+				stages [i].SetActive (false);//initialize
+			stages [selectNum].SetActive (true);
+			stages [selectNum].GetComponent<CheckStage> ().checkNPC ();
+			Status.nowStage = (short)selectNum;
 				//Exception
-				if (!(selectNum == (int)stageNum.SecretRoom)) stages[9].SetActive(true);//exception for secretRoom
-				if (selectNum == (int)stageNum.Shop) im.show((int)ItemPosition.toStore);
-
+			if (!(selectNum == (int)stageNum.SecretRoom))
+				stages [9].SetActive (true);//exception for secretRoom
+			if (selectNum == (int)stageNum.Shop) {
+				im.show ((int)ItemPosition.toStore);
+			} else {
+				im.show (Status.nowStage);
+			}
+			if (selectNum == (int)stageNum.Corridor) {
+				camera.transform.localPosition = new Vector3 (-18.0f, 0f, -10f);
+				player.transform.localPosition = new Vector3 (-18.0f,-0.16f,-5f);
+			} else {
+				camera.transform.localPosition = new Vector3 (0, 0, -10);
+				player.transform.localPosition = new Vector3 (0f,-0.16f,-5f);
+			}
 				break;
 		}
-		Status.nowStage = (short)selectNum;
+
 
 	}
 
@@ -123,5 +144,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			upLeft [0].text = "日";
 			break;
 		}
+	}
+
+	public void updateCoin(){
+		upLeft [2].text = Status.money.ToString ();
 	}
 }

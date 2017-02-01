@@ -8,9 +8,5 @@ public class Ending : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -12,7 +12,6 @@ public static class Status{//캐릭터 정보, 현재 상태 , 저장까지 구�
 	public static int reportNum=123456789;//instead of infinite
 
 	public static void changeTime(){
-//		Debug.Log (day + " " + time);
 		//그일이 끝난 후 selectStage로 돌아올 때 
 		//time을 올린다.
 		if (Status.time == 3) {//만약 time이 3일경우, time=1, day=+1
@@ -23,7 +22,6 @@ public static class Status{//캐릭터 정보, 현재 상태 , 저장까지 구�
 		else {
 			Status.time++;
 		}
-//		Debug.Log (day + " " + time);
 	}
 
 }
