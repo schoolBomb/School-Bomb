@@ -36,6 +36,8 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				Status.changeTime ();//시간변경
 
 				camera.transform.localPosition = new Vector3 (0, 0, -10);
+				player.transform.localPosition = new Vector3 (0f,-0.16f,-5f);
+				camera.transform.localPosition = new Vector3 (0, 0, -10);
 				stages[Status.nowStage].SetActive(false);
 				stages[(int)stageNum.SelectStage].SetActive(true);
 				stages[9].SetActive(false);

@@ -42,13 +42,28 @@ public class ScriptManager : MonoBehaviour {
 	public IEnumerator printInUI( short nowStage,short day, short time, int num,func1 another ){
 		//1. 데이터를 추린다. ->findWord
 		findWord(nowStage,num);
-
-		//2. TextUI가 켜진다.
-		if(wordList[0].name != null) nameText.text=wordList[0].name;
-		senteceText.text = wordList [0].sentence;
-		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);
-
 		int i = 0;
+
+		//random, 랜덤 대사일 경우	
+		if (wordList [0].isQuestion.Equals ("Random")) {//첫번째 대사가 랜덤인지 확인
+			int r= (int)UnityEngine.Random.Range(0,wordList.Length);//랜덤일 경우 대사를 고른다.
+			nameText.text=wordList[r].name;// 출력
+			senteceText.text = wordList [r].sentence;
+			TextBackGround.SetActive(true);
+			yield return new WaitForSeconds (0.01f);
+		
+			while(!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){// 
+				yield return null;//wait until input is coming
+			}
+			TextBackGround.SetActive(false);
+			i = wordList.Length+1;
+		} else {
+			//2. TextUI가 켜진다.
+			if(wordList[0].name != null) nameText.text=wordList[0].name;
+			senteceText.text = wordList [0].sentence;
+			if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);
+		}
+
 		while(i<=wordList.Length) {
 			//	3. enter 또는 space 또는 마우스 클릭을 한다.
 			while(!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){// 
@@ -109,7 +124,7 @@ public class ScriptManager : MonoBehaviour {
 				i++;
 			}
 
-			yield return new WaitForSeconds (0.2f);
+			yield return new WaitForSeconds (0.01f);
 		}
 		yield return null;
 	}

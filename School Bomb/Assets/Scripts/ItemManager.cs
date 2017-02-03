@@ -115,18 +115,15 @@ public class ItemManager : MonoBehaviour {
 				}
 				yield return null;//wait until input is coming
 			}
-			//예-> “뫄뫄”를 구입했습니다.
-			//아니오-> 구입을 취소했습니다.	
+			//예-> “뫄뫄”를 구입했습니다.//아니오-> 구입을 취소했습니다.	
 			if(s.Length>=5) senteceText.text = s [2 + answer];//not door
 			/////////////17.01.14
 			another(answer); 
 			// 아이템 모습이 없어짐.
 			QuestionUI.SetActive (false);
 			senteceText.gameObject.SetActive (true);
-			TextBackGround.SetActive (false);
+			TextBackGround.SetActive (false);//TextUI 닫힘.
 		}
-		//TextUI 닫힘.
-
 		yield return null;
 	}
 

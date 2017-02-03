@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CheckStage : MonoBehaviour {
 
-	//1. 퍼블릭으로 아이템이랑 npc를 받는다.
+	//1.npc를 받는다.
 	public GameObject[] npc;
-	public GameObject[] item;
-
 
 	public void checkNPC(){//npc별 시간 또는 요일에 따라 나타남 결정
 		NPC[] np=new NPC[npc.Length];
