@@ -3,7 +3,7 @@
     "num": 0,
     "name": "폭죽",
     "description": "사실 학교 내에서 폭죽 사용은 금지되어있지만, 시험기간마다 심심치 않게 폭죽 소리가 들려온다.",
-    "location": 10,
+    "location": 20,
     "price": 3000,
     "bomb": "다이너마이트"
   },
@@ -30,12 +30,12 @@
     "location": 7,
     "price": 0,
     "bomb": "소이폭탄"
-  },
+  },           
   {
     "num": 4,
     "name": "질산",
     "description": "HNO3. 햇빛이 없는 곳에 보관하세요. 그리고 취급에 주의하세요.",
-    "location": 10,
+    "location": 20,
     "price": 7500,
     "bomb": "액체폭탄"
   },
@@ -43,7 +43,7 @@
     "num": 5,
     "name": "황산",
     "description": "H2SO4. 피부에 안 닿는 곳에 보관하세요. 그리고 취급에 주의하세요.",
-    "location": 10,
+    "location": 20,
     "price": 7600,
     "bomb": "액체폭탄"
   },
@@ -83,7 +83,7 @@
     "num": 10,
     "name": "수소",
     "description": "H2. 우주에서 가장 풍부한 원소. 불꽃반응하면 큰일남.",
-    "location": 10,
+    "location": 20,
     "price": 10000,
     "bomb": "수소폭탄"
   },
@@ -91,7 +91,7 @@
     "num": 11,
     "name": "리튬",
     "description": "Li. 리튬전지로 유명한 원소. 불꽃반응하면 빨간색.",
-    "location": 10,
+    "location": 20,
     "price": 10000,
     "bomb": "수소폭탄"
   },
@@ -99,7 +99,7 @@
     "num": 12,
     "name": "나트륨",
     "description": "Na. 생명체에게 필요한 원소. 불꽃반응하면 노란색.",
-    "location": 10,
+    "location": 20,
     "price": 10500,
     "bomb": "X"
   },
@@ -107,7 +107,7 @@
     "num": 13,
     "name": "탄산",
     "description": "H2CO3. 뚜껑 덮어 보관하세요. 그리고 탄산수 그만 만들어라.",
-    "location": 10,
+    "location": 20,
     "price": 10500,
     "bomb": "X"
   },
@@ -115,7 +115,7 @@
     "num": 14,
     "name": "은하수노트7",
     "description": "우주의 기운을 모을 수 있을 것만 같이 생긴 구세대 스마트폰이다.",
-    "location": 10,
+    "location": 20,
     "price": 0,
     "bomb": "EMP폭탄"
   },
@@ -123,7 +123,7 @@
     "num": 15,
     "name": "우라늄",
     "description": "암거래로 얻은 매우 위험한 물품. 스케일이 점점 커지고 있다.",
-    "location": 1,
+    "location": 4,
     "price": 100000,
     "bomb": "3F 폭탄"
   },
@@ -187,7 +187,7 @@
     "num": 23,
     "name": "플라스틱 박스",
     "description": "이유는 모르겠지만 눈금 실린더가 그어져 있다. 그냥 쓰자.",
-    "location": 10,
+    "location": 20,
     "price": 5000,
     "bomb": "포장지"
   },
@@ -195,8 +195,32 @@
     "num": 24,
     "name": "고급 철제 박스",
     "description": "왠지 모르게 고급져 보인다. 이…이건 꼭 사야해!",
-    "location": 10,
+    "location": 20,
     "price": 20000,
     "bomb": "포장지"
+  },
+  {
+    "num": 25,
+    "name": "미니 전자시계 키트",
+    "description": "미니 전자시계를 만들 수 있는 키트.   ※ 설명서 미포함 ※",
+    "location": 20,
+    "price": 10000,
+    "bomb": "다이너마이트"
+  },
+  {
+    "num": 26,
+    "name": "둥근 플라스크",
+    "description": "둥근 플라스크 용기. 주로 화학실험 때 쓰인다.",
+    "location": 4,
+    "price": 0,
+    "bomb": "수소화리튬"
+  },
+  {
+    "num": 27,
+    "name": "물",
+    "description": "H2O",
+    "location": 7,
+    "price": 0,
+    "bomb": "소이폭탄"
   }
 ]

@@ -4,39 +4,95 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour {//change stage and manage UI
+
+	public GameObject player;
+	public GameObject camera;
+
 	public GameObject[] gameUI;
 	public GameObject[] stages;
 	public Text[] upLeft;
+	private ItemManager im;
+	public GameObject load;
+
 
 	//variable for change select stage background
-	public Sprite[] selectBack;	
+	public Sprite[] selectBack;
+
+	void Start()
+	{
+		im=GameObject.Find("Item Manager").GetComponent<ItemManager>();
+	}
 
 	//when select Stage
-	public void select(int selectNum){
-		//받은 parameter에 맞는 stages와 backGround를 활성화한다.
-		if (selectNum == 0) {//이때 dorm과 selectStage는 제외
+	public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
+		StartCoroutine(loading());//로딩창 
+		im.conceal ();
+		switch(selectNum){
+		case (int)stageNum.SelectStage:
+			if (!(Status.nowStage == (short)stageNum.Dormitory))
+				Status.changeTime ();//시간변경
+
+			camera.transform.localPosition = new Vector3 (0, 0, -10);
+			player.transform.localPosition = new Vector3 (0f, -0.16f, -5f);
+			camera.transform.localPosition = new Vector3 (0, 0, -10);
 			stages [Status.nowStage].SetActive (false);
-			Status.changeTime();//시간변경
+			stages [(int)stageNum.SelectStage].SetActive (true);
+			stages [9].SetActive (false);
+			gameUI [0].SetActive (true);
+			gameUI [1].SetActive (true);
+			gameUI [2].SetActive (false);
 			Status.nowStage = (short)selectNum;
-			stages [0].SetActive (true);
-			gameUI[0].SetActive (true);
-			gameUI[1].SetActive (true);
-			updateUpLeftUI ();
-		}
-		else {
-			if ( selectNum == 6 || selectNum==8 ) {//if dormitory
-			} 
-			else {
-				stages [9].SetActive (true);
-				//updateUpLeftUI ();
-			}
-			Status.nowStage = (short)selectNum;
-			gameUI[0].SetActive (false);//selectButton
-			gameUI[1].SetActive (false);//dorm
+				updateUpLeftUI();
+				break;
+			
+		case (int)stageNum.Dormitory:
+			im.show ((int)ItemPosition.toUser);
+			gameUI [1].SetActive (false);
+			gameUI [2].SetActive (true);
+			gameUI [0].SetActive (false);//selectButton
 			stages [0].SetActive (false);
 			stages [selectNum].SetActive (true);
+			Status.nowStage = (short)selectNum;
+			im.show ((int)ItemPosition.toUser);
+			im.showDorm ();
+				break;
+		default:
+			gameUI [0].SetActive (false);//selectButton
+			gameUI [1].SetActive (false);//dorm
+			for (int i = 0; i < stages.Length; i++)
+				stages [i].SetActive (false);//initialize
+			if ((selectNum == 10 || selectNum == 11) && Status.time != (int)TimeOfDay.Night) {
+				stages [7].SetActive (true);
+			} else {
+				stages [selectNum].SetActive (true);
+			}
+			stages [selectNum].GetComponent<Check> ().checkNPC (selectNum);
+			Status.nowStage = (short)selectNum;
+				//Exception
+			if (!(selectNum == (int)stageNum.SecretRoom))
+				stages [9].SetActive (true);//exception for secretRoom
+			if (selectNum == (int)stageNum.Shop) {
+				im.show ((int)ItemPosition.toStore);
+			} else {
+				im.show (Status.nowStage);
+			}
+			if (selectNum == (int)stageNum.Corridor) {
+				camera.transform.localPosition = new Vector3 (-18.0f, 0f, -10f);
+				player.transform.localPosition = new Vector3 (-18.0f,-0.16f,-5f);
+			} else {
+				camera.transform.localPosition = new Vector3 (0, 0, -10);
+				player.transform.localPosition = new Vector3 (0f,-0.16f,-5f);
+			}
+				break;
 		}
-		//필요에따른 로딩차아아앙
+	}
+
+	public IEnumerator loading()//잠깐 가짜 로딩 화면 
+	{
+		load.SetActive(true);
+		yield return new WaitForSeconds(1);
+		load.SetActive(false);
+		yield return null;
 	}
 
 	public void updateUpLeftUI(){
@@ -90,5 +146,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			upLeft [0].text = "日";
 			break;
 		}
+	}
+
+	public void updateCoin(){
+		upLeft [2].text = Status.money.ToString ();
 	}
 }

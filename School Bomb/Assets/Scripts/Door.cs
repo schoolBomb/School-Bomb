@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {//문에 달리는 코드
+public class Door : MonoBehaviour {
+	public int whereToGo=0;
 	private string[] txt;
 	private ItemManager usePurchase;
 	private SelectStage s;
@@ -14,7 +15,7 @@ public class Door : MonoBehaviour {//문에 달리는 코드
 		txt [1] = "나가시겠습니까? ";
 		txt [2] = "예";
 		txt [3] = "아니오";
-	
+
 		s = GameObject.Find ("Script Manager").GetComponent<SelectStage> ();
 	}
 
@@ -25,7 +26,27 @@ public class Door : MonoBehaviour {//문에 달리는 코드
 	public void open(int a){
 		if(a==1){//예
 			//selectStage 등장
-			s.select(0);
+			s.select(whereToGo);
 		}//아니오
 	}
+/*
+    void OnTriggerEnter2D(Collider2D other)//문에 도착했을때 
+    {
+        
+        Debug.Log("Collided with "+ other.name);
+        if (other.gameObject.tag=="Door")
+        {
+            Debug.Log("Collided with Door : enter");
+        }
+        
+    }*/
+    /*
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collided with Door : exit");
+        }
+    }
+    */
 }

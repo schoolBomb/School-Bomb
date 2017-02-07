@@ -46,22 +46,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Bomb.cs" />
+     <Compile Include="Assets\Scripts\BombCombine.cs" />
+     <Compile Include="Assets\Scripts\BombLocation.cs" />
+     <Compile Include="Assets\Scripts\CameraContoller.cs" />
+     <Compile Include="Assets\Scripts\Check.cs" />
+     <Compile Include="Assets\Scripts\CheckStage.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\Ending.cs" />
      <Compile Include="Assets\Scripts\EnumCollection.cs" />
      <Compile Include="Assets\Scripts\ItemBasic.cs" />
      <Compile Include="Assets\Scripts\ItemManager.cs" />
      <Compile Include="Assets\Scripts\JsonHelper.cs" />
      <Compile Include="Assets\Scripts\JsonReader.cs" />
+     <Compile Include="Assets\Scripts\LightMovement.cs" />
+     <Compile Include="Assets\Scripts\Line.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
+     <Compile Include="Assets\Scripts\PatrolWalk.cs" />
+     <Compile Include="Assets\Scripts\PatrolWalk_1.cs" />
+     <Compile Include="Assets\Scripts\PatrolWalk_2.cs" />
+     <Compile Include="Assets\Scripts\PatrolWalk_3.cs" />
+     <Compile Include="Assets\Scripts\PatrolWalk_4.cs" />
+     <Compile Include="Assets\Scripts\Rotate.cs" />
      <Compile Include="Assets\Scripts\ScriptManager.cs" />
      <Compile Include="Assets\Scripts\SelectStage.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
+     <Compile Include="Assets\Scripts\UserWalk.cs" />
+     <Compile Include="Assets\Scripts\WalkSceneSelect.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
      <None Include="Assets\Resource\etc\itemSheet.txt" />
      <None Include="Assets\Resource\etc\wordSheet.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -76,9 +90,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

@@ -28,25 +28,46 @@ public class ScriptManager : MonoBehaviour {
 		return wordAll;
 	}
 
-	public void findWord(short nowStage,short day, short time, int num){//장소 날짜 시간에 맞는 word list를 뽑는다 
+	public void findWord(short nowStage, int num){//장소 날짜 시간에 맞는 word list를 뽑는다 
 		//C# Linq 사용, DB 랑 비슷함
 		wordList = 
 			(from word in wordAll
-			 where (word.location == nowStage) && (word.day == day) && (word.time == time)
+			 where (word.location == nowStage) && (word.num==num)
 			 select word).ToArray ();
+
 	}
 
+
 	//UI에 대사를 출력하는 함수 
-	public IEnumerator printInUI( short nowStage,short day, short time, int num ){
+	public IEnumerator printInUI( short nowStage,short day, short time, int num,func1 another ){
 		//1. 데이터를 추린다. ->findWord
-		findWord(nowStage,day,time,num);
-
-		//2. TextUI가 켜진다.
-		nameText.text=wordList[0].name;
-		senteceText.text = wordList [0].sentence;
-		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);
-
+		findWord(nowStage,num);
 		int i = 0;
+
+		//random, 랜덤 대사일 경우	
+		if (wordList [0].isQuestion.Equals ("Random")) {//첫번째 대사가 랜덤인지 확인
+			int r= (int)UnityEngine.Random.Range(0,wordList.Length);//랜덤일 경우 대사를 고른다.
+			nameText.text=wordList[r].name;// 출력
+			senteceText.text = wordList [r].sentence;
+			TextBackGround.SetActive(true);
+			if (wordList [r].sentence.Equals ("왜 너도 시도해보게? 아 그럼 이거. 저번에 남은건데 나름 유용하다고?")) {
+				another (1);
+			}
+			yield return new WaitForSeconds (0.01f);
+		
+			while(!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){// 
+				yield return null;//wait until input is coming
+			}
+			TextBackGround.SetActive(false);
+			another (0);
+			i = wordList.Length+1;
+		} else {
+			//2. TextUI가 켜진다.
+			if(wordList[0].name != null) nameText.text=wordList[0].name;
+			senteceText.text = wordList [0].sentence;
+			if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);
+		}
+
 		while(i<=wordList.Length) {
 			//	3. enter 또는 space 또는 마우스 클릭을 한다.
 			while(!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){// 
@@ -61,16 +82,29 @@ public class ScriptManager : MonoBehaviour {
 				//2. if it is question
 			else if(wordList[i].isQuestion.Equals("Question")){
 				int answer=1;
-
+				int iter=0;
+//				{
+//					int j = i+1;
+//					while (wordList [j].isQuestion.Equals ("Answer")) {
+//						iter++;
+//						j++;
+//					}
+//				}
+				for (int j = i+1; j < i+4 ; j++){//check the answer number
+					if(j>=wordList.Length) break;
+					Debug.Log(j+" "+wordList[j].sentence);
+					if (wordList[j].isQuestion.Equals("Answer")) iter++;
+				}
+				initQuestion(iter);
 				//1. answer인 녀석(question 다음 3개)들과 question을 텍스트에 넣는다.
 				questionText[0].text="Q. "+wordList[i].sentence;
-				for (int j = 1; j < 4; j++) {
+				for (int j = 1; j <= iter; j++) {
 					questionText[j].text=j+". "+wordList[i+j].sentence;
 				}
 				senteceText.gameObject.SetActive (false);//2.현재 sentenceUI를 끈다.
 				QuestionUI.gameObject.SetActive (true);
 				//선택할때까지 대기
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(0.01f);
 
 				while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){//
 					if (Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
@@ -78,35 +112,47 @@ public class ScriptManager : MonoBehaviour {
 							TextColorChange (answer, answer - 1);
 							answer--;
 						}
-						//Debug.Log("up"+answer);
-						yield return new WaitForSeconds (0.05f);
+						yield return new WaitForSeconds (0.01f);
 					}
 					if (Input.GetKeyDown (KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.S)) {
-						if (answer < 3) {
+						if (answer < iter) {
 							TextColorChange (answer, answer+1);
 							answer++;
 						}
-						//Debug.Log("Down"+answer);
-						yield return new WaitForSeconds (0.05f);
+						yield return new WaitForSeconds (0.01f);
 					}
 					yield return null;//wait until input is coming
 				}
-
-				senteceText.text = wordList [i + answer + 3].sentence;//answer에 따라서 그거 +3인 애를 골라서 sentence에 넣어준다.
+				nameText.text = wordList[i + answer + iter].name;
+				senteceText.text = wordList [i + answer + iter].sentence;//answer에 따라서 그거 +3인 애를 골라서 sentence에 넣어준다.
+				another(answer);
 				QuestionUI.SetActive (false);
 				senteceText.gameObject.SetActive (true);
-				i = i + 7;
+				i += 2*iter+1;
 			}
-				//	3. 만약 대사가 남아있는 경우 다음 대사로 바꾼다.(달칵거리는 소리 출력?)
+			//	3. 만약 대사가 남아있는 경우 다음 대사로 바꾼다.(달칵거리는 소리 출력?)
 			else {
 				nameText.text = wordList [i].name;
 				senteceText.text = wordList [i].sentence;
 				i++;
 			}
 
-			yield return new WaitForSeconds (0.2f);
+			yield return new WaitForSeconds (0.01f);
 		}
 		yield return null;
+	}
+
+	private void initQuestion(int iter)
+	{
+		for (int i = 1; i < questionText.Length; i++)
+		{
+			questionText[i].gameObject.SetActive(false);
+		}
+		for (int i = 1; i <= iter; i++)
+		{
+			questionText[i].gameObject.SetActive(true);
+		}
+
 	}
 
 	//색변화, 앞의 거를 회색으 한 후, 뒤를 흰색으로 함
