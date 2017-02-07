@@ -9,6 +9,7 @@ public class Rotate : MonoBehaviour
     public float speed=3f;//회전속도
     private float rotationZ = 0f;//회전속도
     private float rotateZ = 1f;//1f일때 시계방향으로 회전, 회전방향
+
     private void FixedUpdate()
     {
         moveRotate();

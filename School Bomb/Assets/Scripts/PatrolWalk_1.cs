@@ -7,7 +7,7 @@ public class PatrolWalk_1 : MonoBehaviour
 
     public float movePower = 4f;//움직이는 속도
     float startPos;//시작위치
-    float endPos = 2.5f;//끝위치
+    public float endPos;//끝위치
     float distance;
     Animator animator;
     Vector3 movement;
