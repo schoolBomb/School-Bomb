@@ -18,6 +18,8 @@ public class ItemManager : MonoBehaviour {
 	public GameObject QuestionUI;
 	public Text[] questionText;
 
+	public float proHeartCount{ get; set; }
+
 	void Start()
 	{
 		//아이템 시트 가져오기 
@@ -45,13 +47,13 @@ public class ItemManager : MonoBehaviour {
 		itemList[itemNum].data.location = (int)ItemPosition.toUser;
 		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 		itemList [itemNum].gameObject.SetActive(false);
+		Debug.Log (itemList [itemNum].data.location);
 		//StartCoroutine (getIt(s,itemNum));
 	}
 
 	public IEnumerator getIt(string[] s, int itemNum){
 		// TextUI가 뜬다.
 		//“뫄뫄”를 습득했습니다
-
 		senteceText.text = s[4];// 설명 블라블라
 		yield return new WaitForSeconds(0.05f);
 		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);//Text UI가 뜬다.
@@ -165,12 +167,26 @@ public class ItemManager : MonoBehaviour {
 	{
 		//아이템 location을 확인
 		for (int i = 0; i < itemList.Length; i++)
-		{
-			if (location == itemList[i].data.location )
+		{//0일 경우 그냥 띄운다.//그외에는 현재시간과 같을 경우만 띄운다.
+			if (location == itemList[i].data.location && (itemList[i].time==0 || itemList[i].time == Status.time ))
 			{
-				
-				itemList[i].gameObject.SetActive(true);
+				if (i == 2 || i == 3 ) {//show를 할때 i가 2이면
+					int x = (int)Random.Range (2, 3.99999f);//random를 돌리고 그중하나를 키고 i=3으로 맞춘다.
+					itemList [x].gameObject.SetActive (true);
+					i = 3;
+				}
+				else {
+					itemList [i].gameObject.SetActive (true);
+				}
 			}
+		}
+	}
+
+	public void showDorm(){
+		if (proHeartCount == 1.00f) {
+			itemList [16].gameObject.SetActive (true);
+		} else {
+			itemList [16].gameObject.SetActive (false);
 		}
 	}
 

@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour {
 
 	public int scriptNum = 0;
 	private int c=0;
+	private int cOther = 0;
 	public int count=1;
 
 	public int[] time;
@@ -73,11 +74,8 @@ public class NPC : MonoBehaviour {
 		case 1:
 			if (c.compare (1, 0, 1)) {//10 0 1 갤럭시 노트 획득
 				im.startGetIt(out s,14);
-
-			} 
-			else {
+			}else {
 			}
-
 			break;
 		case 2:
 			if (c.compare (1, 0, 2)) {//1 0 2 의심도 증가
@@ -85,12 +83,14 @@ public class NPC : MonoBehaviour {
 			} 
 			else if (c.compare (3, 0, 2)) {//3 0 2  교수님의 마음획득
 				im.startGetIt(out s,16);
+				im.proHeartCount += 0.2f;
 			} 
 			else if (c.compare (2, 1, 2)) {//2 1 2 의심도 증가
 				Status.suspiciousRate += 5;
 			} 
 			else if (c.compare (1, 2, 2)) {//1 2 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
+				im.proHeartCount += 0.2f;
 			} 
 			else if (c.compare (2, 2, 2)) {//2 2 2 의심도 증가
 				Status.suspiciousRate += 5;
@@ -103,16 +103,17 @@ public class NPC : MonoBehaviour {
 			}
 			else if (c.compare (2, 3, 2)) {//2 3 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
+				im.proHeartCount += 0.2f;
 			}
 			else if (c.compare (1, 4, 2)) {//1 4 2 경찰 엔딩
 				//
 			}
 			else if (c.compare (2, 4, 2)) {//2 4 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
+				im.proHeartCount += 0.2f;
 			} 
 			else {
 			}
-
 			break;
 		case 3:
 			if (c.compare (1, 1, 3)) {//1 1 3 성서 획득
@@ -128,6 +129,26 @@ public class NPC : MonoBehaviour {
 				im.startGetIt(out s,9);
 			}
 			else {
+			}
+			break;
+		case 4://lobby
+			if (c.compare (1, 0, 4)) {//1 0 4 레포트 구매 
+				Status.money -= 10000;
+				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
+				cOther++;
+				if (cOther == 5)
+					scriptNum = 1;
+			} 
+			else if (c.compare (2, 0, 4)) {//2 0 4 레포트 판매
+				Status.money += 10000;
+				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
+				cOther++;
+				if (cOther == 5)
+					scriptNum = 1;
+			} 
+			else if (c.compare (1, 1, 4)) {//1 0 4 우라늄 획득 
+				im.startGetIt (out s, 14);
+			} else {
 			}
 			break;
 		case 7:
@@ -147,7 +168,8 @@ public class NPC : MonoBehaviour {
 			//
 			}
 			else if (c.compare (1, 1, 7)) {//1 1 7 글리세린 획득
-				im.startGetIt(out s,6);
+				im.startGetIt (out s, 6);
+
 			} 
 			else {
 			}

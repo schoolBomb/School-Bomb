@@ -4,49 +4,39 @@ using UnityEngine;
 
 public class LightMovement : MonoBehaviour {
 
-    bool isTracing;
-    GameObject traceTarget;
-    // Use this for initialization
-    void Start()
-    {
-        //       animator = gameObject.GetComponent<Animator>();
-       
-        //      StartCoroutine("ChangeMovement");
+	UserWalk user;
 
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
+	// Use this for initialization
+	void Start()
+	{
 
 
-       
+	}
+
+	// Update is called once per frame
+	void FixedUpdate()
+	{
 
 
-    }
-    void onCollisionEnter2D(Collision other)
-    {
-        Debug.Log("enter "+other.gameObject.name);
-        if (other.gameObject.tag == "Player")
-        {
-            traceTarget = other.gameObject;
-            Debug.Log("enter player");
-        }
-    }
-    void onCollisionStay2D(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isTracing = true;
-        }
-    }
-    void onCollisionExit2D(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isTracing = false;
-        }
-    }
+
+
+
+	}
+	public void changeSpeed()
+	{
+		user = GameObject.FindGameObjectWithTag("Player").GetComponent<UserWalk>();
+		if (user.move == true)//player가 숨어있지 않을때
+		{
+			Debug.Log("Detected by light!");
+			user.isTracing = true;
+		}
+		else//player가 상자나 문에 숨어있을때
+		{
+			Debug.Log("Not Detected by light!");
+		}
+
+	}
+
 
 
 }

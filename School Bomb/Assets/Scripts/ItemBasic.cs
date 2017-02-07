@@ -10,6 +10,7 @@ public class ItemBasic : MonoBehaviour{
 	private Vector3 beforePos;
 
 	public GameObject bc;
+	public int time=0;
 
 	void Start(){
 		beforePos = this.gameObject.transform.localPosition;
@@ -45,10 +46,8 @@ public class ItemBasic : MonoBehaviour{
 	public void purchaseDetail(int a){
 		if (a == 1 && (Status.money >= data.price)) {
 			data.location = (int)ItemPosition.toUser;
-			//this.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			this.gameObject.SetActive (false);
 			Status.money -= data.price;
-
 			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 		} else {
 			return;

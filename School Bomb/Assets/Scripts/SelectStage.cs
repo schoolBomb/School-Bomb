@@ -25,46 +25,48 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 
 	//when select Stage
 	public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
-
 		StartCoroutine(loading());//로딩창 
-
 		im.conceal ();
-
 		switch(selectNum){
 		case (int)stageNum.SelectStage:
 			if (!(Status.nowStage == (short)stageNum.Dormitory))
 				Status.changeTime ();//시간변경
 
-				camera.transform.localPosition = new Vector3 (0, 0, -10);
-				player.transform.localPosition = new Vector3 (0f,-0.16f,-5f);
-				camera.transform.localPosition = new Vector3 (0, 0, -10);
-				stages[Status.nowStage].SetActive(false);
-				stages[(int)stageNum.SelectStage].SetActive(true);
-				stages[9].SetActive(false);
-				gameUI[0].SetActive(true);
-				gameUI[1].SetActive(true);
-				gameUI[2].SetActive(false);
+			camera.transform.localPosition = new Vector3 (0, 0, -10);
+			player.transform.localPosition = new Vector3 (0f, -0.16f, -5f);
+			camera.transform.localPosition = new Vector3 (0, 0, -10);
+			stages [Status.nowStage].SetActive (false);
+			stages [(int)stageNum.SelectStage].SetActive (true);
+			stages [9].SetActive (false);
+			gameUI [0].SetActive (true);
+			gameUI [1].SetActive (true);
+			gameUI [2].SetActive (false);
 			Status.nowStage = (short)selectNum;
 				updateUpLeftUI();
 				break;
 			
-			case (int)stageNum.Dormitory:
-				im.show((int)ItemPosition.toUser);
-				gameUI[1].SetActive(false);
-				gameUI[2].SetActive(true);
-				gameUI[0].SetActive(false);//selectButton
-				stages[0].SetActive(false);
-				stages[selectNum].SetActive(true);
-				Status.nowStage = (short)selectNum;
-				im.show ((int)ItemPosition.toUser);
+		case (int)stageNum.Dormitory:
+			im.show ((int)ItemPosition.toUser);
+			gameUI [1].SetActive (false);
+			gameUI [2].SetActive (true);
+			gameUI [0].SetActive (false);//selectButton
+			stages [0].SetActive (false);
+			stages [selectNum].SetActive (true);
+			Status.nowStage = (short)selectNum;
+			im.show ((int)ItemPosition.toUser);
+			im.showDorm ();
 				break;
 		default:
 			gameUI [0].SetActive (false);//selectButton
 			gameUI [1].SetActive (false);//dorm
 			for (int i = 0; i < stages.Length; i++)
 				stages [i].SetActive (false);//initialize
-			stages [selectNum].SetActive (true);
-			stages [selectNum].GetComponent<CheckStage> ().checkNPC ();
+			if ((selectNum == 10 || selectNum == 11) && Status.time != (int)TimeOfDay.Night) {
+				stages [7].SetActive (true);
+			} else {
+				stages [selectNum].SetActive (true);
+			}
+			stages [selectNum].GetComponent<Check> ().checkNPC (selectNum);
 			Status.nowStage = (short)selectNum;
 				//Exception
 			if (!(selectNum == (int)stageNum.SecretRoom))
@@ -83,8 +85,6 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			}
 				break;
 		}
-
-
 	}
 
 	public IEnumerator loading()//잠깐 가짜 로딩 화면 

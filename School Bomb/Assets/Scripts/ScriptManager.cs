@@ -50,12 +50,16 @@ public class ScriptManager : MonoBehaviour {
 			nameText.text=wordList[r].name;// 출력
 			senteceText.text = wordList [r].sentence;
 			TextBackGround.SetActive(true);
+			if (wordList [r].sentence.Equals ("왜 너도 시도해보게? 아 그럼 이거. 저번에 남은건데 나름 유용하다고?")) {
+				another (1);
+			}
 			yield return new WaitForSeconds (0.01f);
 		
 			while(!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){// 
 				yield return null;//wait until input is coming
 			}
 			TextBackGround.SetActive(false);
+			another (0);
 			i = wordList.Length+1;
 		} else {
 			//2. TextUI가 켜진다.
@@ -79,7 +83,16 @@ public class ScriptManager : MonoBehaviour {
 			else if(wordList[i].isQuestion.Equals("Question")){
 				int answer=1;
 				int iter=0;
-				for (int j = i+1; j < i+4; j++){//check the answer number
+//				{
+//					int j = i+1;
+//					while (wordList [j].isQuestion.Equals ("Answer")) {
+//						iter++;
+//						j++;
+//					}
+//				}
+				for (int j = i+1; j < i+4 ; j++){//check the answer number
+					if(j>=wordList.Length) break;
+					Debug.Log(j+" "+wordList[j].sentence);
 					if (wordList[j].isQuestion.Equals("Answer")) iter++;
 				}
 				initQuestion(iter);
@@ -91,7 +104,7 @@ public class ScriptManager : MonoBehaviour {
 				senteceText.gameObject.SetActive (false);//2.현재 sentenceUI를 끈다.
 				QuestionUI.gameObject.SetActive (true);
 				//선택할때까지 대기
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(0.01f);
 
 				while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) ){//
 					if (Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
@@ -99,14 +112,14 @@ public class ScriptManager : MonoBehaviour {
 							TextColorChange (answer, answer - 1);
 							answer--;
 						}
-						yield return new WaitForSeconds (0.05f);
+						yield return new WaitForSeconds (0.01f);
 					}
 					if (Input.GetKeyDown (KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.S)) {
 						if (answer < iter) {
 							TextColorChange (answer, answer+1);
 							answer++;
 						}
-						yield return new WaitForSeconds (0.05f);
+						yield return new WaitForSeconds (0.01f);
 					}
 					yield return null;//wait until input is coming
 				}
