@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour {
 	public string description;//설명
 	public bool isComplete = false;
 	//public Sprite endingCut;//엔딩그림
+	public bool isMine=false;
 
 	public IEnumerator explosion(int a){//폭파함수->엔딩롤
 
