@@ -52,7 +52,9 @@
      <Compile Include="Assets\Scripts\CameraContoller.cs" />
      <Compile Include="Assets\Scripts\Check.cs" />
      <Compile Include="Assets\Scripts\CheckStage.cs" />
+     <Compile Include="Assets\Scripts\Combinationblock.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Ending.cs" />
      <Compile Include="Assets\Scripts\EnumCollection.cs" />
      <Compile Include="Assets\Scripts\ItemBasic.cs" />
@@ -63,10 +65,6 @@
      <Compile Include="Assets\Scripts\Line.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\Scripts\PatrolWalk.cs" />
-     <Compile Include="Assets\Scripts\PatrolWalk_1.cs" />
-     <Compile Include="Assets\Scripts\PatrolWalk_2.cs" />
-     <Compile Include="Assets\Scripts\PatrolWalk_3.cs" />
-     <Compile Include="Assets\Scripts\PatrolWalk_4.cs" />
      <Compile Include="Assets\Scripts\Rotate.cs" />
      <Compile Include="Assets\Scripts\ScriptManager.cs" />
      <Compile Include="Assets\Scripts\SelectStage.cs" />

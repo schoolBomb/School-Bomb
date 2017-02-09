@@ -21,21 +21,7 @@ public class Rotate : MonoBehaviour
         }
         
     }
-    /*
-    IEnumerator delayTime()
-    {
-        //moveRotate();
-        if (rotationZ >= 90f || rotationZ <= -90f)//일정 범위 넘어가면 회전방향 전환
-        {
-            //yield return new WaitForSeconds(0.3f);
-            rotateZ *= -1f;
-        }
-
-        yield return new WaitForSeconds(2f);
-        
- //       transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -rotationZ);//회전!!
-    }
-    */
+    
     void delayTime()
     {
 
