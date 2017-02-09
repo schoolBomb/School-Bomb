@@ -6,6 +6,7 @@ public class UserWalk : MonoBehaviour
 {
 
     public float Speed = 4f;//유저가 움직이는 속도
+	private float min,max;
     Animator anim;
     Renderer rend;
     Rigidbody2D rb2;
@@ -60,6 +61,10 @@ public class UserWalk : MonoBehaviour
             other.GetComponent<LightMovement>().changeSpeed();//cctv와 손전등 빛과 부딪치면 실행
         }
 
+		if (other.gameObject.tag == "next") {
+			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().select (Status.nowStage);
+		}
+
     }
 
 
@@ -74,12 +79,12 @@ public class UserWalk : MonoBehaviour
 
     void Movement()//움직임 제어하는 함수
     {
-        if (move == true && Input.GetKey(KeyCode.A) && transform.position.x > -28.5f)//왼쪽으로 이동, 복도를 벗어나지 않게 범위 제한
+        if (move == true && Input.GetKey(KeyCode.A) && transform.position.x > min)//왼쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 180, 0);//바라보는 방향 바뀐다
         }
-        else if (move == true && Input.GetKey(KeyCode.D))//오른쪽으로 이동, 복도를 벗어나지 않게 범위 제한
+		else if (move == true && Input.GetKey(KeyCode.D)&& transform.position.x < max)//오른쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, 0);//바라보는 방향 바뀐다
@@ -97,5 +102,10 @@ public class UserWalk : MonoBehaviour
         }
 
     }
+
+	public void rangeChange(float min, float max){
+		this.min = min;
+		this.max = max;
+	}
 
 }

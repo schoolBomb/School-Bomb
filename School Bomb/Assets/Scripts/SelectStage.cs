@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour {//change stage and manage UI
 
-	public GameObject player;
+	public GameObject[] player;
 	public GameObject camera;
+	private Camera cam;
+	private UserWalk uw;
+	private CameraContoller cc;
 
 	public GameObject[] gameUI;
 	public GameObject[] stages;
@@ -21,6 +24,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	void Start()
 	{
 		im=GameObject.Find("Item Manager").GetComponent<ItemManager>();
+		cam = camera.GetComponent<Camera> ();
+		cc = camera.GetComponent<CameraContoller> ();
+		uw = player[0].GetComponent<UserWalk> ();
 	}
 
 	//when select Stage
@@ -33,7 +39,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				Status.changeTime ();//시간변경
 
 			camera.transform.localPosition = new Vector3 (0, 0, -10);
-			player.transform.localPosition = new Vector3 (0f, -0.16f, -5f);
+			cam.orthographicSize = 3.6f;
+			cc.rangeChange (0, 0);
+			uw.rangeChange (0, 0);
 			camera.transform.localPosition = new Vector3 (0, 0, -10);
 			stages [Status.nowStage].SetActive (false);
 			stages [(int)stageNum.SelectStage].SetActive (true);
@@ -69,22 +77,50 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			stages [selectNum].GetComponent<Check> ().checkNPC (selectNum);
 			Status.nowStage = (short)selectNum;
 				//Exception
-			if (!(selectNum == (int)stageNum.SecretRoom))
+			if (selectNum != (int)stageNum.SecretRoom) {
 				stages [9].SetActive (true);//exception for secretRoom
+				player [1].SetActive (true);
+				player [2].SetActive (true);
+			} else {
+				stages [9].SetActive (true);//exception for secretRoom
+				player [1].SetActive (false);
+				player [2].SetActive (false);
+			}
+				
 			if (selectNum == (int)stageNum.Shop) {
 				im.show ((int)ItemPosition.toStore);
 			} else {
 				im.show (Status.nowStage);
 			}
-			if (selectNum == (int)stageNum.Corridor) {
-				camera.transform.localPosition = new Vector3 (-18.0f, 0f, -10f);
-				player.transform.localPosition = new Vector3 (-18.0f,-0.16f,-5f);
+			if (selectNum == (int)stageNum.Corridor || selectNum == 10 || selectNum == 11) {
+				camera.transform.localPosition = new Vector3 (-23.5f, 0f, -10f);
+				player [0].transform.localPosition = new Vector3 (-23.5f, -0.16f, -5f);
+				cam.orthographicSize = 7.0f;
+				cc.rangeChange (-23.5f, 23.5f);
+				uw.rangeChange (-29.5f, 35);
 			} else {
+				if (selectNum == (int)stageNum.Lab) {
+					cc.rangeChange (-3.25f, 7);
+					uw.rangeChange (-9, 13);
+
+				} else if (selectNum == (int)stageNum.SecretRoom) {
+					cc.rangeChange (0, 0);
+					uw.rangeChange (-5.5f, 5.2f);
+
+				} else if (selectNum == (int)stageNum.ServerRoom) {
+					cc.rangeChange (-1, 6.8f);
+					uw.rangeChange (-7, 12.8f);
+				} else {
+					cc.rangeChange (0, 0);
+					uw.rangeChange (-6, 6);
+				}
+				cam.orthographicSize = 3.6f;
 				camera.transform.localPosition = new Vector3 (0, 0, -10);
-				player.transform.localPosition = new Vector3 (0f,-0.16f,-5f);
+				player [0].transform.localPosition = new Vector3 (0f, -0.16f, -5f);
 			}
-				break;
+			break;
 		}
+
 	}
 
 	public IEnumerator loading()//잠깐 가짜 로딩 화면 

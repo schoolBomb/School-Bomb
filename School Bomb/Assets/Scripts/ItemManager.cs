@@ -19,7 +19,7 @@ public class ItemManager : MonoBehaviour {
 	public Text[] questionText;
 
 	public float proHeartCount{ get; set; }
-
+	private float strength;
 	void Start()
 	{
 		//아이템 시트 가져오기 
@@ -129,13 +129,15 @@ public class ItemManager : MonoBehaviour {
 		yield return null;
 	}
 
-	public void ending(int a)
+	public void ending(int bombNum)
 	{
-		StartCoroutine(bombList[a].explosion(a));
+		Ending e = GetComponent<Ending> ();
+		e.endGame (bombNum, bombList [bombNum].strength + strength);
 	}
 
-	public void explode()//폭발 진행 
+	public void explode(float locStrength)//폭발 진행 
 	{
+		strength = locStrength;
 		string[] str = new string[14];
 		str[0] = "";
 		str[1] = "폭탄을 설치하시겠습니까?";//질문을 한다: 폭탄을 설치하시겠습니까?
@@ -144,7 +146,6 @@ public class ItemManager : MonoBehaviour {
 			if (bombList[j-2].isComplete==true)
 			{
 				str[i] = string.Copy(bombList[j-2].name);
-				Debug.Log(bombList[j - 2].name+" "+i);
 				i++;
 			}
 		}
