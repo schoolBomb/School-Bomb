@@ -47,7 +47,7 @@ public class Combinationblock : MonoBehaviour//, IDropHandler
         {
             if (!item)//칸에 물건이 없다면
             {
-                //Debug.Log("Catch "+other.gameObject.name);
+                Debug.Log("Catch "+other.gameObject.name);
                 DragHandler.itemBeingDragged.transform.SetParent(transform);//칸이 물건을 잡는다
 
             }
