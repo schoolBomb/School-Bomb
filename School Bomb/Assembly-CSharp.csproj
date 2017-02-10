@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Ending.cs" />
      <Compile Include="Assets\Scripts\EnumCollection.cs" />
+     <Compile Include="Assets\Scripts\FadeObjectInOut.cs" />
      <Compile Include="Assets\Scripts\ItemBasic.cs" />
      <Compile Include="Assets\Scripts\ItemManager.cs" />
      <Compile Include="Assets\Scripts\JsonHelper.cs" />

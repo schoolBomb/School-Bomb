@@ -47,7 +47,7 @@ public class ItemManager : MonoBehaviour {
 		itemList[itemNum].data.location = (int)ItemPosition.toUser;
 		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 		itemList [itemNum].gameObject.SetActive(false);
-		Debug.Log (itemList [itemNum].data.location);
+//		Debug.Log (itemList [itemNum].data.location);
 		//StartCoroutine (getIt(s,itemNum));
 	}
 

@@ -22,8 +22,8 @@ public class Ending : MonoBehaviour {
 	}
 
 	public void endGame(int bombNum, float bombStrength){
-		bombNum = 1;
-		bombStrength = 11;//Debug
+//		bombNum = 1;
+//		bombStrength = 11;//Debug
 		/////////////
 		if (bombStrength == 0) {
 			//		시체

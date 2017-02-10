@@ -87,6 +87,7 @@
 'Assets/Scripts/DragHandler.cs'
 'Assets/Scripts/Ending.cs'
 'Assets/Scripts/EnumCollection.cs'
+'Assets/Scripts/FadeObjectInOut.cs'
 'Assets/Scripts/ItemBasic.cs'
 'Assets/Scripts/ItemManager.cs'
 'Assets/Scripts/JsonHelper.cs'

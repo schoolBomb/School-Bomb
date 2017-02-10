@@ -71,10 +71,13 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				stages [i].SetActive (false);//initialize
 			if ((selectNum == 10 || selectNum == 11) && Status.time != (int)TimeOfDay.Night) {
 				stages [7].SetActive (true);
+				Check chec = stages [7].GetComponent<Check> ();
+				chec.checkNPC (selectNum);
 			} else {
 				stages [selectNum].SetActive (true);
+				Check chec = stages [selectNum].GetComponent<Check> ();
+				chec.checkNPC (selectNum);
 			}
-			stages [selectNum].GetComponent<Check> ().checkNPC (selectNum);
 			Status.nowStage = (short)selectNum;
 				//Exception
 			if (selectNum != (int)stageNum.SecretRoom) {
