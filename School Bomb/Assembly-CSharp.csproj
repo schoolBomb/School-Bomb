@@ -74,8 +74,21 @@
      <Compile Include="Assets\Scripts\UserWalk.cs" />
      <Compile Include="Assets\Scripts\WalkSceneSelect.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
+     <None Include="Assets\Resource\sound\ending sound\-  That&apos;s That Sting.txt" />
      <None Include="Assets\Resource\etc\itemSheet.txt" />
+     <None Include="Assets\Resource\sound\Sound List.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\서버실 Basement Floor Electronic Medium.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\랩실 Odd News.txt" />
+     <None Include="Assets\Resource\sound\ending sound\lawbreak ending_second Der Kleber Sting.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\기숙사 Hidden Agenda.txt" />
+     <None Include="Assets\Resource\sound\ending sound\normal ending_Funky Sting.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\오프닝 Iron Horse Distressed.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\동아리방 Friendly Day.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\복도_낮 Hand Trolley.txt" />
+     <None Include="Assets\Resource\sound\ending sound\메모지.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\학문관 Comparsa Latinesque.txt" />
      <None Include="Assets\Resource\etc\wordSheet.txt" />
+     <None Include="Assets\Resource\sound\BGM\노래 출처\메인 화면 1 bensoung-funnysong.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
