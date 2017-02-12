@@ -74,5 +74,10 @@ public class CameraContoller : MonoBehaviour
             
     }
 
+	public void rangeChange(float min, float max){
+		xMin = min;
+		xMax = max;
+	}
+
     
 }

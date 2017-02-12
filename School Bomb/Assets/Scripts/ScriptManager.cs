@@ -34,7 +34,6 @@ public class ScriptManager : MonoBehaviour {
 			(from word in wordAll
 			 where (word.location == nowStage) && (word.num==num)
 			 select word).ToArray ();
-
 	}
 
 
@@ -83,16 +82,9 @@ public class ScriptManager : MonoBehaviour {
 			else if(wordList[i].isQuestion.Equals("Question")){
 				int answer=1;
 				int iter=0;
-//				{
-//					int j = i+1;
-//					while (wordList [j].isQuestion.Equals ("Answer")) {
-//						iter++;
-//						j++;
-//					}
-//				}
+
 				for (int j = i+1; j < i+4 ; j++){//check the answer number
 					if(j>=wordList.Length) break;
-					Debug.Log(j+" "+wordList[j].sentence);
 					if (wordList[j].isQuestion.Equals("Answer")) iter++;
 				}
 				initQuestion(iter);
