@@ -17,6 +17,8 @@ public class ScriptManager : MonoBehaviour {
 	public GameObject QuestionUI;
 	public Text[] questionText;
 
+	public static bool isShowing = false;
+
 	// Use this for initialization
 	void Start () {
 		j = GetComponent<JsonReader> ();
@@ -39,6 +41,7 @@ public class ScriptManager : MonoBehaviour {
 
 	//UI에 대사를 출력하는 함수 
 	public IEnumerator printInUI( short nowStage,short day, short time, int num,func1 another ){
+		isShowing = true;
 		//1. 데이터를 추린다. ->findWord
 		findWord(nowStage,num);
 		int i = 0;
@@ -131,7 +134,34 @@ public class ScriptManager : MonoBehaviour {
 
 			yield return new WaitForSeconds (0.01f);
 		}
+		isShowing = false;
 		yield return null;
+	}
+
+	public IEnumerator patrolScript(string[] s, func1 detail){
+		isShowing = true;
+		// TextUI가 뜬다.
+		//“뫄뫄”를 습득했습니다
+		int i=0;
+		while (i < s.Length) {
+			senteceText.text = s[i];// 설명 블라블라
+			yield return new WaitForSeconds(0.05f);
+			if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);//Text UI가 뜬다.
+
+			while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) && !Input.GetMouseButtonDown(0) ){
+				yield return null;
+			}
+			i++;
+			yield return null;
+		}
+		while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) && !Input.GetMouseButtonDown(0) ){
+			yield return null;
+		}
+
+		//TextUI 닫힘.
+		TextBackGround.SetActive(false);
+		isShowing = false;
+		detail (1);
 	}
 
 	private void initQuestion(int iter)
@@ -142,6 +172,11 @@ public class ScriptManager : MonoBehaviour {
 		}
 		for (int i = 1; i <= iter; i++)
 		{
+			if (i == 1) {
+				questionText [i].color = Color.white;
+			} else {
+				questionText [i].color = new Color (0.5f,0.5f,0.5f);
+			}
 			questionText[i].gameObject.SetActive(true);
 		}
 

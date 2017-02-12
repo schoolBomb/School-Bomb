@@ -38,4 +38,6 @@ public class Check : MonoBehaviour {
 		}
 	}
 		
+	public void writing(){
+	}
 }

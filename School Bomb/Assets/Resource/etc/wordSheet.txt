@@ -621,7 +621,7 @@
     "sentence": "네녀석, 후회하게 될것이야."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 0,
     "name": "경비",
     "isQuestion": "no",
@@ -630,7 +630,7 @@
     "sentence": "밤늦게까지 힘들겠구만, 학생도."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 0,
     "name": "경비",
     "isQuestion": "no",
@@ -639,7 +639,7 @@
     "sentence": "이런 저녁까지 학교에 남아있나? 도대체 무슨 일로?"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 0,
     "name": "경비",
     "isQuestion": "no",
@@ -648,7 +648,7 @@
     "sentence": "이건 곰인형 아닌가…? 학생, 몽유병이라도 있나?"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 0,
     "name": "경비",
     "isQuestion": "no",
@@ -657,7 +657,7 @@
     "sentence": "이건 폭탄 아닌가...? 학생 이건 압수하겠네!!"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 0,
     "name": "경비",
     "isQuestion": "no",
@@ -666,7 +666,7 @@
     "sentence": "이건 폭탄 아닌가…? 학생 지금 이거 들고 어디로… 설마!"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -675,7 +675,7 @@
     "sentence": "왜 청소하냐고? 폭파 미수지 뭐."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -684,7 +684,7 @@
     "sentence": "진짜 싫다니까. 학교에 별로 피해도 없으면서 이렇게 청소를 시키는지."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -693,7 +693,7 @@
     "sentence": "아, 차라리 그럴 시간에 졸업 논문이나 쓸걸 그랬나봐."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -702,7 +702,7 @@
     "sentence": "왜 너도 시도해보게? 아 그럼 이거. 저번에 남은건데 나름 유용하다고?"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",
@@ -711,7 +711,7 @@
     "sentence": "교실에 설치했는데 흠집도 안나더라고."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",
@@ -720,7 +720,7 @@
     "sentence": "소문에 의하면 작은 폭탄으로도 학교전체를 마비시킬 수는 있다나봐."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",
@@ -753,7 +753,7 @@
     "isQuestion": "no",
     "day": 0,
     "time": 1,
-    "sentence": "(은하수놑7을 획득했습니다.)"
+    "sentence": "(은하수놑10을 획득했습니다.)"
   },
   {
     "location": 4,
@@ -807,7 +807,7 @@
     "isQuestion": "Question",
     "day": 0,
     "time": 1,
-    "sentence": "그러고보니 너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래? 가격은 10만원."
+    "sentence": "너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래? 가격은 10만원."
   },
   {
     "location": 4,
@@ -846,7 +846,7 @@
     "sentence": "싫음 말고."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 3,
     "name": "자판기",
     "isQuestion": "no",
@@ -855,16 +855,16 @@
     "sentence": "coca cola라는 문구가 크게 쓰여 있지만 사실 데자와의 지분이 더 많다."
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 3,
     "name": "자판기",
     "isQuestion": "Question",
     "day": 0,
     "time": 1,
-    "sentence": "데자와를 구입하시겠습니까? (600\\)"
+    "sentence": "데자와를 구입하시겠습니까? (가격 : 600원)"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 3,
     "name": "",
     "isQuestion": "Answer",
@@ -873,12 +873,30 @@
     "sentence": "예"
   },
   {
-    "location": 7,
+    "location": 10,
     "num": 3,
     "name": "",
     "isQuestion": "Answer",
     "day": 0,
     "time": 1,
     "sentence": "아니오"
+  },
+    {
+    "location": 10,
+    "num": 3,
+    "name": "",
+    "isQuestion": "no",
+    "day": 0,
+    "time": 1,
+    "sentence": "(고장났는지 돈도 같이 뱉었다. 헤헿)"
+  },
+    {
+    "location": 10,
+    "num": 3,
+    "name": "",
+    "isQuestion": "no",
+    "day": 0,
+    "time": 1,
+    "sentence": "(동전이 다시 나왔다.)"
   }
 ]

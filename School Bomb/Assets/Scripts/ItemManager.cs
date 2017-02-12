@@ -41,19 +41,21 @@ public class ItemManager : MonoBehaviour {
 
 	public void startGetIt(out string[] s, int itemNum ){
 		s = new string[6];
-		itemList [itemNum].initializeText ();
 		s = itemList [itemNum].txt;
 
 		itemList[itemNum].data.location = (int)ItemPosition.toUser;
 		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 		itemList [itemNum].gameObject.SetActive(false);
-//		Debug.Log (itemList [itemNum].data.location);
+		Debug.Log (itemList [itemNum].data.location);
 		//StartCoroutine (getIt(s,itemNum));
 	}
 
 	public IEnumerator getIt(string[] s, int itemNum){
+		ScriptManager.isShowing = true;
 		// TextUI가 뜬다.
 		//“뫄뫄”를 습득했습니다
+		itemList [itemNum].initializeText ();
+
 		senteceText.text = s[4];// 설명 블라블라
 		yield return new WaitForSeconds(0.05f);
 		if(TextBackGround.activeSelf==false)	TextBackGround.SetActive(true);//Text UI가 뜬다.
@@ -62,20 +64,24 @@ public class ItemManager : MonoBehaviour {
 			yield return null;
 		}
 
-		senteceText.text = itemList [itemNum].data.description;// 설명 블라블라
+		if(itemNum != -1) senteceText.text = itemList [itemNum].data.description;// 설명 블라블라
 		while(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return) && !Input.GetMouseButtonDown(0) ){
 			yield return null;
 		}
 		//TextUI 닫힘.
 		TextBackGround.SetActive(false);
 
-		itemList[itemNum].data.location = (int)ItemPosition.toUser;
-		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
-		itemList [itemNum].gameObject.SetActive(false);
+		if (itemNum != -1) {
+			itemList [itemNum].data.location = (int)ItemPosition.toUser;
+			itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
+			itemList [itemNum].gameObject.SetActive (false);
+		}
+		ScriptManager.isShowing = false;
 		yield return null;
 	}
 
 	public IEnumerator purchase(string[] s, int itemNum, func1 another){
+		ScriptManager.isShowing = true;
 		initQuestion(2);
 		//마우스 클릭을 할시
 		//설명 블라블라
@@ -126,6 +132,7 @@ public class ItemManager : MonoBehaviour {
 			senteceText.gameObject.SetActive (true);
 			TextBackGround.SetActive (false);//TextUI 닫힘.
 		}
+		ScriptManager.isShowing = false;
 		yield return null;
 	}
 
@@ -202,6 +209,11 @@ public class ItemManager : MonoBehaviour {
 		}
 		for (int i = 1; i <= iter; i++)
 		{
+			if (i == 1) {
+				questionText [i].color = Color.white;
+			} else {
+				questionText [i].color = new Color (0.5f,0.5f,0.5f);
+			}
 			questionText[i].gameObject.SetActive(true);
 		}
 

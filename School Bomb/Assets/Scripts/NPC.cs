@@ -67,7 +67,7 @@ public class NPC : MonoBehaviour {
 			this.c++;
 			return; 
 		}
-
+		Debug.Log ("XXX");
 		Comp c = new Comp (answer, this.scriptNum, Status.nowStage);
 		string[] s;
 		switch(Status.nowStage){
@@ -146,30 +146,33 @@ public class NPC : MonoBehaviour {
 				if (cOther == 5)
 					scriptNum = 1;
 			} 
-			else if (c.compare (1, 1, 4)) {//1 0 4 우라늄 획득 
+			else if (c.compare (1, 1, 4) && Status.money >= 100000 ) {//1 0 4 우라늄 획득 
 				im.startGetIt (out s, 14);
 			} else {
 			}
 			break;
-		case 7:
-			if (c.compare (1, 0, 7)) {//1 0 7 의심도 증가
-				Status.suspiciousRate += 5;
+		case 10:
+//			if (c.compare (1, 0, 7)) {//1 0 7 의심도 증가
+//				Status.suspiciousRate += 5;
+//			}
+//			else if (c.compare (2, 0, 7)) {//2 0 7 의심도 증가
+//				Status.suspiciousRate += 5;
+//			}
+//			else if (c.compare (3, 0, 7)) {//3 0 7 위장용 곰인형으로 인해 회피
+//			//
+//			}
+//			else if (c.compare (4, 0, 7)) {//4 0 7 의심도 증가
+//				Status.suspiciousRate += 5;
+//			}
+//			else if (c.compare (5, 0, 7)) {//5 0 7 경찰 엔딩
+//			//
+//			}
+			if (c.compare (1, 3, 10)) {//1 1 7 데자와 획득
+				im.startGetIt (out s, 19);
 			}
-			else if (c.compare (2, 0, 7)) {//2 0 7 의심도 증가
-				Status.suspiciousRate += 5;
-			}
-			else if (c.compare (3, 0, 7)) {//3 0 7 위장용 곰인형으로 인해 회피
-			//
-			}
-			else if (c.compare (4, 0, 7)) {//4 0 7 의심도 증가
-				Status.suspiciousRate += 5;
-			}
-			else if (c.compare (5, 0, 7)) {//5 0 7 경찰 엔딩
-			//
-			}
-			else if (c.compare (1, 1, 7)) {//1 1 7 글리세린 획득
+			else if (c.compare (1, 1, 10)) {//1 1 7 글리세린 획득
+				Debug.Log ("XXX");
 				im.startGetIt (out s, 6);
-
 			} 
 			else {
 			}

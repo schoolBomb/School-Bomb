@@ -20,6 +20,12 @@ public class PatrolWalk : MonoBehaviour
 	bool facingRight=true;
     public bool left;
 
+	//2017.02.11/// <summary>
+	/// /////////
+	/// </summary>
+	private string[] talk;
+	private ScriptManager sm;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -30,6 +36,12 @@ public class PatrolWalk : MonoBehaviour
 //		user = GameObject.FindGameObjectWithTag("Player").GetComponent<UserWalk>();
 		IdleSpeed = movePower;//평상시 속도 저장
 
+		//17.02.11
+		talk= new string[3];
+		talk [0] = "";
+		talk [1] = "아니에요, 하하.";
+		talk [2] = "(오늘은 더 이상 힘들 것 같다. 다음을 기약하자.)";
+		sm = GameObject.Find ("Script Manager").GetComponent<ScriptManager> ();
 	}
 
 	// Update is called once per frame
@@ -44,10 +56,29 @@ public class PatrolWalk : MonoBehaviour
 
 	public void detected()//player가 경비원이랑 부딪히면 실행되는 메소드
 	{
-
 		if (user.move == true)//player가 숨어있지 않을때
-		{
-			Debug.Log("Game Over");
+		{//경비랑 부딪혔을때 멈춘뒤 대사 출력
+			//상황에따라서 넘버링
+			if (Status.haveBomb == false) {
+				if (Status.nowStage == 10) { //1. 폭탄없이 교실복도에서 걸림, 의심도+2
+					talk [0] = "밤늦게까지 힘들겠구만, 학생도.";
+					whenDetected (3);
+				} else {//2. 폭탄없이 서버실복도에서 걸림. 의심도+5
+					talk [0] = "이런 저녁까지 학교에 남아있나? 도대체 무슨 일로?";
+					talk [1] = "그... 냥요?";
+					whenDetected (6);
+				}
+			} else {//폭탄 가장 위력이 강한 거 압수 및 재료 리젠을 위한 코드 
+				if (Status.nowStage == 10) { //3. 폭탄 있고 교실 복도에서 걸림. 의심도+6
+					talk [0] = "이건 폭탄 아닌가...? 학생 이건 압수하겠네!!";
+					whenDetected (6);
+				} else {//4. 폭탄 있고 서버실 복도에서 걸림. 의심도+12
+					talk [0] = "이건 폭탄 아닌가…? 학생 지금 이거 들고 어디로… 설마!?";
+					talk [1] = "어...";
+					talk [2] = "가볼게요!";
+					whenDetected (12);
+				}
+			}
 		}
 		else//player가 숨어있지 않을때
 		{
@@ -120,6 +151,20 @@ public class PatrolWalk : MonoBehaviour
                 movePower *= -1;
             }
         }
+	}
+
+	private void whenDetected(int suspicious){
+		Status.suspiciousRate+=suspicious;
+		user.Speed = 0;
+		movePower = 0;
+		StartCoroutine (sm.patrolScript (talk,returnIt));
+	}
+
+	private void returnIt(int a){
+		Status.haveBomb = false;
+		user.Speed = 4f;
+		movePower = 4f;
+		sm.gameObject.GetComponent<SelectStage> ().select (0);
 	}
 }
 

@@ -35,9 +35,13 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 		im.conceal ();
 		switch(selectNum){
 		case (int)stageNum.SelectStage:
-			if (!(Status.nowStage == (short)stageNum.Dormitory))
+			if (Status.day == (int)DayOfWeek.Sunday && Status.time == (int)TimeOfDay.Night) {//turn 21
+				gameObject.GetComponent<Ending>().endGame(0,0);
+			} else {
+				//	if (!(Status.nowStage == (short)stageNum.Dormitory))
 				Status.changeTime ();//시간변경
-
+			}
+		
 			camera.transform.localPosition = new Vector3 (0, 0, -10);
 			cam.orthographicSize = 3.6f;
 			cc.rangeChange (0, 0);
@@ -73,6 +77,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				stages [7].SetActive (true);
 				Check chec = stages [7].GetComponent<Check> ();
 				chec.checkNPC (selectNum);
+				//selectNum = 7;
 			} else {
 				stages [selectNum].SetActive (true);
 				Check chec = stages [selectNum].GetComponent<Check> ();
@@ -129,7 +134,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public IEnumerator loading()//잠깐 가짜 로딩 화면 
 	{
 		load.SetActive(true);
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.2f);
 		load.SetActive(false);
 		yield return null;
 	}

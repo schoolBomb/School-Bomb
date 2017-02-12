@@ -51,7 +51,7 @@
     "num": 6,
     "name": "글리세린",
     "description": "유용한 재료라는데, 이걸로 뭘 만들 수 있으려나…",
-    "location": 7,
+    "location": 10,
     "price": 0,
     "bomb": "액체폭탄"
   },
@@ -155,7 +155,7 @@
     "num": 19,
     "name": "데자와",
     "description": "따끈따끈하고 맛있는 인기만점 데자와.",
-    "location": 7,
+    "location": 10,
     "price": 0,
     "bomb": "데자와폭탄"
   },
@@ -219,7 +219,7 @@
     "num": 27,
     "name": "물",
     "description": "H2O",
-    "location": 7,
+    "location": 10,
     "price": 0,
     "bomb": "소이폭탄"
   }
