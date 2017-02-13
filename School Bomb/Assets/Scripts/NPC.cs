@@ -37,7 +37,6 @@ public class NPC : MonoBehaviour {
 				detail (1);
 			}
 		}
-		//StartCoroutine (s.printInUI (2,1,1,0));//test debugging
 		//움직임이 멈추는 코드 
 //		//대사 출력, 이벤트 발생 
 		StartCoroutine (s.printInUI (Status.nowStage,Status.day,Status.time,scriptNum,detail));//test debugging
@@ -67,7 +66,7 @@ public class NPC : MonoBehaviour {
 			this.c++;
 			return; 
 		}
-		Debug.Log ("XXX");
+		Debug.Log ("JJJ");
 		Comp c = new Comp (answer, this.scriptNum, Status.nowStage);
 		string[] s;
 		switch(Status.nowStage){
@@ -136,14 +135,14 @@ public class NPC : MonoBehaviour {
 				Status.money -= 10000;
 				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 				cOther++;
-				if (cOther == 5)
+				if (cOther == 13)
 					scriptNum = 1;
 			} 
 			else if (c.compare (2, 0, 4)) {//2 0 4 레포트 판매
 				Status.money += 10000;
 				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 				cOther++;
-				if (cOther == 5)
+				if (cOther == 13)
 					scriptNum = 1;
 			} 
 			else if (c.compare (1, 1, 4) && Status.money >= 100000 ) {//1 0 4 우라늄 획득 
@@ -152,28 +151,16 @@ public class NPC : MonoBehaviour {
 			}
 			break;
 		case 10:
-//			if (c.compare (1, 0, 7)) {//1 0 7 의심도 증가
-//				Status.suspiciousRate += 5;
-//			}
-//			else if (c.compare (2, 0, 7)) {//2 0 7 의심도 증가
-//				Status.suspiciousRate += 5;
-//			}
-//			else if (c.compare (3, 0, 7)) {//3 0 7 위장용 곰인형으로 인해 회피
-//			//
-//			}
-//			else if (c.compare (4, 0, 7)) {//4 0 7 의심도 증가
-//				Status.suspiciousRate += 5;
-//			}
-//			else if (c.compare (5, 0, 7)) {//5 0 7 경찰 엔딩
-//			//
-//			}
-			if (c.compare (1, 3, 10)) {//1 1 7 데자와 획득
+			if (c.compare (1, 3, 10)) {//1 3 10 데자와 획득
 				im.startGetIt (out s, 19);
 			}
+			else if (c.compare (1, 4, 10)) {//1 1 7 물 획득
+				Debug.Log("XXX");
+				im.startGetIt (out s, 27);
+			}
 			else if (c.compare (1, 1, 10)) {//1 1 7 글리세린 획득
-				Debug.Log ("XXX");
 				im.startGetIt (out s, 6);
-			} 
+			}
 			else {
 			}
 			break;

@@ -753,7 +753,7 @@
     "isQuestion": "no",
     "day": 0,
     "time": 1,
-    "sentence": "(은하수놑10을 획득했습니다.)"
+    "sentence": "(은하수놑7을 획득했습니다.)"
   },
   {
     "location": 4,
@@ -807,7 +807,7 @@
     "isQuestion": "Question",
     "day": 0,
     "time": 1,
-    "sentence": "너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래? 가격은 10만원."
+    "sentence": "그러고보니 너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래? 가격은 10만원."
   },
   {
     "location": 4,
@@ -881,16 +881,16 @@
     "time": 1,
     "sentence": "아니오"
   },
-    {
+  {
     "location": 10,
     "num": 3,
     "name": "",
     "isQuestion": "no",
     "day": 0,
     "time": 1,
-    "sentence": "(고장났는지 돈도 같이 뱉었다. 헤헿)"
+    "sentence": "(고장났는지 돈도 같이 뱉었다. 헤헷.)"
   },
-    {
+  {
     "location": 10,
     "num": 3,
     "name": "",
@@ -898,5 +898,23 @@
     "day": 0,
     "time": 1,
     "sentence": "(동전이 다시 나왔다.)"
+  },
+  {
+    "location": 10,
+    "num": 4,
+    "name": "정수기",
+    "isQuestion": "no",
+    "day": 0,
+    "time": 1,
+    "sentence": "또르르륵."
+  },
+  {
+    "location": 10,
+    "num": 4,
+    "name": "",
+    "isQuestion": "no",
+    "day": 0,
+    "time": 1,
+    "sentence": "물을 좀 챙겨두자."
   }
 ]

@@ -18,6 +18,7 @@ public class ItemManager : MonoBehaviour {
 	public GameObject QuestionUI;
 	public Text[] questionText;
 
+	public Sprite cat;
 	public float proHeartCount{ get; set; }
 	private float strength;
 	void Start()
@@ -42,11 +43,10 @@ public class ItemManager : MonoBehaviour {
 	public void startGetIt(out string[] s, int itemNum ){
 		s = new string[6];
 		s = itemList [itemNum].txt;
-
 		itemList[itemNum].data.location = (int)ItemPosition.toUser;
 		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 		itemList [itemNum].gameObject.SetActive(false);
-		Debug.Log (itemList [itemNum].data.location);
+		//Debug.Log (itemList [itemNum].data.location);
 		//StartCoroutine (getIt(s,itemNum));
 	}
 
@@ -75,6 +75,9 @@ public class ItemManager : MonoBehaviour {
 			itemList [itemNum].data.location = (int)ItemPosition.toUser;
 			itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 			itemList [itemNum].gameObject.SetActive (false);
+			if (itemNum == 17) {
+				itemList [itemNum].gameObject.GetComponent<SpriteRenderer> ().sprite = cat;
+			}
 		}
 		ScriptManager.isShowing = false;
 		yield return null;

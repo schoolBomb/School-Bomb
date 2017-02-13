@@ -7,6 +7,8 @@ public class Check : MonoBehaviour {
 	public BombLocation bl;
 	public Sprite[] professor;
 
+	string[] s;
+
 	public void checkNPC(int num){//npc별 시간 또는 요일에 따라 나타남 결정
 		NPC[] np=new NPC[npc.Length];
 		for (int i = 0; i < npc.Length; i++)
@@ -39,5 +41,28 @@ public class Check : MonoBehaviour {
 	}
 		
 	public void writing(){
+		
+		s = new string[4];
+		s [0] = "기숙사에 들어왔다.";
+		s [1] = "그냥 논문 쓸까…";
+		s [2] = "쓰자.";
+		s [3] = "개뿔, 폭탄이나 만들어.";
+
+		ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
+		StartCoroutine (im.purchase (s, -1, detail));
+	}
+
+	private void detail(int a){
+		if (a == 1) {
+			Status.paper += 3;
+			Status.day += 1;
+			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().select (0);
+//			ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
+//
+//			s = new string[4];
+//			s [0] = "(!!!!!하루가 지났어?!)";
+//
+//			StartCoroutine (im.getIt(s,-1));
+		}
 	}
 }

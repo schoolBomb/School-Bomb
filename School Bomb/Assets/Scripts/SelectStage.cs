@@ -38,7 +38,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			if (Status.day == (int)DayOfWeek.Sunday && Status.time == (int)TimeOfDay.Night) {//turn 21
 				gameObject.GetComponent<Ending>().endGame(0,0);
 			} else {
-				//	if (!(Status.nowStage == (short)stageNum.Dormitory))
+				if (Status.nowStage != (short)stageNum.Dormitory)
 				Status.changeTime ();//시간변경
 			}
 		
@@ -67,6 +67,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			Status.nowStage = (short)selectNum;
 			im.show ((int)ItemPosition.toUser);
 			im.showDorm ();
+			stages [selectNum].GetComponent<Check> ().writing ();
 				break;
 		default:
 			gameUI [0].SetActive (false);//selectButton

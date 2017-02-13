@@ -77,7 +77,7 @@ public class ScriptManager : MonoBehaviour {
 			}
 			//	4. Text가 보여진다.
 				//	1. TextUI가 꺼진다.
-			if (i >= wordList.Length-1 ) {
+			if (i > wordList.Length-1 ) {////////////17.02.13
 				TextBackGround.SetActive(false);
 				break;
 			}
