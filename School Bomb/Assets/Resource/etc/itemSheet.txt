@@ -3,7 +3,7 @@
     "num": 0,
     "name": "폭죽",
     "description": "사실 학교 내에서 폭죽 사용은 금지되어있지만, 시험기간마다 심심치 않게 폭죽 소리가 들려온다.",
-    "location": 4,
+    "location": 20,
     "price": 3000,
     "bomb": "다이너마이트"
   },
@@ -11,7 +11,7 @@
     "num": 1,
     "name": "전선",
     "description": "버린건지 잃어버린건지 모를 전선 하나. …이거 망가진 건가?",
-    "location": 4,
+    "location": 3,
     "price": 3000,
     "bomb": "다이너마이트"
   },
@@ -51,7 +51,7 @@
     "num": 6,
     "name": "글리세린",
     "description": "유용한 재료라는데, 이걸로 뭘 만들 수 있으려나…",
-    "location": 20,
+    "location": 7,
     "price": 0,
     "bomb": "액체폭탄"
   },
@@ -203,7 +203,7 @@
     "num": 25,
     "name": "미니 전자시계 키트",
     "description": "미니 전자시계를 만들 수 있는 키트.   ※ 설명서 미포함 ※",
-    "location": 4,
+    "location": 20,
     "price": 10000,
     "bomb": "다이너마이트"
   },
@@ -211,7 +211,7 @@
     "num": 26,
     "name": "둥근 플라스크",
     "description": "둥근 플라스크 용기. 주로 화학실험 때 쓰인다.",
-    "location": 20,
+    "location": 4,
     "price": 0,
     "bomb": "수소화리튬"
   },
@@ -219,7 +219,7 @@
     "num": 27,
     "name": "물",
     "description": "H2O",
-    "location": 20,
+    "location": 7,
     "price": 0,
     "bomb": "소이폭탄"
   }

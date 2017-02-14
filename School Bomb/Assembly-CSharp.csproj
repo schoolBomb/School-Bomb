@@ -87,7 +87,6 @@
      <None Include="Assets\Resource\sound\BGM\노래 출처\동아리방 Friendly Day.txt" />
      <None Include="Assets\Resource\sound\BGM\노래 출처\복도_낮 Hand Trolley.txt" />
      <None Include="Assets\Resource\sound\ending sound\메모지.txt" />
-     <None Include="Assets\Resource\etc\itemSheet_원본.txt" />
      <None Include="Assets\Resource\sound\BGM\노래 출처\학문관 Comparsa Latinesque.txt" />
      <None Include="Assets\Resource\etc\wordSheet.txt" />
      <None Include="Assets\Resource\sound\BGM\노래 출처\메인 화면 1 bensoung-funnysong.txt" />
