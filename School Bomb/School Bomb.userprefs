@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Word.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScriptManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Status.cs" Line="23" Column="4" />
-      <File FileName="Assets/Scripts/ItemManager.cs" Line="66" Column="8" />
-      <File FileName="Assets/Scripts/EnumCollection.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ScriptManager.cs" Line="23" Column="14" />
-      <File FileName="Assets/Scripts/SelectStage.cs" Line="10" Column="1" />
-      <File FileName="Assets/Scripts/ItemBasic.cs" Line="20" Column="17" />
-      <File FileName="Assets/Scripts/Word.cs" Line="29" Column="25" />
+      <File FileName="Assets/Scripts/ScriptManager.cs" Line="42" Column="6" />
+      <File FileName="Assets/Scripts/ItemBasic.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ItemManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NPC.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BombLocation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Door.cs" Line="1" Column="1" />
+      <File FileName="Assets/Resource/etc/wordSheet.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -7,22 +7,36 @@ public class JsonReader : MonoBehaviour {
 	public Word[] w;
 	public Item[] it;
 
-	// Use this for initialization
-	void Start () {
-		//txt(json) 파일을 읽어들인다.
-		TextAsset t=(TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/wordSheet.txt", typeof(TextAsset));
+	public void getWordSheet()
+	{
+		TextAsset t = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/wordSheet.txt", typeof(TextAsset));
 
-		if (t == null) {//파일 로드가 안 된 경우
-			Debug.Log ("wordSheet can't be loaded");
+		if (t == null)
+		{//파일 로드가 안 된 경우
+			Debug.Log("wordSheet can't be loaded");
 		}
 
 		//배열인 json 데이터 구조를 읽어들인다.
 		string tempData = "{\"Items\":" + t.text + "}";
-		w = JsonHelper.FromJson<Word> (tempData);
+		w = JsonHelper.FromJson<Word>(tempData);
 		if (w == null)// if it cannot change string to object
-			Debug.Log ("Can't make object");
-		//GameObject.Find ("Script Manager").GetComponent<ScriptManager> ().getWordAll = w;
-		//Debug.Log (w[0].isQuestion);
+			Debug.Log("Can't make object");
+
+	}
+
+	public void getItemSheet()
+	{
+		TextAsset t1 = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/itemSheet.txt", typeof(TextAsset));
+		if (t1 == null)
+		{//파일 로드가 안 된 경우
+			Debug.Log("itemSheet can't be loaded");
+		}
+
+		//배열인 json 데이터 구조를 읽어들인다.
+		string tempData = "{\"Items\":" + t1.text + "}";
+		it = JsonHelper.FromJson<Item>(tempData);
+		if (it == null)// if it cannot change string to object
+			Debug.Log("Can't make object");
 	}
 		
 }
