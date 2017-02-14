@@ -171,7 +171,7 @@
     "num": 21,
     "name": "위장용 곰인형",
     "description": "뱃속에 폭탄이 들어갈 모습은 마치 사약을 기다리는 소크라테스같다.",
-    "location": 11,
+    "location": 30,
     "price": 0,
     "bomb": "포장지"
   },
@@ -179,7 +179,7 @@
     "num": 22,
     "name": "스티로폼 박스",
     "description": "어디에나 있는 스티로폼 박스. BR 케익이 담겨있던 거 같기도.",
-    "location": 11,
+    "location": 30,
     "price": 0,
     "bomb": "포장지"
   },

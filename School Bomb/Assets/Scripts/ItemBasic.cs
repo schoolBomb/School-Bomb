@@ -12,8 +12,11 @@ public class ItemBasic : MonoBehaviour{
 	public GameObject bc;
 	public int time=0;
 
+	public AudioClip ac;
+
 	void Start(){
 		beforePos = this.gameObject.transform.localPosition;
+		//ac = GetComponent<AudioSource> ();
 	}
 
 	public void initializeText(){
@@ -31,7 +34,10 @@ public class ItemBasic : MonoBehaviour{
 
 		if (data.location == (int)ItemPosition.toStore)
 		{//상점 아이템 
-			StartCoroutine(manager.purchase(txt, data.num, purchaseDetail));
+			if (!ScriptManager.isShowing) {
+				StartCoroutine (manager.purchase (txt, data.num, purchaseDetail));
+				manager.getAudioClip (ac);
+			}
 		}
 		else if (data.location == (int)ItemPosition.toUser)
 		{
@@ -39,7 +45,11 @@ public class ItemBasic : MonoBehaviour{
 		}
 		else {//줍는 아이템 
 			//manager.startGetIt(out txt,data.num);
-			StartCoroutine(manager.getIt (txt, data.num));
+			if (!ScriptManager.isShowing) {
+				StartCoroutine (manager.getIt (txt, data.num));
+				manager.getAudioClip (ac);
+			}
+			//ac.Play ();
 		}
 	}
 

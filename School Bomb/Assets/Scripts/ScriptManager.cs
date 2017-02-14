@@ -45,7 +45,6 @@ public class ScriptManager : MonoBehaviour {
 		//1. 데이터를 추린다. ->findWord
 		findWord(nowStage,num);
 		int i = 0;
-
 		//random, 랜덤 대사일 경우	
 		if (wordList [0].isQuestion.Equals ("Random")) {//첫번째 대사가 랜덤인지 확인
 			int r= (int)UnityEngine.Random.Range(0,wordList.Length);//랜덤일 경우 대사를 고른다.
