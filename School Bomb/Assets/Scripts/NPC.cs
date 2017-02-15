@@ -16,17 +16,15 @@ public class NPC : MonoBehaviour {
 	public int[] time;
 	public int[] day;
 
-	private AudioSource audio;
-
 	// Use this for initialization
 	void Start () {
 		s = GameObject.Find ("Script Manager").GetComponent<ScriptManager> ();
 		im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
-		audio=GetComponent<AudioSource>();
+
 	}
 
 	void OnMouseDown() {
-		if( !ScriptManager.isShowing ) talk ();
+		talk ();
 	}
 
 	public void talk(){
@@ -68,69 +66,50 @@ public class NPC : MonoBehaviour {
 			this.c++;
 			return; 
 		}
+		Debug.Log ("JJJ");
 		Comp c = new Comp (answer, this.scriptNum, Status.nowStage);
 		string[] s;
 		switch(Status.nowStage){
 		case 1:
 			if (c.compare (1, 0, 1)) {//10 0 1 갤럭시 노트 획득
 				im.startGetIt(out s,14);
-				this.c = 0;
-				audio.Play ();
 			}else {
 			}
 			break;
 		case 2:
 			if (c.compare (1, 0, 2)) {//1 0 2 의심도 증가
 				Status.suspiciousRate += 5;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (3, 0, 2)) {//3 0 2  교수님의 마음획득
 				im.startGetIt(out s,16);
 				im.proHeartCount += 0.2f;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (2, 1, 2)) {//2 1 2 의심도 증가
 				Status.suspiciousRate += 5;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (1, 2, 2)) {//1 2 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
 				im.proHeartCount += 0.2f;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (2, 2, 2)) {//2 2 2 의심도 증가
 				Status.suspiciousRate += 5;
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (3, 2, 2)) {//3 2 2 의심도 증가
 				Status.suspiciousRate += 5;
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (1, 3, 2)) {//1 3 2 김영란법 엔딩
 				//
-				audio.Play ();
 			}
 			else if (c.compare (2, 3, 2)) {//2 3 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
 				im.proHeartCount += 0.2f;
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (1, 4, 2)) {//1 4 2 경찰 엔딩
 				//
-				audio.Play ();
 			}
 			else if (c.compare (2, 4, 2)) {//2 4 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
 				im.proHeartCount += 0.2f;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else {
 			}
@@ -138,23 +117,15 @@ public class NPC : MonoBehaviour {
 		case 3:
 			if (c.compare (1, 1, 3)) {//1 1 3 성서 획득
 				im.startGetIt (out s, 18);
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (2, 1, 3)) {//2 1 3 알리바이 획득
 				Status.alibi+=1;
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (1, 2, 3)) {//1 2 3 알리바이 획득
 				Status.alibi+=1;
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (2, 2, 3)) {//2 2 3 구겨진 0점 시험지 획득
 				im.startGetIt(out s,9);
-				this.c = 0;
-				audio.Play ();
 			}
 			else {
 			}
@@ -166,8 +137,6 @@ public class NPC : MonoBehaviour {
 				cOther++;
 				if (cOther == 13)
 					scriptNum = 1;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (2, 0, 4)) {//2 0 4 레포트 판매
 				Status.money += 10000;
@@ -175,31 +144,22 @@ public class NPC : MonoBehaviour {
 				cOther++;
 				if (cOther == 13)
 					scriptNum = 1;
-				this.c = 0;
-				audio.Play ();
 			} 
 			else if (c.compare (1, 1, 4) && Status.money >= 100000 ) {//1 0 4 우라늄 획득 
-				im.startGetIt (out s, 15);
-				this.c = 0;
-				audio.Play ();
+				im.startGetIt (out s, 14);
 			} else {
 			}
 			break;
 		case 10:
 			if (c.compare (1, 3, 10)) {//1 3 10 데자와 획득
 				im.startGetIt (out s, 19);
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (1, 4, 10)) {//1 1 7 물 획득
+				Debug.Log("XXX");
 				im.startGetIt (out s, 27);
-				this.c = 0;
-				audio.Play ();
 			}
 			else if (c.compare (1, 1, 10)) {//1 1 7 글리세린 획득
 				im.startGetIt (out s, 6);
-				this.c = 0;
-				audio.Play ();
 			}
 			else {
 			}

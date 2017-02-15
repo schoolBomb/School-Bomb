@@ -20,6 +20,10 @@ public class PatrolWalk : MonoBehaviour
 	bool facingRight=true;
     public bool left;
 
+    public Animator Guard;
+    public bool movingLeft;
+    public bool movingRight;
+
 	//2017.02.11/// <summary>
 	/// /////////
 	/// </summary>
@@ -30,6 +34,8 @@ public class PatrolWalk : MonoBehaviour
 	void Start()
 	{
 		//       animator = gameObject.GetComponent<Animator>();
+        Guard = gameObject.GetComponent<Animator>();
+
 		rend = gameObject.GetComponent<Renderer>();
 		rb = gameObject.GetComponent<Rigidbody2D>();
 		startPos = transform.position.x;
@@ -136,19 +142,27 @@ public class PatrolWalk : MonoBehaviour
         if (left)//경비원이 왼쪽 포지션이면 하는 행동
         {
             transform.Translate(new Vector3(movePower, 0, 0) * Time.deltaTime);
+
+            Guard.SetBool("movingRight",true);
+
             if (transform.position.x <= startPos || transform.position.x >= endPos)
             {
                 Flip();
                 movePower *= -1;
+                Guard.SetBool("movingRight", false);
             }
         }
         else//경비원이 오른쪽 포지션이면 하는 행동
         {
             transform.Translate(-new Vector3(movePower, 0, 0) * Time.deltaTime);
+
+            Guard.SetBool("movingLeft", true);
+
             if (transform.position.x > startPos + 1 || transform.position.x <= endPos)
             {
                 Flip();
                 movePower *= -1;
+                Guard.SetBool("movingLeft", false);
             }
         }
 	}

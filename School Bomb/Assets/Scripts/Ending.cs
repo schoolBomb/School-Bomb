@@ -8,6 +8,9 @@ public class Ending : MonoBehaviour {
 	private string[] endingName;
 	public static bool end;
 	public SpriteRenderer sr;
+    
+
+    public GameObject[] Endings;
 
 	void Start(){
 		endingName = new string[10];
@@ -21,6 +24,9 @@ public class Ending : MonoBehaviour {
 		endingName [7] = "Cat";
 		endingName [8] = "dejava";
 		endingName [9] = "death";
+        //endingName[10] = "suspicioushaveToWrite";
+
+        endGame(6, 6);
 	}
 
 	public void endGame(int bombNum, float bombStrength){
@@ -77,6 +83,12 @@ public class Ending : MonoBehaviour {
 		StartCoroutine(fadeIn());//3. 흰색으로 페이드 아웃
 		Debug.Log(endingName[bombNum]);
 		//로드 씬!!!!!!!!!!!!!!!!
+
+        yield return new WaitForSeconds(1.5f);
+        Application.LoadLevel("Ending");
+
+        Endings[bombNum].SetActive(true);
+
 	}
 
 	public IEnumerator fadeIn(){
@@ -86,5 +98,6 @@ public class Ending : MonoBehaviour {
 			yield return new WaitForSeconds (0.01f);
 		}
 	}
+
 }
 
