@@ -17,7 +17,6 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	private ItemManager im;
 	public GameObject load;
 
-
 	//variable for change select stage background
 	public Sprite[] selectBack;
 
@@ -35,13 +34,18 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 		im.conceal ();
 		switch(selectNum){
 		case (int)stageNum.SelectStage:
-			if (Status.day == (int)DayOfWeek.Sunday && Status.time == (int)TimeOfDay.Night) {//turn 21
-				gameObject.GetComponent<Ending>().endGame(0,0);
+			if (Status.day > (int)DayOfWeek.Sunday ) {//turn 21
+				if (Status.paper >= 21) {
+					GameObject.Find("Item Manager").GetComponent<Ending>().endGame(4,0);
+				} else {
+					GameObject.Find("Item Manager").GetComponent<Ending>().endGame(0,0);
+				}
+
 			} else {
 				if (Status.nowStage != (short)stageNum.Dormitory)
 				Status.changeTime ();//시간변경
 			}
-		
+
 			camera.transform.localPosition = new Vector3 (0, 0, -10);
 			cam.orthographicSize = 3.6f;
 			cc.rangeChange (0, 0);
@@ -54,9 +58,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			gameUI [1].SetActive (true);
 			gameUI [2].SetActive (false);
 			Status.nowStage = (short)selectNum;
-				updateUpLeftUI();
-				break;
-			
+			updateUpLeftUI();
+			break;
+
 		case (int)stageNum.Dormitory:
 			im.show ((int)ItemPosition.toUser);
 			gameUI [1].SetActive (false);
@@ -68,7 +72,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 			im.show ((int)ItemPosition.toUser);
 			im.showDorm ();
 			stages [selectNum].GetComponent<Check> ().writing ();
-				break;
+			break;
 		default:
 			gameUI [0].SetActive (false);//selectButton
 			gameUI [1].SetActive (false);//dorm
@@ -85,7 +89,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				chec.checkNPC (selectNum);
 			}
 			Status.nowStage = (short)selectNum;
-				//Exception
+			//Exception
 			if (selectNum != (int)stageNum.SecretRoom) {
 				stages [9].SetActive (true);//exception for secretRoom
 				player [1].SetActive (true);
@@ -95,7 +99,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 				player [1].SetActive (false);
 				player [2].SetActive (false);
 			}
-				
+
 			if (selectNum == (int)stageNum.Shop) {
 				im.show ((int)ItemPosition.toStore);
 			} else {
