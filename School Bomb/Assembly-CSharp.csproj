@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Check.cs" />
      <Compile Include="Assets\Scripts\CheckStage.cs" />
      <Compile Include="Assets\Scripts\Combinationblock.cs" />
+     <Compile Include="Assets\Scripts\CombineButton.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Ending.cs" />
@@ -72,17 +73,18 @@
      <Compile Include="Assets\Scripts\Rotate.cs" />
      <Compile Include="Assets\Scripts\ScriptManager.cs" />
      <Compile Include="Assets\Scripts\SelectStage.cs" />
+     <Compile Include="Assets\Scripts\StartPage.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
      <Compile Include="Assets\Scripts\UserWalk.cs" />
      <Compile Include="Assets\Scripts\WalkSceneSelect.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
-     <None Include="Assets\Resource\sound\ending sound\-  That&apos;s That Sting.txt" />
-     <None Include="Assets\Resource\etc\itemSheet.txt" />
-     <None Include="Assets\Resource\sound\Sound List.txt" />
-     <None Include="Assets\Resource\sound\ending sound\lawbreak ending_second Der Kleber Sting.txt" />
-     <None Include="Assets\Resource\sound\ending sound\normal ending_Funky Sting.txt" />
-     <None Include="Assets\Resource\sound\ending sound\메모지.txt" />
-     <None Include="Assets\Resource\etc\wordSheet.txt" />
+     <None Include="Assets\Resources\sound\ending sound\-  That&apos;s That Sting.txt" />
+     <None Include="Assets\Resources\etc\itemSheet.txt" />
+     <None Include="Assets\Resources\sound\Sound List.txt" />
+     <None Include="Assets\Resources\sound\ending sound\lawbreak ending_second Der Kleber Sting.txt" />
+     <None Include="Assets\Resources\sound\ending sound\normal ending_Funky Sting.txt" />
+     <None Include="Assets\Resources\sound\ending sound\메모지.txt" />
+     <None Include="Assets\Resources\etc\wordSheet.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

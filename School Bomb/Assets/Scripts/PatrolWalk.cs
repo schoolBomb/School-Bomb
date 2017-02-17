@@ -20,22 +20,17 @@ public class PatrolWalk : MonoBehaviour
 	bool facingRight=true;
     public bool left;
 
-    public Animator Guard;
-    public bool movingLeft;
-    public bool movingRight;
-
 	//2017.02.11/// <summary>
 	/// /////////
 	/// </summary>
 	private string[] talk;
 	private ScriptManager sm;
+    private ItemManager im;
 
 	// Use this for initialization
 	void Start()
 	{
 		//       animator = gameObject.GetComponent<Animator>();
-        Guard = gameObject.GetComponent<Animator>();
-
 		rend = gameObject.GetComponent<Renderer>();
 		rb = gameObject.GetComponent<Rigidbody2D>();
 		startPos = transform.position.x;
@@ -48,6 +43,7 @@ public class PatrolWalk : MonoBehaviour
 		talk [1] = "아니에요, 하하.";
 		talk [2] = "(오늘은 더 이상 힘들 것 같다. 다음을 기약하자.)";
 		sm = GameObject.Find ("Script Manager").GetComponent<ScriptManager> ();
+        im = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 	}
 
 	// Update is called once per frame
@@ -142,27 +138,19 @@ public class PatrolWalk : MonoBehaviour
         if (left)//경비원이 왼쪽 포지션이면 하는 행동
         {
             transform.Translate(new Vector3(movePower, 0, 0) * Time.deltaTime);
-
-            Guard.SetBool("movingRight",true);
-
             if (transform.position.x <= startPos || transform.position.x >= endPos)
             {
                 Flip();
                 movePower *= -1;
-                Guard.SetBool("movingRight", false);
             }
         }
         else//경비원이 오른쪽 포지션이면 하는 행동
         {
             transform.Translate(-new Vector3(movePower, 0, 0) * Time.deltaTime);
-
-            Guard.SetBool("movingLeft", true);
-
             if (transform.position.x > startPos + 1 || transform.position.x <= endPos)
             {
                 Flip();
                 movePower *= -1;
-                Guard.SetBool("movingLeft", false);
             }
         }
 	}
@@ -179,6 +167,16 @@ public class PatrolWalk : MonoBehaviour
 		user.Speed = 4f;
 		movePower = 4f;
 		sm.gameObject.GetComponent<SelectStage> ().select (0);
+        if (Status.haveBomb)
+        {
+            int r;
+            do //랜덤으로 폭탄을 뺏긴다.
+            {
+                r =(int)Random.Range(0, im.bombList.Length);
+            } while (im.bombList[r].isComplete == false);
+            im.bombList[r].isComplete = false;
+            im.getBackItem(im.bombList[r].name);
+        }
 	}
 }
 

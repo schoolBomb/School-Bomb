@@ -7,6 +7,8 @@ public class Door : MonoBehaviour {
 	private string[] txt;
 	private ItemManager usePurchase;
 	private SelectStage s;
+	public AudioClip ac;
+
 	void Start(){
 		usePurchase = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
 
@@ -27,6 +29,7 @@ public class Door : MonoBehaviour {
 		if(a==1){//예
 			//selectStage 등장
 			s.select(whereToGo);
+			usePurchase.getAudioClip (ac);
 		}//아니오
 	}
 /*

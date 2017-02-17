@@ -9,7 +9,7 @@ public class ItemManager : MonoBehaviour {
 
 
 	private ItemBasic[] itemList;
-	private Bomb[] bombList;
+	public Bomb[] bombList { get; set; }
 
 	//variable for UI
 	public GameObject TextBackGround;
@@ -21,8 +21,12 @@ public class ItemManager : MonoBehaviour {
 	public Sprite cat;
 	public float proHeartCount{ get; set; }
 	private float strength;
+
+	private AudioSource ac;
+
 	void Start()
 	{
+		ac = gameObject.GetComponent<AudioSource> ();
 		//아이템 시트 가져오기 
 		JsonReader j = GameObject.Find("Script Manager").GetComponent<JsonReader>();
 		if (j == null) Debug.Log("jason reader is null!");
@@ -32,6 +36,7 @@ public class ItemManager : MonoBehaviour {
 		for (int i = 0; i < itemList.Length; i++)//deep copy
 		{
 			itemList [i].data = j.it [i];
+            itemList[i].saveData = itemList[i].data.location;
 			itemList [i].initializeText ();
 		}
 
@@ -46,7 +51,11 @@ public class ItemManager : MonoBehaviour {
 		itemList[itemNum].data.location = (int)ItemPosition.toUser;
 		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
 		itemList [itemNum].gameObject.SetActive(false);
-		//Debug.Log (itemList [itemNum].data.location);
+
+		if (itemNum == 15) {
+			Status.money -= itemList [itemNum].data.price;
+			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
+		}
 		//StartCoroutine (getIt(s,itemNum));
 	}
 
@@ -78,6 +87,10 @@ public class ItemManager : MonoBehaviour {
 			if (itemNum == 17) {
 				itemList [itemNum].gameObject.GetComponent<SpriteRenderer> ().sprite = cat;
 			}
+		}
+
+		if (ac.clip != null) {
+			ac.Play ();
 		}
 		ScriptManager.isShowing = false;
 		yield return null;
@@ -136,6 +149,10 @@ public class ItemManager : MonoBehaviour {
 			TextBackGround.SetActive (false);//TextUI 닫힘.
 		}
 		ScriptManager.isShowing = false;
+		if (ac.clip != null) {
+			ac.Play ();
+			//ac.clip = null;
+		}
 		yield return null;
 	}
 
@@ -153,7 +170,7 @@ public class ItemManager : MonoBehaviour {
 		str[1] = "폭탄을 설치하시겠습니까?";//질문을 한다: 폭탄을 설치하시겠습니까?
 		int i = 2;
 		for (int j = 2 ; j < bombList.Length ; j++){//폭탄 종류가 쫙 뜬다. 다이너마이트…
-			if (bombList[j-2].isComplete==true)
+			if ( bombList[j-2].isComplete==true )
 			{
 				str[i] = string.Copy(bombList[j-2].name);
 				i++;
@@ -187,7 +204,11 @@ public class ItemManager : MonoBehaviour {
 					i = 3;
 				}
 				else {
-					itemList [i].gameObject.SetActive (true);
+                    if (location == (int)ItemPosition.toUser)
+                    {
+                        itemList[i].gameObject.transform.localPosition = itemList[i].dormPos;
+                    }
+                    itemList [i].gameObject.SetActive (true);
 				}
 			}
 		}
@@ -234,4 +255,20 @@ public class ItemManager : MonoBehaviour {
 			bombList[i].gameObject.GetComponent<SpriteRenderer>().enabled = false;
 		}
 	}
+
+	public void getAudioClip(AudioClip ac){
+		this.ac.clip = ac;
+	}
+
+    public void getBackItem(string bomb)
+    {
+        for(int i = 0; i < itemList.Length; i++)
+        {
+            if (itemList[i].data.bomb.Equals(bomb))
+            {
+                itemList[i].data.location = itemList[i].saveData;
+                itemList[i].transform.localPosition = itemList[i].beforePos;
+            }
+        }
+    }
 }

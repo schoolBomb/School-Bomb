@@ -7,18 +7,15 @@ using UnityEngine.EventSystems;
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static GameObject itemBeingDragged;
-    Vector3 startPosition;
+    public Vector3 startPosition;
     private Vector3 screenPoint;
-    Transform startParent;
-//    GetComponent<CanvasGroup>().blockRaycasts=false;
+    public bool move;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         itemBeingDragged = gameObject;//마우스로 drag할 item 인식한다
         startPosition = transform.position;//처음 위치를 저장한다
-        startParent = transform.parent;//item parent는 itemManager이다
-
-        itemBeingDragged.transform.SetParent(itemBeingDragged.transform.parent);
+        move = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -32,15 +29,10 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        itemBeingDragged = null;//drag하는 item null로 초기화
-        
-        if (transform.parent == startParent)
+        if (move)//아직 item이 슬롯에 들어가지 않았으면, 원래 자리로 돌아간다
         {
-            Debug.Log("drag end");
             transform.position = startPosition;
-            //transform.position = transform.parent.position;
         }
-
     }
 
 }

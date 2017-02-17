@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;//for textAsset
 using System.Collections;
 using System;
 
@@ -9,8 +8,8 @@ public class JsonReader : MonoBehaviour {
 
 	public void getWordSheet()
 	{
-		TextAsset t = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/wordSheet.txt", typeof(TextAsset));
-
+		//TextAsset t = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/wordSheet.txt", typeof(TextAsset));
+		TextAsset t=Resources.Load("etc/wordSheet") as TextAsset;
 		if (t == null)
 		{//파일 로드가 안 된 경우
 			Debug.Log("wordSheet can't be loaded");
@@ -26,7 +25,8 @@ public class JsonReader : MonoBehaviour {
 
 	public void getItemSheet()
 	{
-		TextAsset t1 = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/itemSheet.txt", typeof(TextAsset));
+		//TextAsset t1 = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resource/etc/itemSheet.txt", typeof(TextAsset));
+		TextAsset t1=Resources.Load("etc/itemSheet") as TextAsset;
 		if (t1 == null)
 		{//파일 로드가 안 된 경우
 			Debug.Log("itemSheet can't be loaded");
@@ -38,5 +38,5 @@ public class JsonReader : MonoBehaviour {
 		if (it == null)// if it cannot change string to object
 			Debug.Log("Can't make object");
 	}
-		
+
 }

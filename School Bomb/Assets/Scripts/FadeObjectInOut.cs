@@ -116,12 +116,12 @@ public class FadeObjectInOut : MonoBehaviour
 	}
 
 
-	void FadeIn ()
+	public void FadeIn ()
 	{
 		FadeIn (fadeTime); 
 	}
 
-	void FadeOut ()
+	public void FadeOut ()
 	{
 		FadeOut (fadeTime); 		
 	}
