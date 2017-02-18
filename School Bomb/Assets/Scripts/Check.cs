@@ -35,13 +35,13 @@ public class Check : MonoBehaviour {
 	}
 
 	public void bombLocationCheck(){
-		if ( Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday ) {
-			Debug.Log ("Yeah Bomb");
+		if (Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday) {
 			bl.enabled = true;
 			StartCoroutine (bl.glowingIt ());
-		} else {
-			bl.enabled = false;
 		}
+//		} else {
+//			if( bl.Equals(null) )	bl.enabled = false;
+//		}
 	}
 
 	public void writing(){
