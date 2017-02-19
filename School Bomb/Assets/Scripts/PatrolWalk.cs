@@ -175,7 +175,7 @@ public class PatrolWalk : MonoBehaviour
                 r =(int)Random.Range(0, im.bombList.Length);
             } while (im.bombList[r].isComplete == false);
             im.bombList[r].isComplete = false;
-            im.getBackItem(im.bombList[r].name);
+			im.getBackItem(im.bombList[r].name,-1);
         }
 	}
 }

@@ -22,6 +22,8 @@ public class CombineButton : MonoBehaviour
     GameObject bomb;//폭탄재료 object 저장한다
     public bool containBomb;
 
+	private ItemManager im;
+
     // Use this for initialization
     void Start()
     {

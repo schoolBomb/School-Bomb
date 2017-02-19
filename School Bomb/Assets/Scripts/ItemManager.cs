@@ -260,15 +260,19 @@ public class ItemManager : MonoBehaviour {
 		this.ac.clip = ac;
 	}
 
-    public void getBackItem(string bomb)
+	public void getBackItem(string bomb, int toBeLoc)
     {
         for(int i = 0; i < itemList.Length; i++)
         {
-            if (itemList[i].data.bomb.Equals(bomb))
-            {
-                itemList[i].data.location = itemList[i].saveData;
-                itemList[i].transform.localPosition = itemList[i].beforePos;
-            }
+			if (toBeLoc == -1) {
+				if (itemList[i].data.bomb.Equals(bomb))
+				{
+					itemList[i].data.location = itemList[i].saveData;
+					itemList[i].transform.localPosition = itemList[i].beforePos;
+				}
+			} else {
+				
+			}
         }
     }
 }

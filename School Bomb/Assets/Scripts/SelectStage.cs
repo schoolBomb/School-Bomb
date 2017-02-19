@@ -34,17 +34,20 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 		im.conceal ();
 		switch(selectNum){
 		case (int)stageNum.SelectStage:
-			if (Status.day > (int)DayOfWeek.Sunday ) {//turn 21
+			if (Status.day > (int)DayOfWeek.Sunday) {//turn 21
 				if (Status.paper >= 21) {
-					GameObject.Find("Item Manager").GetComponent<Ending>().endGame(4,0);
+					GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (4, 0);
 				} else {
-					GameObject.Find("Item Manager").GetComponent<Ending>().endGame(0,0);
+					GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
 				}
 
 			} else {
 				if (Status.nowStage != (short)stageNum.Dormitory)
-				Status.changeTime ();//시간변경
+					Status.changeTime ();//시간변경
 			}
+
+			if (gameUI [3].activeSelf)
+				gameUI [3].SetActive (false);
 
 			camera.transform.localPosition = new Vector3 (0, 0, -10);
 			cam.orthographicSize = 3.6f;
@@ -139,7 +142,7 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public IEnumerator loading()//잠깐 가짜 로딩 화면 
 	{
 		load.SetActive(true);
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(0.35f);
 		load.SetActive(false);
 		yield return null;
 	}
