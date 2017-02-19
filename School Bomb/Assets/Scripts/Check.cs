@@ -18,7 +18,10 @@ public class Check : MonoBehaviour {
 
 			for (int j = 0; j < np[i].time.Length; j++)
 			{
-				if (np[i].time[j] == Status.time) npc[i].SetActive(true);//적당한 시간대라면 true
+				//만약 서버실 복도라면 
+				if (np[i].time[j] == Status.time){
+					npc[i].SetActive(true);//적당한 시간대라면 true
+				}
 			}
 		}
 		if (num == (int)stageNum.Lab) {
