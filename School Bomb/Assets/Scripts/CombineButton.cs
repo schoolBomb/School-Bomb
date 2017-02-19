@@ -77,6 +77,31 @@ public class CombineButton : MonoBehaviour
                     }
 
                 }
+                else//폭탄 재료가 서로 맞지 않을때(재료끼리만 있을때)
+                {
+
+                    item1.location = (int)ItemPosition.toUser;//아이템들은 다시 유저껄로 처리된다
+                    item2.location = (int)ItemPosition.toUser;
+                    item3.location = (int)ItemPosition.toUser;
+
+                    //재료들은 다시 원래자리로 돌아간다
+                    againStart(slot1.item);
+                    againStart(slot2.item);
+                    againStart(slot3.item);
+
+                    //슬롯 초기화 작업
+                    slot1.hasItem = false;
+                    slot2.hasItem = false;
+                    slot3.hasItem = false;
+
+                    slot1.hasBomb = false;
+                    slot2.hasBomb = false;
+                    slot3.hasBomb = false;
+
+                    slot1.item = null;
+                    slot2.item = null;
+                    slot3.item = null;
+                }
 
             }
         }//재료중에 폭탄이 없을때 실행된다, if(!containBomb)문
@@ -131,6 +156,32 @@ public class CombineButton : MonoBehaviour
                         appearBomb(bombs, 9);//데자와 폭탄 생성
                     }
 
+                }
+                else//폭탄 재료가 서로 맞지 않을때(폭탄이 재료로 있는 상태에서)
+                {
+                    item1.location = (int)ItemPosition.toUser;//아이템들은 다시 유저껄로 처리된다
+                    item2.location = (int)ItemPosition.toUser;
+
+                    bomb.GetComponent<Bomb>().isComplete = true;//그 폭탄은 다시 완성된걸로 처리한다
+                    bomb.GetComponent<SpriteRenderer>().enabled = true;//폭탄이 다시 나타난다
+
+                    //재료들은 다시 원래 자리로 돌아간다
+                    againStart(slotItem1.item);
+                    againStart(slotItem2.item);
+                    againStart(slotBomb.item);
+
+                    //슬롯 초기화 작업들
+                    slotItem1.hasItem = false;
+                    slotItem2.hasItem = false;
+                    slotBomb.hasItem = false;
+
+                    slotItem1.hasBomb = false;
+                    slotItem2.hasBomb = false;
+                    slotBomb.hasBomb = false;
+
+                    slotItem1.item = null;
+                    slotItem2.item = null;
+                    slotBomb.item = null;
                 }
             }
         }//else문 끝(폭탄재료가 있을때)
@@ -199,5 +250,12 @@ public class CombineButton : MonoBehaviour
                                                                 //bombs[i].SetActive(true);
             }
         }
+    }
+
+    void againStart(GameObject item)//실패해서 재료들이 원래 자리로 돌아간다
+    {
+        DragHandler dragHandler = item.GetComponent<DragHandler>();
+        Vector3 startPos = dragHandler.startPosition;
+        item.transform.position = startPos;
     }
 }

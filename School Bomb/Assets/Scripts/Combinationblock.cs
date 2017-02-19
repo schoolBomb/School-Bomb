@@ -28,6 +28,19 @@ public class Combinationblock : MonoBehaviour//, IDropHandler
         }
     }
     */
+    void Update()
+    {
+        if (item != null)//슬롯칸이 비어있지 않는 상태일때
+        {
+            if (item.GetComponent<DragHandler>().move == true)//그 아이템이 아직 움직일 수 있는상태, 즉 아이템은 슬롯 칸 밖에 있는 상태일때
+            {
+                item = null;//슬롯칸은 초기화된다. 재료가 슬롯에서 빠져나왔기때문이다
+                hasBomb = false;
+                hasItem = false;
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         ItemManager manager = GameObject.Find("Item Manager").GetComponent<ItemManager>();

@@ -11,10 +11,14 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 screenPoint;
     public bool move;
 
+    void Start()
+    {
+        startPosition = transform.position;//처음 위치를 저장한다
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         itemBeingDragged = gameObject;//마우스로 drag할 item 인식한다
-        startPosition = transform.position;//처음 위치를 저장한다
+        //startPosition = transform.position;//처음 위치를 저장한다
         move = true;
     }
 
