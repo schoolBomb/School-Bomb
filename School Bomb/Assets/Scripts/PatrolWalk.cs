@@ -5,65 +5,70 @@ using UnityEngine;
 public class PatrolWalk : MonoBehaviour
 {
 
-	public float movePower = 4f;//움직이는 속도
-	float startPos;//시작위치
-	public float endPos;//끝위치
+	public float movePower = 4f;
+//움직이는 속도
+	float startPos;
+//시작위치
+	public float endPos;
+//끝위치
 	float distance;
 	Animator animator;
 	Vector3 movement;
 	Renderer rend;
 	Rigidbody2D rb;
 	public UserWalk user;
-	float waitTime = 4f;//추격하는 시간
-	float IdleSpeed;//평상시 속도
-	float UpSpeed;//빨라진 속도
-	bool facingRight=true;
-    public bool left;
+	float waitTime = 4f;
+//추격하는 시간
+	float IdleSpeed;
+//평상시 속도
+	float UpSpeed;
+//빨라진 속도
+	bool facingRight = true;
+	public bool left;
 
-    public Animator Guard;
-    public bool movingLeft;
-    public bool movingRight;
+    public Animator Guard;//******현지추가
+    public bool movingLeft;//******현지추가
+    public bool movingRight;//******현지추가
 
 	//2017.02.11/// <summary>
 	/// /////////
 	/// </summary>
 	private string[] talk;
 	private ScriptManager sm;
+	private ItemManager im;
 
 	// Use this for initialization
-	void Start()
+	void Start ()
 	{
 		//       animator = gameObject.GetComponent<Animator>();
-        Guard = gameObject.GetComponent<Animator>();
-
-		rend = gameObject.GetComponent<Renderer>();
-		rb = gameObject.GetComponent<Rigidbody2D>();
+        Guard = gameObject.GetComponent<Animator>();//******현지추가
+		rend = gameObject.GetComponent<Renderer> ();
+		rb = gameObject.GetComponent<Rigidbody2D> ();
 		startPos = transform.position.x;
 //		user = GameObject.FindGameObjectWithTag("Player").GetComponent<UserWalk>();
 		IdleSpeed = movePower;//평상시 속도 저장
 
 		//17.02.11
-		talk= new string[3];
+		talk = new string[3];
 		talk [0] = "";
 		talk [1] = "아니에요, 하하.";
 		talk [2] = "(오늘은 더 이상 힘들 것 같다. 다음을 기약하자.)";
 		sm = GameObject.Find ("Script Manager").GetComponent<ScriptManager> ();
+		im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
 	}
 
 	// Update is called once per frame
-	void FixedUpdate()
+	void FixedUpdate ()
 	{
-		Move();
-		if (user.isTracing == true)//player가 빛에 감지된 상태면
-		{
-			StartCoroutine(changeSpeed());
+		Move ();
+		if (user.isTracing == true) {//player가 빛에 감지된 상태면
+			StartCoroutine (changeSpeed ());
 		}
 	}
 
-	public void detected()//player가 경비원이랑 부딪히면 실행되는 메소드
+	public void detected ()//player가 경비원이랑 부딪히면 실행되는 메소드
 	{
-		if (user.move == true)//player가 숨어있지 않을때
-		{//경비랑 부딪혔을때 멈춘뒤 대사 출력
+		if (user.move == true) {//player가 숨어있지 않을때//경비랑 부딪혔을때 멈춘뒤 대사 출력
 			//상황에따라서 넘버링
 			if (Status.haveBomb == false) {
 				if (Status.nowStage == 10) { //1. 폭탄없이 교실복도에서 걸림, 의심도+2
@@ -85,48 +90,37 @@ public class PatrolWalk : MonoBehaviour
 					whenDetected (12);
 				}
 			}
-		}
-		else//player가 숨어있지 않을때
-		{
-			Debug.Log("Not Detected");
+		} else {//player가 숨어있지 않을때
+			Debug.Log ("Not Detected");
 		}
 	}
 
-	IEnumerator changeSpeed()
+	IEnumerator changeSpeed ()
 	{
-		Debug.Log("SpeedUp");
+		Debug.Log ("SpeedUp");
 		//속도를 올린다
-		if(movePower<8 && movePower>0)
-		{
+		if (movePower < 8 && movePower > 0) {
 			UpSpeed = movePower + 2;
 			movePower = UpSpeed;
-		}
-		else if(movePower < 0 && movePower > -8)
-		{
+		} else if (movePower < 0 && movePower > -8) {
 			//  movePower -= 2;
-			UpSpeed = movePower-2;
+			UpSpeed = movePower - 2;
 			movePower = UpSpeed;
 		}
 		user.isTracing = false;//다시 player는 인식 안된 상태로 돌아간다
-		yield return new WaitForSeconds(waitTime);//대기시간만큼 빠른 속도로 움직인다
+		yield return new WaitForSeconds (waitTime);//대기시간만큼 빠른 속도로 움직인다
 
 
 		//평상시 속도로 돌아온다
-		if(facingRight==true)
-		{
-			movePower = Mathf.Abs(IdleSpeed);
+		if (facingRight == true) {
+			movePower = Mathf.Abs (IdleSpeed);
+		} else {
+			movePower = -Mathf.Abs (IdleSpeed);
 		}
-		else
-		{
-			movePower = -Mathf.Abs(IdleSpeed);
-		}
-
 
 	}
 
-
-
-	void Flip()//뒤집기 함수
+	void Flip ()//뒤집기 함수
 	{
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
@@ -137,47 +131,48 @@ public class PatrolWalk : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	void Move()
+	void Move ()
 	{
-        if (left)//경비원이 왼쪽 포지션이면 하는 행동
-        {
-            transform.Translate(new Vector3(movePower, 0, 0) * Time.deltaTime);
-
-            Guard.SetBool("movingRight",true);
-
-            if (transform.position.x <= startPos || transform.position.x >= endPos)
-            {
-                Flip();
-                movePower *= -1;
-                Guard.SetBool("movingRight", false);
-            }
-        }
-        else//경비원이 오른쪽 포지션이면 하는 행동
-        {
-            transform.Translate(-new Vector3(movePower, 0, 0) * Time.deltaTime);
-
-            Guard.SetBool("movingLeft", true);
-
-            if (transform.position.x > startPos + 1 || transform.position.x <= endPos)
-            {
-                Flip();
-                movePower *= -1;
-                Guard.SetBool("movingLeft", false);
-            }
-        }
+		if (left) {//경비원이 왼쪽 포지션이면 하는 행동
+			transform.Translate (new Vector3 (movePower, 0, 0) * Time.deltaTime);
+            Guard.SetBool("movingRight", true); //******현지추가
+			if (transform.position.x <= startPos || transform.position.x >= endPos) {
+				Flip ();
+				movePower *= -1;
+                Guard.SetBool("movingRight", false);//******현지추가
+			}
+		} else {//경비원이 오른쪽 포지션이면 하는 행동
+			transform.Translate (-new Vector3 (movePower, 0, 0) * Time.deltaTime);
+            Guard.SetBool("movingLeft", true);//******현지추가
+			if (transform.position.x > startPos + 1 || transform.position.x <= endPos) {
+				Flip ();
+				movePower *= -1;
+                Guard.SetBool("movingRight", false);//******현지추가
+			}
+		}
 	}
 
-	private void whenDetected(int suspicious){
-		Status.suspiciousRate+=suspicious;
+	private void whenDetected (int suspicious)
+	{
+		Status.suspiciousRate += suspicious;
 		user.Speed = 0;
 		movePower = 0;
-		StartCoroutine (sm.patrolScript (talk,returnIt));
+		StartCoroutine (sm.patrolScript (talk, returnIt));
 	}
 
-	private void returnIt(int a){
+	private void returnIt (int a)
+	{
 		Status.haveBomb = false;
 		user.Speed = 4f;
 		movePower = 4f;
+
+		int r;
+		do { //랜덤으로 폭탄을 뺏긴다.
+			r = (int)Random.Range (0, im.bombList.Length);
+		} while (im.bombList [r].isComplete == false);
+		im.bombList [r].isComplete = false;
+		im.getBackItem (im.bombList [r].name, -1);
+
 		sm.gameObject.GetComponent<SelectStage> ().select (0);
 	}
 }

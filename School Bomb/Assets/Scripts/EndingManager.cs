@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EndingManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject[] endings;
+    
+    void Start()
+    {
+        int x = PlayerPrefs.GetInt("EndingNumber", -1);
+        endings[x].SetActive(true);
+    }
 }

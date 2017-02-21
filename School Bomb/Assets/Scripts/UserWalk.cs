@@ -14,9 +14,10 @@ public class UserWalk : MonoBehaviour
     public bool move;//player의 움직임 제어한다, true면 움직임 가능 및 경비원 인식 못함
     public bool isTracing = false;
 
-    public Animator Player;//********
-    public bool moveRight;//********
-    public bool moveLeft;//********
+    public Animator Player;//******현지추가
+    public bool moveRight;//******현지추가
+    public bool moveLeft;//******현지추가
+    public bool moving;//******현지추가
 
     // Use this for initialization
     void Start()
@@ -33,31 +34,7 @@ public class UserWalk : MonoBehaviour
 
     void FixedUpdate()
     {
-       
-        //if (Input.anyKey != false)//입력이 존재할 때..
-        //{
-        //    if (move == true && Input.GetKey(KeyCode.A)) //적절한 방향키의 입력이 확인되었으면
-        //    {
-        //        Player.SetBool("moveLeft", true);//********//애니메이션 재생인데
-                
-                
-        //    }
-        //    if (move == true && Input.GetKey(KeyCode.D))
-        //    {
-        //        Player.SetBool("moveRight", true);//********//왜 한쪽으로만 걷니..?
-                
-                
-        //    }
-           
-        //}
-        //else
-        //{
-        //    Player.SetBool("moveLeft", false);//********
-        //    Player.SetBool("moveRight", false);//********
-        //}
-       
         Movement();
-        
     }
 
     void OnTriggerEnter2D(Collider2D other)//문에 도착했을때 
@@ -109,16 +86,18 @@ public class UserWalk : MonoBehaviour
     {
         if (move == true && Input.GetKey(KeyCode.A) && transform.position.x > min)//왼쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
-            Player.SetBool("moveRight", true);
-            Player.SetBool("moveLeft", false);
+            Player.SetBool("moving", true);//******현지추가
+            Player.SetBool("moveRight", true);//******현지추가
+            Player.SetBool("moveLeft", false);//******현지추가
 
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 180, 0);//바라보는 방향 바뀐다
         }
 		else if (move == true && Input.GetKey(KeyCode.D)&& transform.position.x < max)//오른쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
-            Player.SetBool("moveLeft", true);
-            Player.SetBool("moveRight", false);
+            Player.SetBool("moving", true);//******현지추가
+            Player.SetBool("moveLeft", true);//******현지추가
+            Player.SetBool("moveRight", false);//******현지추가
 
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, 0);//바라보는 방향 바뀐다
@@ -134,7 +113,7 @@ public class UserWalk : MonoBehaviour
             rend.enabled = true;//player의 모습이 다시 나타난다
             move = true;//다시 player는 움직이는 것이 가능해진다
         }
-      
+        else { Player.SetBool("moving", false); }
 
     }
 

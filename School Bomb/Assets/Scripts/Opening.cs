@@ -8,10 +8,18 @@ public class Opening : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         yield return new WaitForSeconds(delayTime);
-
-        Application.LoadLevel("main");
-		
+        GetComponent<FadeObjectInOut>().FadeOut();
+        yield return new WaitForSeconds(5);
+        Application.LoadLevel("GameStart");
 	}
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
+        {
+            Application.LoadLevel("GameStart");
+        }
+    }
 	
 	
 }

@@ -6,14 +6,18 @@ using UnityEngine;
 public class ItemBasic : MonoBehaviour{
 	public Item data;
 	public string[] txt{ get; set;}
+    public int saveData { get; set; }
 	public Vector3 dormPos;
-	private Vector3 beforePos;
+	public Vector3 beforePos { get; set; }
 
 	public GameObject bc;
 	public int time=0;
 
+	public AudioClip ac;
+
 	void Start(){
 		beforePos = this.gameObject.transform.localPosition;
+		//ac = GetComponent<AudioSource> ();
 	}
 
 	public void initializeText(){
@@ -31,7 +35,10 @@ public class ItemBasic : MonoBehaviour{
 
 		if (data.location == (int)ItemPosition.toStore)
 		{//상점 아이템 
-			StartCoroutine(manager.purchase(txt, data.num, purchaseDetail));
+			if (!ScriptManager.isShowing) {
+				StartCoroutine (manager.purchase (txt, data.num, 2,purchaseDetail));
+				manager.getAudioClip (ac);
+			}
 		}
 		else if (data.location == (int)ItemPosition.toUser)
 		{
@@ -39,7 +46,11 @@ public class ItemBasic : MonoBehaviour{
 		}
 		else {//줍는 아이템 
 			//manager.startGetIt(out txt,data.num);
-			StartCoroutine(manager.getIt (txt, data.num));
+			if (!ScriptManager.isShowing) {
+				StartCoroutine (manager.getIt (txt, data.num));
+				manager.getAudioClip (ac);
+			}
+			//ac.Play ();
 		}
 	}
 

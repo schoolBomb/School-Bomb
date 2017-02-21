@@ -18,30 +18,37 @@ public class Check : MonoBehaviour {
 
 			for (int j = 0; j < np[i].time.Length; j++)
 			{
-				if (np[i].time[j] == Status.time) npc[i].SetActive(true);//적당한 시간대라면 true
+				//만약 서버실 복도라면 
+				if (np[i].time[j] == Status.time){
+					npc[i].SetActive(true);//적당한 시간대라면 true
+				}
 			}
 		}
 		if (num == (int)stageNum.Lab) {
-			if (Status.day != 6 || Status.day != 7) {
-				npc [0].GetComponent<SpriteRenderer> ().sprite = professor [(int)Status.day-1];
-				np [0].scriptNum = Status.day-1;
+			if (!(Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday)) {
+				npc [0].GetComponent<SpriteRenderer> ().sprite = professor [(int)Status.day - 1];
+				np [0].scriptNum = Status.day - 1;
+			} else {
+				npc [0].SetActive (false);
+				np [0].scriptNum = Status.day - 1;
 			}
 		}
 
-		if(bl!=null) bombLocationCheck ();
+		bombLocationCheck ();
 	}
 
 	public void bombLocationCheck(){
-		if (Status.time == 6 || Status.time == 7) {
+		if (Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday) {
 			bl.enabled = true;
 			StartCoroutine (bl.glowingIt ());
-		} else {
-			bl.enabled = false;
 		}
+//		} else {
+//			if( bl.Equals(null) )	bl.enabled = false;
+//		}
 	}
-		
+
 	public void writing(){
-		
+
 		s = new string[4];
 		s [0] = "기숙사에 들어왔다.";
 		s [1] = "그냥 논문 쓸까…";
@@ -49,20 +56,20 @@ public class Check : MonoBehaviour {
 		s [3] = "개뿔, 폭탄이나 만들어.";
 
 		ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
-		StartCoroutine (im.purchase (s, -1, detail));
+		StartCoroutine (im.purchase (s, -1,2, detail));
 	}
 
 	private void detail(int a){
 		if (a == 1) {
 			Status.paper += 3;
 			Status.day += 1;
-			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().select (0);
-//			ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
-//
-//			s = new string[4];
-//			s [0] = "(!!!!!하루가 지났어?!)";
-//
-//			StartCoroutine (im.getIt(s,-1));
+			if(Status.day<=(int)DayOfWeek.Sunday) GameObject.Find ("Script Manager").GetComponent<SelectStage> ().select (0);
+			//			ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
+			//
+			//			s = new string[4];
+			//			s [0] = "(!!!!!하루가 지났어?!)";
+			//
+			//			StartCoroutine (im.getIt(s,-1));
 		}
 	}
 }
