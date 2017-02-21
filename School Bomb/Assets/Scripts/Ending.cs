@@ -26,26 +26,26 @@ public class Ending : MonoBehaviour {
 	}
 
 	public void endGame(int bombNum, float bombStrength){
-//		Status.haveBomb = true;
+
 //		bombNum = 1
 //		bombStrength = 11;//Debug
 		/////////////
 		if (bombStrength == 0) {
 			switch (bombNum) {
 			case 4://	논문 자필
-				StartCoroutine(boop (3));
+				StartCoroutine (boop (3));
 				break;
-            case 5:
-                    StartCoroutine(boop(5));
-                    break;
-                case 6:
-                    StartCoroutine(boop(6));
-                    break;
-                case 8://	고양이 엔딩
-				StartCoroutine(boop (7));
+			case 5:
+				StartCoroutine (boop (5));
+				break;
+			case 6:
+				StartCoroutine (boop (6));
+				break;
+			case 8://	고양이 엔딩
+				StartCoroutine (boop (7));
 				break;
 			case 9:	//	데자와 엔딩
-				StartCoroutine(boop (8));
+				StartCoroutine (boop (8));
 				break;
 			default:
 				if (Status.suspiciousRate < 50) {//	기숙사에서 뒹굴뒹굴
@@ -59,21 +59,18 @@ public class Ending : MonoBehaviour {
 				}
 				break;
 			}
-		}
-		else if ( Status.haveBomb && bombStrength >= 11) {//죽음
-			StartCoroutine(boop (9));
-		}
-		else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 50 && bombStrength >= 9) {//공항에서 신문
-			StartCoroutine(boop (0));
-		}
-		else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 50 && bombStrength < 9) {//졸업논문 공고
-			StartCoroutine(boop (2));
-		}
-		else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 50 && bombStrength < 6.5f) {//졸업논문 공고
-			StartCoroutine(boop (2));
-		}
-		else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 50 && bombStrength >= 6.5f) {//포돌이와의 만남
-			StartCoroutine(boop (6));
+		} else if (Status.haveBomb && bombStrength >= 11) {//죽음
+			StartCoroutine (boop (9));
+		} else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
+			StartCoroutine (boop (0));
+		} else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength < 9) {//졸업논문 공고
+			StartCoroutine (boop (2));
+		} else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength < 6.5f) {//졸업논문 공고
+			StartCoroutine (boop (2));
+		} else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength >= 6.5f) {//포돌이와의 만남
+			StartCoroutine (boop (6));
+		} else {
+			StartCoroutine (boop (2));
 		}
 			
 

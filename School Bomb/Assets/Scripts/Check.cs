@@ -56,7 +56,7 @@ public class Check : MonoBehaviour {
 		s [3] = "개뿔, 폭탄이나 만들어.";
 
 		ItemManager im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
-		StartCoroutine (im.purchase (s, -1, detail));
+		StartCoroutine (im.purchase (s, -1,2, detail));
 	}
 
 	private void detail(int a){

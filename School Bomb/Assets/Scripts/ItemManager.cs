@@ -24,6 +24,8 @@ public class ItemManager : MonoBehaviour {
 
 	private AudioSource ac;
 
+	private int[] tempNum;
+
 	void Start()
 	{
 		ac = gameObject.GetComponent<AudioSource> ();
@@ -96,9 +98,9 @@ public class ItemManager : MonoBehaviour {
 		yield return null;
 	}
 
-	public IEnumerator purchase(string[] s, int itemNum, func1 another){
+	public IEnumerator purchase(string[] s, int itemNum, int questionN, func1 another){
 		ScriptManager.isShowing = true;
-		initQuestion(2);
+		initQuestion(questionN);
 		//마우스 클릭을 할시
 		//설명 블라블라
 		if(itemNum>=0) nameText.text = itemList [itemNum].data.name;
@@ -114,7 +116,7 @@ public class ItemManager : MonoBehaviour {
 			int answer=1;
 
 			//“뫄뫄”를 구입하시겠습니까? 예 아니오 ->Question UI
-			for (int j = 0; j < 3; j++,i++) {
+			for (int j = 0; j < questionN+1; j++,i++) {
 				questionText[j].text=s[i];
 			}
 			senteceText.gameObject.SetActive (false);//2.현재 sentenceUI를 끈다.
@@ -131,7 +133,7 @@ public class ItemManager : MonoBehaviour {
 					yield return new WaitForSeconds (0.05f);
 				}
 				if (Input.GetKeyDown (KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.S)) {
-					if (answer < 2) {
+					if (answer < questionN) {
 						TextColorChange (answer, answer+1);
 						answer++;
 					}
@@ -151,15 +153,15 @@ public class ItemManager : MonoBehaviour {
 		ScriptManager.isShowing = false;
 		if (ac.clip != null) {
 			ac.Play ();
-			//ac.clip = null;
 		}
 		yield return null;
 	}
 
 	public void ending(int bombNum)
 	{
+		Debug.Log (strength+" "+ bombList [tempNum[bombNum]].name);
 		Ending e = GetComponent<Ending> ();
-		e.endGame (bombNum, bombList [bombNum].strength + strength);
+		e.endGame (bombNum, bombList [bombNum+2].strength + strength);
 	}
 
 	public void explode(float locStrength)//폭발 진행 
@@ -169,16 +171,18 @@ public class ItemManager : MonoBehaviour {
 		str[0] = "";
 		str[1] = "폭탄을 설치하시겠습니까?";//질문을 한다: 폭탄을 설치하시겠습니까?
 		int i = 2;
-		for (int j = 2 ; j < bombList.Length ; j++){//폭탄 종류가 쫙 뜬다. 다이너마이트…
-			if ( bombList[j-2].isComplete==true )
+		tempNum = new int[bombList.Length];
+		for (int j = 0 ; j < bombList.Length ; j++){//폭탄 종류가 쫙 뜬다. 다이너마이트…
+			if ( bombList[j].isComplete==true )
 			{
-				str[i] = string.Copy(bombList[j-2].name);
+				str[i] = string.Copy(bombList[j].name);
+				tempNum [i] = bombList [j].id;
 				i++;
 			}
 		}
 		str[i++] = "네";
 		str[i] = "아니오";
-		StartCoroutine(purchase(str, -1,ending));
+		StartCoroutine(purchase(str, -1, i-3,ending));
 		//폭탄 선택
 		//설치하시겠습니까? 예, 아니오
 	}
@@ -215,6 +219,12 @@ public class ItemManager : MonoBehaviour {
 	}
 
 	public void showDorm(){
+		for (int i = 0; i < bombList.Length; i++) {//폭탄 보여주기 
+			if (bombList [i].isComplete) {
+				bombList [i].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+			}
+		}
+
 		if (proHeartCount == 1.00f) {
 			itemList [16].gameObject.SetActive (true);
 		} else {
@@ -264,14 +274,14 @@ public class ItemManager : MonoBehaviour {
     {
         for(int i = 0; i < itemList.Length; i++)
         {
-			if (toBeLoc == -1) {
-				if (itemList[i].data.bomb.Equals(bomb))
-				{
+			if (itemList[i].data.bomb.Equals(bomb))
+			{
+				if (toBeLoc == -1) {
 					itemList[i].data.location = itemList[i].saveData;
 					itemList[i].transform.localPosition = itemList[i].beforePos;
+				} else {
+					itemList [i].data.location = toBeLoc;
 				}
-			} else {
-				
 			}
         }
     }

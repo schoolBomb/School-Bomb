@@ -22,12 +22,16 @@ public class CombineButton : MonoBehaviour
 	GameObject bomb;//폭탄재료 object 저장한다
 	public bool containBomb;
 
+	public ItemManager im;
+
 	// Use this for initialization
 	void Start()
 	{
 		slot1 = GameObject.Find("combine_box_1").GetComponent<Combinationblock>();
 		slot2 = GameObject.Find("combine_box_2").GetComponent<Combinationblock>();
 		slot3 = GameObject.Find("combine_box_3").GetComponent<Combinationblock>();
+
+		GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
 	}
 
 	// Update is called once per frame
@@ -52,10 +56,10 @@ public class CombineButton : MonoBehaviour
 				item2 = slot2.item.GetComponent<ItemBasic>().data;
 				item3 = slot3.item.GetComponent<ItemBasic>().data;
 
-				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
-				item2.location = (int)ItemPosition.alreadyUsed;
-				item3.location = (int)ItemPosition.alreadyUsed;
-
+//				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
+//				item2.location = (int)ItemPosition.alreadyUsed;
+//				item3.location = (int)ItemPosition.alreadyUsed;
+				string nameOfBomb=null;
 				bombs = GameObject.FindGameObjectsWithTag("Bomb");//bomb에 대한 객체배열 생성
 
 				if (item1.bomb.Equals(item2.bomb) && item2.bomb.Equals(item3.bomb))//칸에 있는 3아이템의 폭탄이름이 같으면 폭탄생성
@@ -66,16 +70,20 @@ public class CombineButton : MonoBehaviour
 					if (item1.bomb.Equals("다이너마이트"))
 					{
 						appearBomb(bombs, 0);//다이너마이트 생성
+						nameOfBomb="다이너마이트";
 					}
 					else if (item1.bomb.Equals("액체폭탄"))
 					{
 						appearBomb(bombs, 3);//액체폭탄 생성
+						nameOfBomb="액체폭탄";
 					}
 					else if (item1.bomb.Equals("EMP폭탄"))
 					{
 						appearBomb(bombs, 4);//EMP폭탄 생성
+						nameOfBomb="EMP폭탄";
 					}
-
+					im.getBackItem (nameOfBomb, (int)ItemPosition.alreadyUsed);
+					Status.haveBomb = true;
 				}
 				else//폭탄 재료가 서로 맞지 않을때(재료끼리만 있을때)
 				{
@@ -114,12 +122,13 @@ public class CombineButton : MonoBehaviour
 				item2 = slotItem2.item.GetComponent<ItemBasic>().data;
 				bomb = slotBomb.item;
 
-				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
-				item2.location = (int)ItemPosition.alreadyUsed;
+//				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
+//				item2.location = (int)ItemPosition.alreadyUsed;
 
 				bomb.GetComponent<Bomb>().isComplete = false;//그 폭탄은 미완성된걸로 처리한다
 				bomb.GetComponent<SpriteRenderer>().enabled = false;//폭탄이 사라진다
 
+				string nameOfBomb = null;
 				bombs = GameObject.FindGameObjectsWithTag("Bomb");//bomb에 대한 객체배열 생성
 
 				if (item1.bomb.Equals(item2.bomb))//칸에 있는 2 아이템의 폭탄이름이 같으면 폭탄생성
@@ -130,32 +139,41 @@ public class CombineButton : MonoBehaviour
 					if (item1.bomb.Equals("가스폭탄"))
 					{
 						appearBomb(bombs, 1);//가스폭탄 생성
+						nameOfBomb="가스폭탄";
 					}
 					else if (item1.bomb.Equals("소이폭탄"))
 					{
 						appearBomb(bombs, 2);//소이폭탄 생성
+						nameOfBomb="소이폭탄";
 					}
 					else if (item1.bomb.Equals("수소화리튬"))
 					{
 						appearBomb(bombs, 5);//수소화리튬 생성
+						nameOfBomb="수소화리튬";
 					}
 					else if (item1.bomb.Equals("수소폭탄"))
 					{
 						appearBomb(bombs, 6);//수소폭탄 생성
+						nameOfBomb="수소폭탄";
 					}
 					else if (item1.bomb.Equals("3F 폭탄"))
 					{
 						appearBomb(bombs, 7);//3F 폭탄 생성
+						nameOfBomb="3F 폭탄";
 					}
 					else if (item1.bomb.Equals("고양이 폭탄"))
 					{
 						appearBomb(bombs, 8);//고양이 폭탄 생성
+						nameOfBomb="고양이 폭탄";
 					}
 					else if (item1.bomb.Equals("데자와 폭탄"))
 					{
 						appearBomb(bombs, 9);//데자와 폭탄 생성
+						nameOfBomb="데자와 폭탄";
 					}
 
+					im.getBackItem (nameOfBomb, (int)ItemPosition.alreadyUsed);
+					Status.haveBomb = true;
 				}
 				else//폭탄 재료가 서로 맞지 않을때(폭탄이 재료로 있는 상태에서)
 				{

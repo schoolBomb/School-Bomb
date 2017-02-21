@@ -22,7 +22,7 @@ public class Door : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		StartCoroutine (usePurchase.purchase(txt,-1,open));
+		StartCoroutine (usePurchase.purchase(txt,-1,2,open));
 	}
 
 	public void open(int a){

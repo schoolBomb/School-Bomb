@@ -36,7 +36,7 @@ public class ItemBasic : MonoBehaviour{
 		if (data.location == (int)ItemPosition.toStore)
 		{//상점 아이템 
 			if (!ScriptManager.isShowing) {
-				StartCoroutine (manager.purchase (txt, data.num, purchaseDetail));
+				StartCoroutine (manager.purchase (txt, data.num, 2,purchaseDetail));
 				manager.getAudioClip (ac);
 			}
 		}
