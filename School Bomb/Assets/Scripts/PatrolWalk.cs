@@ -26,17 +26,20 @@ public class PatrolWalk : MonoBehaviour
 	bool facingRight = true;
 	public bool left;
 
-	//2017.02.11/// <summary>
-	/// /////////
-	/// </summary>
+	public Animator Guard;//******현지추가
+	public bool movingLeft;//******현지추가
+	public bool movingRight;//******현지추가
+
 	private string[] talk;
 	private ScriptManager sm;
 	private ItemManager im;
+	private SelectStage ss;
 
 	// Use this for initialization
 	void Start ()
 	{
 		//       animator = gameObject.GetComponent<Animator>();
+		Guard = gameObject.GetComponent<Animator>();//******현지추가
 		rend = gameObject.GetComponent<Renderer> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		startPos = transform.position.x;
@@ -50,6 +53,7 @@ public class PatrolWalk : MonoBehaviour
 		talk [2] = "(오늘은 더 이상 힘들 것 같다. 다음을 기약하자.)";
 		sm = GameObject.Find ("Script Manager").GetComponent<ScriptManager> ();
 		im = GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
+		ss = sm.GetComponent<SelectStage> ();
 	}
 
 	// Update is called once per frame
@@ -92,13 +96,11 @@ public class PatrolWalk : MonoBehaviour
 
 	IEnumerator changeSpeed ()
 	{
-		Debug.Log ("SpeedUp");
 		//속도를 올린다
 		if (movePower < 8 && movePower > 0) {
 			UpSpeed = movePower + 2;
 			movePower = UpSpeed;
 		} else if (movePower < 0 && movePower > -8) {
-			//  movePower -= 2;
 			UpSpeed = movePower - 2;
 			movePower = UpSpeed;
 		}
@@ -130,15 +132,19 @@ public class PatrolWalk : MonoBehaviour
 	{
 		if (left) {//경비원이 왼쪽 포지션이면 하는 행동
 			transform.Translate (new Vector3 (movePower, 0, 0) * Time.deltaTime);
+			Guard.SetBool("movingRight", true); //******현지추가
 			if (transform.position.x <= startPos || transform.position.x >= endPos) {
 				Flip ();
 				movePower *= -1;
+				Guard.SetBool("movingRight", false);//******현지추가
 			}
 		} else {//경비원이 오른쪽 포지션이면 하는 행동
 			transform.Translate (-new Vector3 (movePower, 0, 0) * Time.deltaTime);
+			Guard.SetBool("movingLeft", true);//******현지추가
 			if (transform.position.x > startPos + 1 || transform.position.x <= endPos) {
 				Flip ();
 				movePower *= -1;
+				Guard.SetBool("movingRight", false);//******현지추가
 			}
 		}
 	}
@@ -148,12 +154,13 @@ public class PatrolWalk : MonoBehaviour
 		Status.suspiciousRate += suspicious;
 		user.Speed = 0;
 		movePower = 0;
-		StartCoroutine (sm.patrolScript (talk, returnIt));
+
+		if(!ScriptManager.isShowing) StartCoroutine (sm.patrolScript (talk, returnIt));
 	}
 
 	private void returnIt (int a)
 	{
-		Status.haveBomb = false;
+		//Status.haveBomb = false;
 		user.Speed = 4f;
 		movePower = 4f;
 
@@ -164,7 +171,7 @@ public class PatrolWalk : MonoBehaviour
 		im.bombList [r].isComplete = false;
 		im.getBackItem (im.bombList [r].name, -1);
 
-		sm.gameObject.GetComponent<SelectStage> ().select (0);
+		ss.select (0);
 	}
 }
 

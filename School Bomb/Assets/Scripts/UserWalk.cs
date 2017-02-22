@@ -14,10 +14,15 @@ public class UserWalk : MonoBehaviour
     public bool move;//player의 움직임 제어한다, true면 움직임 가능 및 경비원 인식 못함
     public bool isTracing = false;
 
+	public Animator Player;//******현지추가
+	public bool moveRight;//******현지추가
+	public bool moveLeft;//******현지추가
+	public bool moving;//******현지추가
 
     // Use this for initialization
     void Start()
     {
+		Player = GetComponent<Animator>();
         //      anim = GetComponent<Animator>();
         //       transform.position = new Vector3(0, 0, 0);
         rend = gameObject.GetComponent<Renderer>();
@@ -81,11 +86,19 @@ public class UserWalk : MonoBehaviour
     {
         if (move == true && Input.GetKey(KeyCode.A) && transform.position.x > min)//왼쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
+			Player.SetBool("moving", true);//******현지추가
+			Player.SetBool("moveRight", true);//******현지추가
+			Player.SetBool("moveLeft", false);//******현지추가
+
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 180, 0);//바라보는 방향 바뀐다
         }
 		else if (move == true && Input.GetKey(KeyCode.D)&& transform.position.x < max)//오른쪽으로 이동, 복도를 벗어나지 않게 범위 제한
         {
+			Player.SetBool("moving", true);//******현지추가
+			Player.SetBool("moveLeft", true);//******현지추가
+			Player.SetBool("moveRight", false);//******현지추가
+
             transform.Translate(Vector2.right * Speed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, 0);//바라보는 방향 바뀐다
         }
@@ -100,6 +113,7 @@ public class UserWalk : MonoBehaviour
             rend.enabled = true;//player의 모습이 다시 나타난다
             move = true;//다시 player는 움직이는 것이 가능해진다
         }
+		else { Player.SetBool("moving", false); }
 
     }
 
@@ -109,3 +123,4 @@ public class UserWalk : MonoBehaviour
 	}
 
 }
+
