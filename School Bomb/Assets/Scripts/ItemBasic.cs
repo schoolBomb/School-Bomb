@@ -12,6 +12,7 @@ public class ItemBasic : MonoBehaviour{
 
 	public GameObject bc;
 	public int time=0;
+	private SelectStage sm;
 
 	public AudioClip ac;
 
@@ -58,6 +59,7 @@ public class ItemBasic : MonoBehaviour{
 		if (a == 1 && (Status.money >= data.price)) {
 			data.location = (int)ItemPosition.toUser;
 			this.gameObject.SetActive (false);
+			transform.localPosition = dormPos;
 			Status.money -= data.price;
 			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 		} else {

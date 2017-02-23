@@ -10,4 +10,16 @@ public class Bomb : MonoBehaviour {
 	public string description;//설명
 	public bool isComplete = false;
 
+	private SpriteRenderer spriteRend;//모습
+	private BoxCollider2D collid;
+
+	void Start(){
+		collid = GetComponent<BoxCollider2D> ();
+		spriteRend = GetComponent<SpriteRenderer> ();
+	}
+
+	public void offSpriteAndCollid(bool onOff){
+		collid.enabled = onOff;
+		spriteRend.enabled = onOff;
+	}
 }

@@ -260,12 +260,12 @@ public class CombineButton : MonoBehaviour
 	{
 		for (int i = 0; i < bombs.Length; i++)//bombs배열에서 item과 폭탄이름이 같으면 폭탄이 나타난다
 		{
-
-			if (bombs[i].GetComponent<Bomb>().id == bombID)
+			Bomb b = bombs [i].GetComponent<Bomb> ();
+			if (b.id == bombID)
 			{
-				bombs[i].GetComponent<SpriteRenderer>().enabled = true;//폭탄이 보여지고,
-				bombs[i].GetComponent<Bomb>().isComplete = true;//폭탄이 완성됐다!!
-				//bombs[i].SetActive(true);
+				b.offSpriteAndCollid (true);//폭탄이 보여지고,
+				b.isComplete = true;//폭탄이 완성됐다!!
+				bombs[i].SetActive(true);
 			}
 		}
 	}
@@ -275,5 +275,14 @@ public class CombineButton : MonoBehaviour
 		DragHandler dragHandler = item.GetComponent<DragHandler>();
 		Vector3 startPos = dragHandler.startPosition;
 		item.transform.position = startPos;
+//
+//		ItemBasic it=item.GetComponent<ItemBasic>();
+//		if (item.GetComponent<ItemBasic>().Equals(null)) {//폭탄인 경우
+//			Bomb b=item.GetComponent<Bomb>();
+//			item.transform.position = b.position;
+//		} else {//일반 재료인 경우 
+//			item.transform.position = it.dormPos;
+//		}
+//
 	}
 }

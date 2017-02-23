@@ -12,7 +12,7 @@
     "name": "전선",
     "description": "버린건지 잃어버린건지 모를 전선 하나. …이거 망가진 건가?",
     "location": 3,
-    "price": 3000,
+    "price": 0,
     "bomb": "다이너마이트"
   },
   {
@@ -163,7 +163,7 @@
     "num": 20,
     "name": "동전",
     "description": "",
-    "location": 12,
+    "location": 10,
     "price": 0,
     "bomb": "데자와폭탄"
   },
@@ -219,7 +219,7 @@
     "num": 27,
     "name": "물",
     "description": "H2O",
-    "location": 30,
+    "location": 10,
     "price": 0,
     "bomb": "소이폭탄"
   }

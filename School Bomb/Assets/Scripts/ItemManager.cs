@@ -19,7 +19,6 @@ public class ItemManager : MonoBehaviour {
 	public Text[] questionText;
 
 	public Sprite cat;
-	public float proHeartCount{ get; set; }
 	private float strength;
 
 	private AudioSource ac;
@@ -49,15 +48,18 @@ public class ItemManager : MonoBehaviour {
 
 	public void startGetIt(out string[] s, int itemNum ){
 		s = new string[6];
-		s = itemList [itemNum].txt;
-		itemList[itemNum].data.location = (int)ItemPosition.toUser;
-		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
-		itemList [itemNum].gameObject.SetActive(false);
-
-		if (itemNum == 15) {
-			Status.money -= itemList [itemNum].data.price;
-			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
-		}
+		itemList [itemNum].purchaseDetail (1);
+//		Debug.Log ("XXXX");
+//		s = new string[6];
+//		s = itemList [itemNum].txt;
+//		itemList[itemNum].data.location = (int)ItemPosition.toUser;
+//		itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
+//		itemList [itemNum].gameObject.SetActive(false);
+//
+//		if (itemNum == 15) {
+//			Status.money -= itemList [itemNum].data.price;
+//			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
+//		}
 		//StartCoroutine (getIt(s,itemNum));
 	}
 
@@ -83,9 +85,10 @@ public class ItemManager : MonoBehaviour {
 		TextBackGround.SetActive(false);
 
 		if (itemNum != -1) {
-			itemList [itemNum].data.location = (int)ItemPosition.toUser;
-			itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
-			itemList [itemNum].gameObject.SetActive (false);
+			itemList [itemNum].purchaseDetail (1);
+//			itemList [itemNum].data.location = (int)ItemPosition.toUser;
+//			itemList [itemNum].gameObject.transform.localPosition = itemList [itemNum].dormPos;
+//			itemList [itemNum].gameObject.SetActive (false);
 			if (itemNum == 17) {
 				itemList [itemNum].gameObject.GetComponent<SpriteRenderer> ().sprite = cat;
 			}
@@ -194,42 +197,42 @@ public class ItemManager : MonoBehaviour {
 		questionText [after].color = Color.white;//make it to white, ==answer
 	}
 
-	//상점에서 구입할수 있는 아이템을 출력한다.
+	//아이템을 출력한다.
 	public void show(int location)//parameter로 출력하고 싶은 상황을 받는다.
 	{
 		//아이템 location을 확인
-		for (int i = 0; i < itemList.Length; i++)
-		{//0일 경우 그냥 띄운다.//그외에는 현재시간과 같을 경우만 띄운다.
+		for (int i = 0; i < itemList.Length; i++){//0일 경우 그냥 띄운다.
 			if (location == itemList[i].data.location && (itemList[i].time==0 || itemList[i].time == Status.time ))
 			{
 				if (i == 2 || i == 3 ) {//show를 할때 i가 2이면
 					int x = (int)Random.Range (2, 3.99999f);//random를 돌리고 그중하나를 키고 i=3으로 맞춘다.
 					itemList [x].gameObject.SetActive (true);
 					i = 3;
-				}
-				else {
-                    if (location == (int)ItemPosition.toUser)
-                    {
-                        itemList[i].gameObject.transform.localPosition = itemList[i].dormPos;
-                    }
+				}else {
                     itemList [i].gameObject.SetActive (true);
 				}
 			}
 		}
 	}
-
+	//기숙사 아이템을 출력한다. 
 	public void showDorm(){
-		for (int i = 0; i < bombList.Length; i++) {//폭탄 보여주기 
-			if (bombList [i].isComplete) {
-				bombList [i].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+
+		for (int i = 0; i < itemList.Length; i++) {//0일 경우 그냥 띄운다.
+			//그외에는 현재시간과 같을 경우만 띄운다.
+			if (itemList [i].data.location == (int)ItemPosition.toUser) {
+				itemList [i].gameObject.SetActive (true);
 			}
 		}
-
-		if (proHeartCount == 1.00f) {
-			itemList [16].gameObject.SetActive (true);
-		} else {
-			itemList [16].gameObject.SetActive (false);
+		for (int i = 0; i < bombList.Length; i++) {//폭탄 보여주기 
+			if (bombList [i].isComplete) {
+				bombList [i].offSpriteAndCollid (true);
+			}
 		}
+//		if (proHeartCount == 1.00f) {
+//			itemList [16].gameObject.SetActive (true);
+//		} else {
+//			itemList [16].gameObject.SetActive (false);
+//		}
 	}
 
 	private void initQuestion(int iter)

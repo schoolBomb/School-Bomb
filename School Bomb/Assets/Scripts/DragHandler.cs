@@ -13,7 +13,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	void Start()
 	{
-		startPosition = transform.position;//처음 위치를 저장한다
+		//startPosition = transform.position;//처음 위치를 저장한다
 	}
 	public void OnBeginDrag(PointerEventData eventData)
 	{

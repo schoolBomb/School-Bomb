@@ -87,8 +87,6 @@ public class Ending : MonoBehaviour {
 
         yield return new WaitForSeconds(1.5f);
         Application.LoadLevel("Ending");
-
-        //Endings[bombNum].SetActive(true);
     }
 
 	public IEnumerator fadeIn(){

@@ -60,7 +60,7 @@
     "isQuestion": "Answer",
     "day": 1,
     "time": 1,
-    "sentence": "교수님 랩실에 티요가 있을까요?"
+    "sentence": "교수님 랩실에 티오가 있을까요?"
   },
   {
     "location": 2,
@@ -834,7 +834,7 @@
     "isQuestion": "Question",
     "day": 0,
     "time": 1,
-    "sentence": "그러고보니 너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래? 가격은 10만원."
+    "sentence": "그러고보니 너 요즘 폭탄재료 모으고 다닌다며? 어때, 이것도 써볼래?"
   },
   {
     "location": 4,
@@ -843,7 +843,7 @@
     "isQuestion": "Answer",
     "day": 0,
     "time": 1,
-    "sentence": "예"
+    "sentence": "예(10만원)"
   },
   {
     "location": 4,

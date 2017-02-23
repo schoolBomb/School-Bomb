@@ -89,7 +89,7 @@ public class NPC : MonoBehaviour {
 			} 
 			else if (c.compare (3, 0, 2)) {//3 0 2  교수님의 마음획득
 				im.startGetIt(out s,16);
-				im.proHeartCount += 0.2f;
+			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			} 
@@ -100,7 +100,7 @@ public class NPC : MonoBehaviour {
 			} 
 			else if (c.compare (1, 2, 2)) {//1 2 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-				im.proHeartCount += 0.2f;
+			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			} 
@@ -120,7 +120,7 @@ public class NPC : MonoBehaviour {
 			}
 			else if (c.compare (2, 3, 2)) {//2 3 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-				im.proHeartCount += 0.2f;
+			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			}
@@ -130,7 +130,7 @@ public class NPC : MonoBehaviour {
 			}
 			else if (c.compare (2, 4, 2)) {//2 4 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-				im.proHeartCount += 0.2f;
+			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			} 
@@ -148,13 +148,13 @@ public class NPC : MonoBehaviour {
 				this.c = 0;
 				audio.Play ();
 			}
-			else if (c.compare (1, 2, 3)) {//1 2 3 알리바이 획득
-				Status.alibi+=1;
+			else if (c.compare (1, 2, 3)) {//1 2 3 구겨진 0점 시험지 획득
+				im.startGetIt(out s,9);
 				this.c = 0;
 				audio.Play ();
 			}
-			else if (c.compare (2, 2, 3)) {//2 2 3 구겨진 0점 시험지 획득
-				im.startGetIt(out s,9);
+			else if (c.compare (2, 2, 3)) {//2 2 3 알리바이 획득
+				Status.alibi+=1;
 				this.c = 0;
 				audio.Play ();
 			}
@@ -162,7 +162,8 @@ public class NPC : MonoBehaviour {
 			}
 			break;
 		case 4://lobby
-			if (c.compare (1, 0, 4)) {//1 0 4 레포트 구매 
+			if (c.compare (1, 0, 4) && (Status.money >= 10000)) {//1 0 4 레포트 구매 
+
 				Status.money -= 10000;
 				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 				cOther++;
@@ -190,6 +191,7 @@ public class NPC : MonoBehaviour {
 		case 10:
 			if (c.compare (1, 3, 10)) {//1 3 10 데자와 획득
 				im.startGetIt (out s, 19);
+				im.startGetIt (out s, 20);
 				this.c = 0;
 				audio.Play ();
 			}
