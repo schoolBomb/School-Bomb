@@ -59,15 +59,15 @@ public class Ending : MonoBehaviour {
 				}
 				break;
 			}
-		} else if (Status.haveBomb && bombStrength >= 11) {//죽음
+		} else if (bombStrength >= 11) {//죽음
 			StartCoroutine (boop (9));
-		} else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
+		} else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
 			StartCoroutine (boop (0));
-		} else if (Status.haveBomb && Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength < 9) {//졸업논문 공고
+		} else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength < 9) {//졸업논문 공고
 			StartCoroutine (boop (2));
-		} else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength < 6.5f) {//졸업논문 공고
+		} else if ( Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength < 6.5f) {//졸업논문 공고
 			StartCoroutine (boop (2));
-		} else if (Status.haveBomb && Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength >= 6.5f) {//포돌이와의 만남
+		} else if ( Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength >= 6.5f) {//포돌이와의 만남
 			StartCoroutine (boop (6));
 		} else {
 			StartCoroutine (boop (2));

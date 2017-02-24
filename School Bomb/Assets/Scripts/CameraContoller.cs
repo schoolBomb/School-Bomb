@@ -12,36 +12,36 @@ public class CameraContoller : MonoBehaviour
     float xMax = 23.5f;//배경이 보이는 x 최대값
     bool check = true;
     Vector3 pos;
-    /*
-    public float screenWidth = 1850;
-
-    private Camera camera;
-
-    private float size;
-    private float ratio;
-    private float screenHeight;
-    */
-    void Awake()
-    {
-        /*
-        camera = GetComponent<Camera>();
-        ratio = (float)Screen.height / (float)Screen.width;
-        screenHeight = screenWidth * ratio;
-        size = screenHeight / 200;
-        camera.orthographicSize = size;
-        */
-    }
-
-    void Start()
-    {
-        /*
-        float aspectRatio = (float)Screen.width / (float)Screen.height;
-        float cameraHeight = 10 / aspectRatio;
-        Camera.main.orthographic = true;
-        Camera.main.orthographicSize = cameraHeight / 2f;
-        */
-        
-    }
+//    /*
+//    public float screenWidth = 1850;
+//
+//    private Camera camera;
+//
+//    private float size;
+//    private float ratio;
+//    private float screenHeight;
+//    */
+//    void Awake()
+//    {
+//        /*
+//        camera = GetComponent<Camera>();
+//        ratio = (float)Screen.height / (float)Screen.width;
+//        screenHeight = screenWidth * ratio;
+//        size = screenHeight / 200;
+//        camera.orthographicSize = size;
+//        */
+//    }
+//
+//    void Start()
+//    {
+//        /*
+//        float aspectRatio = (float)Screen.width / (float)Screen.height;
+//        float cameraHeight = 10 / aspectRatio;
+//        Camera.main.orthographic = true;
+//        Camera.main.orthographicSize = cameraHeight / 2f;
+//        */
+//        
+//    }
     // Update is called once per frame
     void LateUpdate()
     {

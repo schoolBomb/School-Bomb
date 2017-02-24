@@ -49,6 +49,8 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
 		StartCoroutine(loading());//로딩창 
 		im.conceal ();
+
+
 //		//선택한 스테이지에 따른 실행
 //		switch (selectNum) {
 //		case (int)stageNum.SelectStage:
@@ -64,7 +66,23 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 //					Status.changeTime ();//시간변경
 //			}
 //			break;
+//		case (int)stageNum.Shop:
+//			break;
+//		case (int)stageNum.Lab:
+//			break;
+//		case (int)stageNum.ClubRoom:
+//			break;
+//		case (int)stageNum.Lobbdy:
+//			break;
+//		case (int)stageNum.ServerRoom:
+//			break;
 //		case (int)stageNum.Dormitory:
+//			break;
+//		case (int)stageNum.Corridor:
+//			break;
+//		case (int)stageNum.SecretRoom:
+//			break;
+//		default:
 //			break;
 //		}
 
@@ -238,117 +256,6 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 	}
 
 	public void updateCoin(){
-		upLeft [2].text = Status.money.ToString ();
+		upLeft [2].text = "©"+Status.money.ToString ();
 	}
 }
-
-
-//public void select(int selectNum){//받은 parameter에 맞는 stages와 backGround를 활성화한다.
-//	StartCoroutine(loading());//로딩창 
-//	im.conceal ();
-//	switch(selectNum){
-//	case (int)stageNum.SelectStage:
-//		//21번째 턴에서 엔딩을 실행한다. 
-//		if (Status.day > (int)DayOfWeek.Sunday) {
-//			if (Status.paper >= 21) {
-//				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (4, 0);
-//			} else {
-//				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
-//			}
-//
-//		} else {
-//			if (Status.nowStage != (short)stageNum.Dormitory)
-//				Status.changeTime ();//시간변경
-//		}
-//
-//		if (gameUI [3].activeSelf)
-//			gameUI [3].SetActive (false);
-//
-//		camera.transform.localPosition = new Vector3 (0, 0, -10);
-//		cam.orthographicSize = 3.6f;
-//		cc.rangeChange (0, 0);
-//		uw.rangeChange (0, 0);
-//		camera.transform.localPosition = new Vector3 (0, 0, -10);
-//		stages [Status.nowStage].SetActive (false);
-//		stages [(int)stageNum.SelectStage].SetActive (true);
-//		stages [9].SetActive (false);
-//		gameUI [0].SetActive (true);
-//		gameUI [1].SetActive (true);
-//		gameUI [2].SetActive (false);
-//		Status.nowStage = (short)selectNum;
-//		updateUpLeftUI();
-//		break;
-//
-//	case (int)stageNum.Dormitory:
-//		im.show ((int)ItemPosition.toUser);
-//		gameUI [1].SetActive (false);
-//		gameUI [2].SetActive (true);
-//		gameUI [0].SetActive (false);//selectButton
-//		stages [0].SetActive (false);
-//		stages [selectNum].SetActive (true);
-//		Status.nowStage = (short)selectNum;
-//		//	im.show ((int)ItemPosition.toUser);
-//		im.showDorm ();
-//		stages [selectNum].GetComponent<Check> ().writing ();
-//		break;
-//	default:
-//		gameUI [0].SetActive (false);//selectButton
-//		gameUI [1].SetActive (false);//dorm
-//		for (int i = 0; i < stages.Length; i++)
-//			stages [i].SetActive (false);//initialize
-//		if ((selectNum == 10 || selectNum == 11) && Status.time != (int)TimeOfDay.Night) {
-//			stages [7].SetActive (true);
-//			Check chec = stages [7].GetComponent<Check> ();
-//			chec.checkNPC (selectNum);
-//		} else {
-//			stages [selectNum].SetActive (true);
-//			Check chec = stages [selectNum].GetComponent<Check> ();
-//			chec.checkNPC (selectNum);
-//		}
-//		Status.nowStage = (short)selectNum;
-//		//Exception
-//		if (selectNum != (int)stageNum.SecretRoom) {
-//			stages [9].SetActive (true);//exception for secretRoom
-//			player [1].SetActive (true);
-//			player [2].SetActive (true);
-//		} else {
-//			stages [9].SetActive (true);//exception for secretRoom
-//			player [1].SetActive (false);
-//			player [2].SetActive (false);
-//		}
-//
-//		if (selectNum == (int)stageNum.Shop) {
-//			im.show ((int)ItemPosition.toStore);
-//		} else {
-//			im.show (Status.nowStage);
-//		}
-//		if (selectNum == (int)stageNum.Corridor || selectNum == 10 || selectNum == 11) {
-//			camera.transform.localPosition = new Vector3 (-23.5f, 0f, -10f);
-//			player [0].transform.localPosition = new Vector3 (-23.5f, -0.16f, -5f);
-//			cam.orthographicSize = 7.0f;
-//			cc.rangeChange (-23.5f, 23.5f);
-//			uw.rangeChange (-29.5f, 35);
-//		} else {
-//			if (selectNum == (int)stageNum.Lab) {
-//				cc.rangeChange (-3.25f, 7);
-//				uw.rangeChange (-9, 13);
-//
-//			} else if (selectNum == (int)stageNum.SecretRoom) {
-//				cc.rangeChange (0, 0);
-//				uw.rangeChange (-5.5f, 5.2f);
-//
-//			} else if (selectNum == (int)stageNum.ServerRoom) {
-//				cc.rangeChange (-1, 6.8f);
-//				uw.rangeChange (-7, 12.8f);
-//			} else {
-//				cc.rangeChange (0, 0);
-//				uw.rangeChange (-6, 6);
-//			}
-//			cam.orthographicSize = 3.6f;
-//			camera.transform.localPosition = new Vector3 (0, 0, -10);
-//			player [0].transform.localPosition = new Vector3 (0f, -0.16f, -5f);
-//		}
-//		break;
-//	}
-//
-//}

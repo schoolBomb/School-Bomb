@@ -39,8 +39,11 @@ public class Check : MonoBehaviour {
 
 	public void bombLocationCheck(){
 		if (Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday) {
-			bl.enabled = true;
-			StartCoroutine (bl.glowingIt ());
+			if ((Status.nowStage == 2) || (Status.nowStage == 7) || (Status.nowStage == 5) 
+				|| (Status.nowStage == 8) || (Status.nowStage == 10) || (Status.nowStage == 11)) {
+				bl.enabled = true;
+				StartCoroutine (bl.glowingIt ());
+			}
 		}
 //		} else {
 //			if( bl.Equals(null) )	bl.enabled = false;

@@ -100,7 +100,6 @@ public class NPC : MonoBehaviour {
 			} 
 			else if (c.compare (1, 2, 2)) {//1 2 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			} 
@@ -116,21 +115,17 @@ public class NPC : MonoBehaviour {
 			}
 			else if (c.compare (1, 3, 2)) {//1 3 2 김영란법 엔딩
                     ee.endGame(5, 0);
-				//audio.Play ();
 			}
 			else if (c.compare (2, 3, 2)) {//2 3 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			}
 			else if (c.compare (1, 4, 2)) {//1 4 2 경찰 엔딩
                     ee.endGame(6, 0);
-				//audio.Play ();
 			}
 			else if (c.compare (2, 4, 2)) {//2 4 2 교수님의 마음 획득
 				im.startGetIt(out s,16);
-			//	im.proHeartCount += 0.2f;
 				this.c = 0;
 				audio.Play ();
 			} 
@@ -166,10 +161,9 @@ public class NPC : MonoBehaviour {
 
 				Status.money -= 10000;
 				GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
-				cOther++;
-				if (cOther == 13)
-					scriptNum = 1;
-				this.c = 0;
+//				cOther++;
+//				if (cOther == 13)
+//					scriptNum = 1;
 				audio.Play ();
 			} 
 			else if (c.compare (2, 0, 4)) {//2 0 4 레포트 판매
@@ -178,7 +172,6 @@ public class NPC : MonoBehaviour {
 				cOther++;
 				if (cOther == 13)
 					scriptNum = 1;
-				this.c = 0;
 				audio.Play ();
 			} 
 			else if (c.compare (1, 1, 4) && Status.money >= 100000 ) {//1 0 4 우라늄 획득 

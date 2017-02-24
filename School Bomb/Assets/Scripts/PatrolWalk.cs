@@ -155,21 +155,26 @@ public class PatrolWalk : MonoBehaviour
 		user.Speed = 0;
 		movePower = 0;
 
+		Debug.Log ("Before");
+
 		if(!ScriptManager.isShowing) StartCoroutine (sm.patrolScript (talk, returnIt));
 	}
 
 	private void returnIt (int a)
 	{
+		Debug.Log ("Return it");
 		//Status.haveBomb = false;
 		user.Speed = 4f;
 		movePower = 4f;
 
 		int r;
-		do { //랜덤으로 폭탄을 뺏긴다.
-			r = (int)Random.Range (0, im.bombList.Length);
-		} while (im.bombList [r].isComplete == false);
-		im.bombList [r].isComplete = false;
-		im.getBackItem (im.bombList [r].name, -1);
+		if (Status.haveBomb==true) {
+			do { //랜덤으로 폭탄을 뺏긴다.
+				r = (int)Random.Range (0, im.bombList.Length);
+			} while (im.bombList [r].isComplete == false);
+			im.bombList [r].isComplete = false;
+			im.getBackItem (im.bombList [r].name, -1);
+		}
 
 		ss.select (0);
 	}
