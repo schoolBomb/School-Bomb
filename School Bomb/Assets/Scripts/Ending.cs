@@ -59,9 +59,14 @@ public class Ending : MonoBehaviour {
 				}
 				break;
 			}
-		} else if (bombStrength >= 11) {//죽음
+		}
+		else if(bombStrength>=40 ){
+			StartCoroutine (boop (3));
+		}
+		else if (bombStrength >= 11) {//죽음
 			StartCoroutine (boop (9));
-		} else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
+		}
+		else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
 			StartCoroutine (boop (0));
 		} else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength < 9) {//졸업논문 공고
 			StartCoroutine (boop (2));
