@@ -11,19 +11,36 @@ public class Check : MonoBehaviour {
 
 	public void checkNPC(int num){//npc별 시간 또는 요일에 따라 나타남 결정
 		NPC[] np=new NPC[npc.Length];
-		for (int i = 0; i < npc.Length; i++)
-		{
-			np[i] = npc[i].GetComponent<NPC>();
-			npc[i].SetActive(false);//2. 만약 이게 적당한 시간대가 아니라면 //->false
 
-			for (int j = 0; j < np[i].time.Length; j++)
+		if (num == 10) {
+			npc [0].SetActive (false);
+			npc [1].SetActive (false);
+			npc [2].SetActive (true);
+			npc [3].SetActive (true);
+
+		} else if (num == 11) {
+			npc [0].SetActive (true);
+			npc [1].SetActive (true);
+			npc [2].SetActive (false);
+			npc [3].SetActive (false);
+		} else {
+			for (int i = 0; i < npc.Length; i++)
 			{
-				//만약 서버실 복도라면 
-				if (np[i].time[j] == Status.time){
-					npc[i].SetActive(true);//적당한 시간대라면 true
+				np[i] = npc[i].GetComponent<NPC>();
+				npc[i].SetActive(false);//2. 만약 이게 적당한 시간대가 아니라면 //->false
+
+				for (int j = 0; j < np[i].time.Length; j++)
+				{
+					//만약 서버실 복도라면 
+					if (np[i].time[j] == Status.time ){
+						npc[i].SetActive(true);//적당한 시간대라면 true
+					}
 				}
 			}
+
 		}
+
+
 		if (num == (int)stageNum.Lab) {
 			if (!(Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday)) {
 				npc [0].GetComponent<SpriteRenderer> ().sprite = professor [(int)Status.day - 1];
@@ -39,15 +56,11 @@ public class Check : MonoBehaviour {
 
 	public void bombLocationCheck(){
 		if (Status.day == (int)DayOfWeek.Saturday || Status.day == (int)DayOfWeek.Sunday) {
-			if ((Status.nowStage == 2) || (Status.nowStage == 7) || (Status.nowStage == 5) 
-				|| (Status.nowStage == 8) || (Status.nowStage == 10) || (Status.nowStage == 11)) {
+			if ((Status.nowStage == 2) || (Status.nowStage == 7) || (Status.nowStage == 5) || (Status.nowStage == 8)) {
 				bl.enabled = true;
 				StartCoroutine (bl.glowingIt ());
 			}
 		}
-//		} else {
-//			if( bl.Equals(null) )	bl.enabled = false;
-//		}
 	}
 
 	public void writing(){

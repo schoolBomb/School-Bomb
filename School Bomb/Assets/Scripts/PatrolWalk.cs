@@ -90,7 +90,6 @@ public class PatrolWalk : MonoBehaviour
 				}
 			}
 		} else {//player가 숨어있지 않을때
-			Debug.Log ("Not Detected");
 		}
 	}
 
@@ -162,7 +161,6 @@ public class PatrolWalk : MonoBehaviour
 
 	private void returnIt (int a)
 	{
-		Debug.Log ("Return it");
 		//Status.haveBomb = false;
 		user.Speed = 4f;
 		movePower = 4f;

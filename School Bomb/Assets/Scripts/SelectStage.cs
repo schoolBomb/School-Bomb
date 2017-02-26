@@ -86,19 +86,21 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 //			break;
 //		}
 
+		if (Status.day > (int)DayOfWeek.Sunday) {
+			Debug.Log (Status.day);
+			if (Status.paper >= 21) {
+				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
+			} else {
+				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
+			}
+		}
+
 		switch(selectNum){
 		case (int)stageNum.SelectStage:
 			//21번째 턴에서 엔딩을 실행한다. 
-			if (Status.day > (int)DayOfWeek.Sunday) {
-				if (Status.paper >= 21) {
-					GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (4, 0);
-				} else {
-					GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
-				}
-			} else {
-				if (Status.nowStage != (short)stageNum.Dormitory)
-					Status.changeTime ();//시간변경
-			}
+			if (Status.nowStage != (short)stageNum.Dormitory)
+				Status.changeTime ();//시간변경
+			
 
 			camAndWalking (3.6f, new Vector3 (0, 0, -10), 0, 0, 0, 0);
 			stages [Status.nowStage].SetActive (false);

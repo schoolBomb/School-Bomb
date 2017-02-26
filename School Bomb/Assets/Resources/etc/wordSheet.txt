@@ -693,7 +693,7 @@
     "sentence": "이건 폭탄 아닌가…? 학생 지금 이거 들고 어디로… 설마!"
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -702,7 +702,7 @@
     "sentence": "왜 청소하냐고? 폭파 미수지 뭐."
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -711,7 +711,7 @@
     "sentence": "진짜 싫다니까. 학교에 별로 피해도 없으면서 이렇게 청소를 시키는지."
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -720,7 +720,7 @@
     "sentence": "아, 차라리 그럴 시간에 졸업 논문이나 쓸걸 그랬나봐."
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 1,
     "name": "학생1",
     "isQuestion": "Random",
@@ -729,7 +729,7 @@
     "sentence": "왜 너도 시도해보게? 아 그럼 이거. 저번에 남은건데 나름 유용하다고?"
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",
@@ -738,7 +738,7 @@
     "sentence": "교실에 설치했는데 흠집도 안나더라고."
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",
@@ -747,7 +747,7 @@
     "sentence": "소문에 의하면 작은 폭탄으로도 학교전체를 마비시킬 수는 있다나봐."
   },
   {
-    "location": 10,
+    "location": 11,
     "num": 2,
     "name": "학생2",
     "isQuestion": "Random",

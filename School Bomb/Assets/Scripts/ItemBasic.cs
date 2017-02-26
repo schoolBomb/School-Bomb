@@ -15,10 +15,12 @@ public class ItemBasic : MonoBehaviour{
 	private SelectStage sm;
 
 	public AudioClip ac;
+	public DragHandler dh{get;set;}
 
 	void Start(){
 		beforePos = this.gameObject.transform.localPosition;
-		//ac = GetComponent<AudioSource> ();
+		dh = GetComponent<DragHandler> ();
+		dh.enabled = false;
 	}
 
 	public void initializeText(){
@@ -46,12 +48,10 @@ public class ItemBasic : MonoBehaviour{
 
 		}
 		else {//줍는 아이템 
-			//manager.startGetIt(out txt,data.num);
 			if (!ScriptManager.isShowing) {
 				StartCoroutine (manager.getIt (txt, data.num));
 				manager.getAudioClip (ac);
 			}
-			//ac.Play ();
 		}
 	}
 
@@ -61,6 +61,7 @@ public class ItemBasic : MonoBehaviour{
 			this.gameObject.SetActive (false);
 			transform.localPosition = dormPos;
 			Status.money -= data.price;
+			dh.enabled = true;
 			GameObject.Find ("Script Manager").GetComponent<SelectStage> ().updateCoin ();
 		} else {
 			return;

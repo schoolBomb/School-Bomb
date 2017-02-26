@@ -282,6 +282,7 @@ public class ItemManager : MonoBehaviour {
 				if (toBeLoc == -1) {
 					itemList[i].data.location = itemList[i].saveData;
 					itemList[i].transform.localPosition = itemList[i].beforePos;
+					itemList [i].dh.enabled = false;
 				} else {
 					itemList [i].data.location = toBeLoc;
 				}

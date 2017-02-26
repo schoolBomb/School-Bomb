@@ -32,57 +32,61 @@ public class Ending : MonoBehaviour {
 		/////////////
 		if (bombStrength == 0) {
 			switch (bombNum) {
+			case 0:
+				if (Status.paper == 21) {//시체
+					StartCoroutine (boop (4,0));
+				}
+				else if(Status.suspiciousRate < 50) {//	기숙사에서 뒹굴뒹굴
+					StartCoroutine (boop (1,0));
+				}
+				break;
 			case 4://	논문 자필
-				StartCoroutine (boop (3));
+				StartCoroutine (boop (3,2));
 				break;
 			case 5:
-				StartCoroutine (boop (5));
+				StartCoroutine (boop (5,2));
 				break;
 			case 6:
-				StartCoroutine (boop (6));
+				StartCoroutine (boop (6,2));
 				break;
 			case 8://	고양이 엔딩
-				StartCoroutine (boop (7));
+				StartCoroutine (boop (7,2));
 				break;
 			case 9:	//	데자와 엔딩
-				StartCoroutine (boop (8));
+				StartCoroutine (boop (8,2));
 				break;
 			default:
-				if (Status.suspiciousRate < 50) {//	기숙사에서 뒹굴뒹굴
-					StartCoroutine (boop (1));
-				} else if (Status.paper == 21) {//시체
-					StartCoroutine (boop (4));
-				} else if (Status.suspiciousRate >= 50) {//포돌이와의 만남
-					StartCoroutine (boop (6));
+				if (Status.suspiciousRate >= 50) {//포돌이와의 만남
+					StartCoroutine (boop (6,2));
 				} else {//	김영란법
-					StartCoroutine (boop (5));
+					StartCoroutine (boop (5,2));
 				}
 				break;
 			}
 		}
 		else if(bombStrength>=40 ){
-			StartCoroutine (boop (3));
+			StartCoroutine (boop (3,2));
 		}
 		else if (bombStrength >= 11) {//죽음
-			StartCoroutine (boop (9));
+			StartCoroutine (boop (9,2));
 		}
 		else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength >= 9) {//공항에서 신문
-			StartCoroutine (boop (0));
+			StartCoroutine (boop (0,2));
 		} else if (Status.alibi > 0 && Status.suspiciousRate < 30 && bombStrength < 9) {//졸업논문 공고
-			StartCoroutine (boop (2));
+			StartCoroutine (boop (2,2));
 		} else if ( Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength < 6.5f) {//졸업논문 공고
-			StartCoroutine (boop (2));
+			StartCoroutine (boop (2,2));
 		} else if ( Status.alibi == 0 && Status.suspiciousRate >= 30 && bombStrength >= 6.5f) {//포돌이와의 만남
-			StartCoroutine (boop (6));
+			StartCoroutine (boop (6,2));
 		} else {
-			StartCoroutine (boop (2));
+			StartCoroutine (boop (2,2));
 		}
 			
 
 	}
 
-	public IEnumerator boop(int bombNum){
-		yield return new WaitForSeconds (2.0f);//1. 2초 카운트다운을 한다.
+	public IEnumerator boop( int bombNum, float time ){
+		yield return new WaitForSeconds (time);//1. 2초 카운트다운을 한다.
 		cs.ShakeCamera(3,3);//2.카메라에 진동
 		StartCoroutine(fadeIn());//3. 흰색으로 페이드 아웃
 

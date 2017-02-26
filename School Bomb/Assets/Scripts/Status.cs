@@ -18,12 +18,24 @@ public static class Status{//캐릭터 정보, 현재 상태 , 저장까지 구�
 		//time을 올린다.
 		if (Status.time == 3) {//만약 time이 3일경우, time=1, day=+1
 			Status.time = 1;
-			if (Status.day < 7)//이때 day는 7까지;;
-				Status.day++;
+			//if (Status.day < 7)//이때 day는 7까지;;
+			Status.day++;
 		}
 		else {
 			Status.time++;
 		}
 	}
 
+	public static void initialize(){
+		day=(short)DayOfWeek.Monday;
+		time=(short)TimeOfDay.Day;
+		nowStage=(short)stageNum.SelectStage;
+		money=30000;
+		suspiciousRate=0;
+		alibi=0;
+		reportNum=123456789;//instead of infinite
+		haveBomb=false;
+		paper = 0;
+	
+	}
 }
