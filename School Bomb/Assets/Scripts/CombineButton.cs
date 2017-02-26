@@ -32,53 +32,41 @@ public class CombineButton : MonoBehaviour
 		slot3 = GameObject.Find("combine_box_3").GetComponent<Combinationblock>();
 
 		GameObject.Find ("Item Manager").GetComponent<ItemManager> ();
+		bombs = GameObject.FindGameObjectsWithTag("Bomb");
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
 	void OnMouseDown()//조합 버튼을 눌렀을때 실행
 	{
 		ItemManager manager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
-
-		bombs = GameObject.FindGameObjectsWithTag("Bomb");//bomb에 대한 객체배열 생성
-
 		CheckBomb(slot1, slot2, slot3);//재료중에 폭탄이 있는지 확인한다, 있으면 containBomb=true
 
 		if (!containBomb)//재료중에 폭탄이 없다면 실행된다
 		{
 			if (slot1.hasItem && slot2.hasItem && slot3.hasItem)//3 슬롯에 모두 아이템이 있어야 조합기능이 실행된다!->emp4,다이너마이트0,액체3만들수있다
 			{
-
 				item1 = slot1.item.GetComponent<ItemBasic>().data;//각 슬롯에 있는 아이템을 가져온다
 				item2 = slot2.item.GetComponent<ItemBasic>().data;
 				item3 = slot3.item.GetComponent<ItemBasic>().data;
 
-//				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
-//				item2.location = (int)ItemPosition.alreadyUsed;
-//				item3.location = (int)ItemPosition.alreadyUsed;
 				string nameOfBomb=null;
-				bombs = GameObject.FindGameObjectsWithTag("Bomb");//bomb에 대한 객체배열 생성
 
 				if (item1.bomb.Equals(item2.bomb) && item2.bomb.Equals(item3.bomb))//칸에 있는 3아이템의 폭탄이름이 같으면 폭탄생성
 				{
-
 					afterBomb(slot1, slot2, slot3);//버튼 누른후, 슬롯 초기화작업
 
-					if (item1.bomb.Equals("다이너마이트"))
-					{
+					if (item1.bomb.Equals("다이너마이트")){
 						appearBomb(bombs, 0);//다이너마이트 생성
 						nameOfBomb="다이너마이트";
 					}
-					else if (item1.bomb.Equals("액체폭탄"))
-					{
+					else if (item1.bomb.Equals("액체폭탄")){
 						appearBomb(bombs, 3);//액체폭탄 생성
 						nameOfBomb="액체폭탄";
 					}
-					else if (item1.bomb.Equals("EMP폭탄"))
-					{
+					else if (item1.bomb.Equals("수소화리튬")){
+						appearBomb(bombs, 5);//수소화리튬 생성
+						nameOfBomb="수소화리튬";
+					}
+					else if (item1.bomb.Equals("EMP폭탄")){
 						appearBomb(bombs, 4);//EMP폭탄 생성
 						nameOfBomb="EMP폭탄";
 					}
@@ -122,34 +110,29 @@ public class CombineButton : MonoBehaviour
 				item2 = slotItem2.item.GetComponent<ItemBasic>().data;
 				bomb = slotBomb.item;
 
-//				item1.location = (int)ItemPosition.alreadyUsed;//아이템들은 사용된걸로 처리된다
-//				item2.location = (int)ItemPosition.alreadyUsed;
-
 				bomb.GetComponent<Bomb>().isComplete = false;//그 폭탄은 미완성된걸로 처리한다
 				bomb.GetComponent<SpriteRenderer>().enabled = false;//폭탄이 사라진다
 
 				string nameOfBomb = null;
-				bombs = GameObject.FindGameObjectsWithTag("Bomb");//bomb에 대한 객체배열 생성
 
-				if (item1.bomb.Equals(item2.bomb))//칸에 있는 2 아이템의 폭탄이름이 같으면 폭탄생성
-				{
-
+				if(item1.name.Equals("수소") || item2.name.Equals("수소") ){//수소가 재료일 경우 
 					afterBomb(slotItem1, slotItem2, slotBomb);//버튼 누른후, 슬롯 초기화작업
 
-					if (item1.bomb.Equals("가스폭탄"))
+					if (item1.bomb.Equals("가스폭탄") || item2.bomb.Equals("가스폭탄"))
 					{
 						appearBomb(bombs, 1);//가스폭탄 생성
 						nameOfBomb="가스폭탄";
 					}
-					else if (item1.bomb.Equals("소이폭탄"))
+					im.getBackItem (nameOfBomb, (int)ItemPosition.alreadyUsed);
+
+				}else if (item1.bomb.Equals(item2.bomb))//칸에 있는 2 아이템의 폭탄이름이 같으면 폭탄생성
+				{
+					afterBomb(slotItem1, slotItem2, slotBomb);//버튼 누른후, 슬롯 초기화작업
+
+					if (item1.bomb.Equals("소이폭탄"))
 					{
 						appearBomb(bombs, 2);//소이폭탄 생성
 						nameOfBomb="소이폭탄";
-					}
-					else if (item1.bomb.Equals("수소화리튬"))
-					{
-						appearBomb(bombs, 5);//수소화리튬 생성
-						nameOfBomb="수소화리튬";
 					}
 					else if (item1.bomb.Equals("수소폭탄"))
 					{
@@ -177,9 +160,9 @@ public class CombineButton : MonoBehaviour
 				}
 				else//폭탄 재료가 서로 맞지 않을때(폭탄이 재료로 있는 상태에서)
 				{
-					item1.location = (int)ItemPosition.toUser;//아이템들은 다시 유저껄로 처리된다
-					item2.location = (int)ItemPosition.toUser;
-
+//					item1.location = (int)ItemPosition.toUser;//아이템들은 다시 유저껄로 처리된다
+//					item2.location = (int)ItemPosition.toUser;
+//
 					bomb.GetComponent<Bomb>().isComplete = true;//그 폭탄은 다시 완성된걸로 처리한다
 					bomb.GetComponent<SpriteRenderer>().enabled = true;//폭탄이 다시 나타난다
 
