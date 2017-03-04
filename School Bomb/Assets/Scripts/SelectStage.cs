@@ -89,9 +89,9 @@ public class SelectStage : MonoBehaviour {//change stage and manage UI
 		if (Status.day > (int)DayOfWeek.Sunday) {
 			Debug.Log (Status.day);
 			if (Status.paper >= 21) {
-				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
+				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (2, 0);
 			} else {
-				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (0, 0);
+				GameObject.Find ("Item Manager").GetComponent<Ending> ().endGame (1, 0);
 			}
 		}
 

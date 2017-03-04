@@ -162,9 +162,12 @@ public class ItemManager : MonoBehaviour {
 
 	public void ending(int bombNum)
 	{
-		Debug.Log (strength+" "+ bombList [tempNum[bombNum]].name);
-		Ending e = GetComponent<Ending> ();
-		e.endGame (bombNum, bombList [bombNum+2].strength + strength);
+		if (bombNum == 1) {
+			return;
+		} else {
+			Ending e = GetComponent<Ending> ();
+			e.endGame (tempNum[bombNum-2], bombList [tempNum[bombNum-2]].strength + strength);
+		}
 	}
 
 	public void explode(float locStrength)//폭발 진행 
@@ -173,19 +176,18 @@ public class ItemManager : MonoBehaviour {
 		string[] str = new string[14];
 		str[0] = "";
 		str[1] = "폭탄을 설치하시겠습니까?";//질문을 한다: 폭탄을 설치하시겠습니까?
-		int i = 2;
+		str[2]="아니오";
+		int i = 3;
 		tempNum = new int[bombList.Length];
 		for (int j = 0 ; j < bombList.Length ; j++){//폭탄 종류가 쫙 뜬다. 다이너마이트…
 			if ( bombList[j].isComplete==true )
 			{
 				str[i] = string.Copy(bombList[j].name);
-				tempNum [i] = bombList [j].id;
+				tempNum [i-3] = bombList [j].id;
 				i++;
 			}
 		}
-		str[i++] = "네";
-		str[i] = "아니오";
-		StartCoroutine(purchase(str, -1, i-3,ending));
+		StartCoroutine(purchase(str, -1, i-2,ending));
 		//폭탄 선택
 		//설치하시겠습니까? 예, 아니오
 	}
